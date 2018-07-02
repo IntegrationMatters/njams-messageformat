@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.faizsiegeln</groupId>
+        <artifactId>njams4-root</artifactId>
+        <version>0.9.6</version>
+    </parent>
+    
+    <artifactId>njams-messageformat</artifactId>
+    <packaging>jar</packaging>
+    <version>4.0.0-RC6-SNAPSHOT</version>
+    
+    <scm>
+        <connection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</connection>
+        <developerConnection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+    
+    <properties>
+        <javaSourceLevel>1.8</javaSourceLevel>
+    </properties>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.github.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>3.1.5</version>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <locations>
+                                <location>com.faizsiegeln.swagger</location>
+                                <location>com.faizsiegeln.njams.messageformat.v4.common</location>
+                                <location>com.faizsiegeln.njams.messageformat.v4.logmessage</location>
+                            </locations>
+                            <info>
+                                <title>nJAMS Message Format API Documentation</title>
+                                <version>v1</version>
+                                <!-- use markdown here because I'm using markdown for output,
+                               if you need to use html or other markup language, you need to use your target language,
+                                and note escape your description for xml -->
+                                <description>
+                                    This is a sample.
+                                </description>
+                            </info>
+                            <swaggerDirectory>${project.build.directory}/swagger-ui</swaggerDirectory>
+                        </apiSource>
+                    </apiSources>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.8.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.1</version>
+            </plugin>
+        </plugins>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>1.5.10</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
