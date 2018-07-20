@@ -4,8 +4,8 @@ This project defines the messgeformat used for the communication between the nJA
 
 ## Docs
 
-* [JavaDoc](https://integrationmatters.github.io/njams-messageformat/) - The JavaDocs of the latest Release
-* [Swagger Api Doc](https://integrationmatters.github.io/njams-messageformat/swagger.json) - The Swagger Api Doc of the latest Release
+* [JavaDoc](https://integrationmatters.github.io/njams-messageformat/) - The JavaDocs of the latest Release.
+* [Swagger Api Doc](https://integrationmatters.github.io/njams-messageformat/swagger.json) - The Swagger Api Doc of the latest Release.
 
 ## License
 

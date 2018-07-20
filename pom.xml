@@ -44,6 +44,8 @@
                                 <description>
                                     This is the Swagger API Documentation for nJAMS Messageformat. This format
                                     is used for thec communication between the nJAMS Clients and the nJAMS Server.
+                                    ATTENTION: The sample POST requests are just added for this documentation. It is
+                                    not possible to call nJAMS Server via REST Requestbut only by JMS communication.
                                 </description>
                             </info>
                             <swaggerDirectory>${project.build.directory}/swagger-ui</swaggerDirectory>
