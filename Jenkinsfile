@@ -4,9 +4,6 @@ import groovy.json.JsonOutput
 
 properties([
     buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10')),
-    parameters([
-        
-    ]), 
     pipelineTriggers([
         //pollSCM('')
     ])
