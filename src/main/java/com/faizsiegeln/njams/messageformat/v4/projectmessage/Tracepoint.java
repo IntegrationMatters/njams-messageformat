@@ -21,8 +21,7 @@ import java.time.LocalDateTime;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
- *
- * @author pnientiedt
+ * A Tracepoint can be configured for an {@link Activity}.
  */
 public class Tracepoint {
 
@@ -33,34 +32,77 @@ public class Tracepoint {
     private Integer iterations;
     private Boolean deepTrace;
 
+    /**
+     * Get the startTime where the Tracepoint will get effective
+     * 
+     * @return the startTime as LocalDateTime
+     */
     public LocalDateTime getStarttime() {
         return starttime;
     }
 
+    /**
+     * Set the startTime where the Tracepoint will get effective
+     * 
+     * @param starttime
+     *            as LocalDateTime
+     */
     public void setStarttime(LocalDateTime starttime) {
         this.starttime = starttime;
     }
 
+    /**
+     * Get the endTime where the Tracepoint will be stopped.
+     * 
+     * @return the endTime as LocalDateTime
+     */
     public LocalDateTime getEndtime() {
         return endtime;
     }
 
+    /**
+     * Set the endTime where the Tracepoint will be stopped.
+     * 
+     * @param endtime
+     *            as LocalDateTime
+     */
     public void setEndtime(LocalDateTime endtime) {
         this.endtime = endtime;
     }
 
+    /**
+     * Get the count of Iterationes which will be traced.
+     * 
+     * @return the iterations count as Integer
+     */
     public Integer getIterations() {
         return iterations;
     }
 
+    /**
+     * Set the count of Iterationes which will be traced.
+     * 
+     * @param iterations
+     *            count as Integer
+     */
     public void setIterations(Integer iterations) {
         this.iterations = iterations;
     }
 
+    /**
+     * Marks that a {@link ProcessModel} shall collect trace information for each activity (including sub processes).
+     * 
+     * @return the deeptrace state as Boolean
+     */
     public Boolean isDeeptrace() {
         return deepTrace;
     }
 
+    /**
+     * Set that a {@link ProcessModel} shall collect trace information for each activity (including sub processes).
+     * 
+     * @param deeptrace
+     */
     public void setDeeptrace(Boolean deeptrace) {
         this.deepTrace = deeptrace;
     }
