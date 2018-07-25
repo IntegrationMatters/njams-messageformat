@@ -21,10 +21,14 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 /**
- *
- * @author pnientiedt
+ * Representation of a call to a subprocess.
+ * <p>
+ * If the subprocess is inline, name and path are mandatory.
+ * <p>
+ * If the subprocess is spawned, the logId is mandatory.
  */
-@ApiModel(description = "A call to a subprocess. If the subprocess is inline, name and path are mandatory. If the subprocess is spawned, the logId is mandatory")
+@ApiModel(
+        description = "A call to a subprocess. If the subprocess is inline, name and path are mandatory. If the subprocess is spawned, the logId is mandatory")
 public class SubProcess implements Serializable {
 
     private static final long serialVersionUID = 6365591352276117846L;
@@ -38,32 +42,74 @@ public class SubProcess implements Serializable {
     public SubProcess() {
     }
 
+    /**
+     * Constructor of a subprocess call.
+     * 
+     * @param name
+     *            mandatory if process is inline
+     * @param path
+     *            mandatory if process is inline
+     * @param logId
+     *            mandatory if is spawned
+     */
     public SubProcess(String name, String path, String logId) {
         this.name = name;
         this.path = path;
         this.logId = logId;
     }
 
+    /**
+     * Get the name of the called subprocess
+     * 
+     * @return the name as string
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set the name of the called subprocess
+     * 
+     * @param name
+     *            the name as string
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Get the path of the called subprocess
+     * 
+     * @return the path as string
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Set the path of the called subprocess
+     * 
+     * @param path
+     *            the path as string
+     */
     public void setPath(String path) {
         this.path = path;
     }
 
+    /**
+     * If subprocess is spawned gets the logId of the subprocess
+     * 
+     * @return the logId as string
+     */
     public String getLogId() {
         return logId;
     }
 
+    /**
+     * If subprocess is spawned set the logId of the subprocess
+     * 
+     * @param logId
+     */
     public void setLogId(String logId) {
         this.logId = logId;
     }
