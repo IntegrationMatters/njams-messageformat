@@ -21,14 +21,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
- * @author pnientiedt
+ * The LogLevel is used in {@link ProcessModel} to define which stuff will be logged.
  */
 public enum LogLevel {
-    INFO(0),
-    SUCCESS(1),
-    WARNING(2),
-    ERROR(3);
+    INFO(0), SUCCESS(1), WARNING(2), ERROR(3);
 
     private static final Logger LOG = LoggerFactory.getLogger(Command.class);
 
