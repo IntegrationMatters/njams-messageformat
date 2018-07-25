@@ -17,9 +17,16 @@
 package com.faizsiegeln.njams.messageformat.v4.common;
 
 /**
- *
- * @author pnientiedt
+ * Type of a special Tree Element
  */
 public enum TreeElementType {
-    CLIENT, PROCESS
+    /**
+     * If tree element represents a client in the monitored system
+     */
+    CLIENT,
+
+    /**
+     * If tree element represents a process in the monitored system
+     */
+    PROCESS
 }
