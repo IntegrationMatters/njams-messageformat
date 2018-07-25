@@ -17,8 +17,7 @@
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
 /**
- *
- * @author pnientiedt
+ * A Transition connects two {@link Activity} in a {@link ProcessModel}
  */
 public class Transition {
     private String id;
@@ -27,42 +26,101 @@ public class Transition {
     private String from;
     private String to;
 
+    /**
+     * Get the unique ID of the transition in scope of a {@link ProcessModel}.
+     * 
+     * @return the ID as String
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Set the unique ID of the transition in scope of a {@link ProcessModel}.
+     * 
+     * @param id
+     *            to set
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Get name of the Transition.
+     * 
+     * @return name as String
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Set name of the Transition. Does not have to be unique.
+     * 
+     * @param name
+     *            as String
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Get optional configuration of transition in monitored system
+     * <p>
+     * This might be a condition like: x=42
+     * 
+     * @return the config as String
+     */
     public String getConfig() {
         return config;
     }
 
+    /**
+     * Set optional configuration of transition in monitored system
+     * <p>
+     * This might be a condition like: x=42
+     * 
+     * @param config
+     *            as String
+     */
     public void setConfig(String config) {
         this.config = config;
     }
 
+    /**
+     * Get the {@link Activity} ID of transition start.
+     * 
+     * @return the activityId as String
+     */
     public String getFrom() {
         return from;
     }
 
+    /**
+     * Set the {@link Activity} ID of transition start.
+     * 
+     * @param from
+     *            activityId as String
+     */
     public void setFrom(String from) {
         this.from = from;
     }
 
+    /**
+     * Get the {@link Activity} ID of transition end.
+     * 
+     * @return the activityId as String
+     */
     public String getTo() {
         return to;
     }
 
+    /**
+     * Set the {@link Activity} ID of transition start.
+     * 
+     * @param to
+     *            activityId as String
+     */
     public void setTo(String to) {
         this.to = to;
     }
