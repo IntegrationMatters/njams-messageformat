@@ -20,36 +20,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- * @author pnientiedt
+ * Information about the version of the message. nJAMS server needs it to decide on how to process it.
  */
 public enum MessageVersion {
 
+    /**
+     * Old Messageformat of nJAMS server 3
+     * 
+     * @deprecated
+     */
     @Deprecated
     V3(3),
+    /**
+     * Messageformat of nJAMS4 Server.
+     */
     V4(4);
-    
+
     private final Integer value;
-    
+
     private static final Map<Integer, MessageVersion> map = new HashMap<>();
-    
+
     static {
         for (MessageVersion mv : MessageVersion.values()) {
             map.put(mv.getValue(), mv);
         }
     }
-    
+
     private MessageVersion(Integer value) {
         this.value = value;
     }
-    
+
     public Integer getValue() {
         return value;
     }
-    
+
     public static MessageVersion getMessageVersion(Integer value) {
         return map.get(value);
     }
-    
-    
+
 }

@@ -16,13 +16,13 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.common;
 
+import com.faizsiegeln.njams.messageformat.v4.logmessage.LogMessage;
+import com.faizsiegeln.njams.messageformat.v4.projectmessage.ProjectMessage;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * Interface just to have a supertype for Log and ProjectMessage for the DpReader.
- *
- * @author pnientiedt
+ * Base Message for nJAMS containing common fields of {@link LogMessage} and {@link ProjectMessage}
  */
 @ApiModel(description = "Base Message for nJAMS containing common fields.")
 public abstract class CommonMessage {
@@ -39,34 +39,78 @@ public abstract class CommonMessage {
     @ApiModelProperty(value = "Full path of the process (starting and ending with a greater-as sign)", required = true)
     private String path;
 
+    /**
+     * Get the version of the client.
+     * 
+     * @return it as string
+     */
     public String getClientVersion() {
         return clientVersion;
     }
 
+    /**
+     * Set the version of the client.
+     * 
+     * @param clientVersion
+     *            as string
+     */
     public void setClientVersion(String clientVersion) {
         this.clientVersion = clientVersion;
     }
 
+    /**
+     * Get the version of the SDK used by the client.
+     * 
+     * @return it as string
+     */
     public String getSdkVersion() {
         return sdkVersion;
     }
 
+    /**
+     * Set the version of the SDK used by the client.
+     * 
+     * @param sdkVersion
+     *            as string
+     */
     public void setSdkVersion(String sdkVersion) {
         this.sdkVersion = sdkVersion;
     }
 
+    /**
+     * Get Technology identifier, used to find technology icons.
+     * 
+     * @return it as string
+     */
     public String getCategory() {
         return category;
     }
 
+    /**
+     * Set Technology identifier, used to find technology icons.
+     * 
+     * @param category
+     *            as string
+     */
     public void setCategory(String category) {
         this.category = category;
     }
 
+    /**
+     * Get the full path of the process (starting and ending with a greater-as sign)
+     * 
+     * @return the path as string
+     */
     public String getPath() {
         return path;
     }
 
+    /**
+     * Set the full path of the process (starting and ending with a greater-as sign)
+     * 
+     * @param path
+     *            as string
+     */
     public void setPath(String path) {
         this.path = path;
     }

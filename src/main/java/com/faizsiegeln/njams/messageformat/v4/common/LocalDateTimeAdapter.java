@@ -20,8 +20,9 @@ import java.time.LocalDateTime;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
- *
- * @author pnientiedt
+ * Converts LocalDateTimes from String to JavaObjects and back.
+ * <p>
+ * Used in Message classes as Annotation on LocalDateTime attributes: @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
  */
 public class LocalDateTimeAdapter extends XmlAdapter<String, LocalDateTime> {
 
