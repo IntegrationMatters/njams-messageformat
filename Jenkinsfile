@@ -31,4 +31,15 @@ node ('master') {
         archiveArtifacts 'target/njams-messageformat*.*'
    }
    
+   stage('Javadoc') {
+        echo "Javadoc njams-messageformat"
+        sh "'${mvnHome}/bin/mvn' generate-sources javadoc:javadoc"
+        publishHTML([allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: false,
+                        reportDir: 'target/site/apidocs/',
+                        reportFiles: 'index.html',
+                        reportName: 'Javadoc',
+                        reportTitles: ''])
+   }
 }

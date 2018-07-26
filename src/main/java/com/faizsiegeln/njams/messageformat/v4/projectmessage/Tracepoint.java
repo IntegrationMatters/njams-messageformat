@@ -102,6 +102,7 @@ public class Tracepoint {
      * Set that a {@link ProcessModel} shall collect trace information for each activity (including sub processes).
      * 
      * @param deeptrace
+     *            config as Boolean
      */
     public void setDeeptrace(Boolean deeptrace) {
         this.deepTrace = deeptrace;

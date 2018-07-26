@@ -109,6 +109,7 @@ public class SubProcess implements Serializable {
      * If subprocess is spawned set the logId of the subprocess
      * 
      * @param logId
+     *            of the spawned subprocess
      */
     public void setLogId(String logId) {
         this.logId = logId;
