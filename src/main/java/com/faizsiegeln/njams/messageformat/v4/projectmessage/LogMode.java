@@ -17,20 +17,20 @@
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
 /**
- *
- * @author pnientiedt
+ * Logmode is configured on {@link ProjectMessage} wich represents a nJAMS Client and configures what will be logged by
+ * nJAMS
  */
 public enum LogMode {
     /**
-     * NONE
+     * Nothing will be logged by nJAMS from this {@link ProjectMessage} / Client.
      */
     NONE,
     /**
-     * EXCLUSIVE
+     * Only instrumented {@link ProcessModel} that pass nJAMS Activities or nJAMS Extracts will be logged.
      */
     EXCLUSIVE,
     /**
-     * COMPLETE
+     * Everything meaning all {@link ProcessModel} from {@link ProjectMessage} will be logged.
      */
     COMPLETE
 }
