@@ -16,9 +16,11 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.command;
 
+import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -28,6 +30,7 @@ public class Response {
 
     private int resultCode;
     private String resultMessage;
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime dateTime;
     private Map<String, String> parameters = new HashMap<>();
 
