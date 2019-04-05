@@ -34,7 +34,8 @@ public enum Command {
     GET_EXTRACT("GetExtract"),
     SEND_PROJECTMESSAGE("SendProjectmessage"),
     REPLAY("Replay"),
-    RECORD("Record");
+    RECORD("Record"),
+    TEST_EXPRESSION("TestExpression");
 
     private static final Logger LOG = LoggerFactory.getLogger(Command.class);
 
