@@ -60,8 +60,8 @@ public class Activity implements Serializable, Comparable<Activity>, com.faizsie
     private Long sequence;
 
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
-    @ApiModelProperty(value = "Start timestamp of the activity instance.", required = false)
-    private LocalDateTime execution = LocalDateTime.now(ZoneOffset.UTC);
+    @ApiModelProperty(value = "Start timestamp of the activity's event", required = false)
+    private LocalDateTime execution;
 
     @ApiModelProperty(value = "Duration of the activity instance in milliseconds.", required = false)
     private long duration;
