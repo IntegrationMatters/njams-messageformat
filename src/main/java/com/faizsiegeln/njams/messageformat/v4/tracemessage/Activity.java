@@ -16,31 +16,31 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.tracemessage;
 
-import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.faizsiegeln.njams.messageformat.v4.projectmessage.Tracepoint;
 
 /**
  * @author krautenberg
  * @version 4.0.1
  */
-public class TraceMessage extends CommonMessage {
+public class Activity {
 
-    private List<ProcessModel> processes;
+    private String activityId;
 
-    public List<ProcessModel> getProcesses() {
-        return processes;
+    private Tracepoint tracepoint;
+
+    public String getActivityId() {
+        return activityId;
     }
 
-    public void setProcesses(List<ProcessModel> processes) {
-        this.processes = processes;
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
     }
 
-    public void addProcess(ProcessModel process){
-        if(processes == null){
-            processes = new ArrayList<>();
-        }
-        processes.add(process);
+    public Tracepoint getTracepoint() {
+        return tracepoint;
+    }
+
+    public void setTracepoint(Tracepoint tracepoint) {
+        this.tracepoint = tracepoint;
     }
 }
