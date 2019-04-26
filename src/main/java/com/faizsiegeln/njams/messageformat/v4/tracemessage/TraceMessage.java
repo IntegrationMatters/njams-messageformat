@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * This Message is used by the nJAMS Client.
+ * It contains the Processes and activities for which Tracepoints must be deleted in Server.
+ *
  * @author krautenberg
  * @version 4.0.1
  */
