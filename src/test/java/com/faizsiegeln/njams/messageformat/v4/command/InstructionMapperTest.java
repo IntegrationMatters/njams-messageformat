@@ -26,12 +26,16 @@ package com.faizsiegeln.njams.messageformat.v4.command;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
 
 public class InstructionMapperTest {
+
+    private static final Logger LOG = LoggerFactory.getLogger(InstructionMapperTest.class);
 
 //x = parse(serialize(x))
 
@@ -62,7 +66,7 @@ public class InstructionMapperTest {
 
     private void serializeAndParseLogLevel(LogLevel logLevelToCheck) throws NjamsFormatException {
         String serializedLogLevel = InstructionMapper.InstructionSerializer.serializeLogLevel(logLevelToCheck);
-        System.out.println(serializedLogLevel);
+        LOG.debug(serializedLogLevel);
         LogLevel parsedLogLevel = InstructionMapper.InstructionParser.parseLogLevel(serializedLogLevel);
         assertEquals(logLevelToCheck, parsedLogLevel);
     }
@@ -89,7 +93,7 @@ public class InstructionMapperTest {
 
     private void serializeAndParseLogMode(LogMode logModeToCheck) throws NjamsFormatException {
         String serializedLogMode = InstructionMapper.InstructionSerializer.serializeLogMode(logModeToCheck);
-        System.out.println(serializedLogMode);
+        LOG.debug(serializedLogMode);
         LogMode parsedLogMode = InstructionMapper.InstructionParser.parseLogMode(serializedLogMode);
         assertEquals(logModeToCheck, parsedLogMode);
     }
@@ -107,7 +111,7 @@ public class InstructionMapperTest {
     private void serializeAndParseLocalDateTime(LocalDateTime localDateTimeToCheck) throws NjamsFormatException {
         String serializedLocalDateTime = InstructionMapper.InstructionSerializer
                 .serializeLocalDateTime(localDateTimeToCheck);
-        System.out.println(serializedLocalDateTime);
+        LOG.debug(serializedLocalDateTime);
         LocalDateTime parsedLocalDateTime = InstructionMapper.InstructionParser
                 .parseLocalDateTime(serializedLocalDateTime);
         assertEquals(localDateTimeToCheck, parsedLocalDateTime);
@@ -125,7 +129,7 @@ public class InstructionMapperTest {
 
     private void serializeAndParseBoolean(boolean booleanToCheck) {
         String serializedBoolean = InstructionMapper.InstructionSerializer.serializeBoolean(booleanToCheck);
-        System.out.println(serializedBoolean);
+        LOG.debug(serializedBoolean);
         boolean parsedBoolean = InstructionMapper.InstructionParser.parseBoolean(serializedBoolean);
         assertEquals(booleanToCheck, parsedBoolean);
     }
@@ -137,7 +141,7 @@ public class InstructionMapperTest {
 
     private void serializeAndParseInteger(int integerToCheck) throws NjamsFormatException {
         String serializeInteger = InstructionMapper.InstructionSerializer.serializeInteger(integerToCheck);
-        System.out.println(serializeInteger);
+        LOG.debug(serializeInteger);
         int parsedInteger = InstructionMapper.InstructionParser.parseInteger(serializeInteger);
         assertEquals(integerToCheck, parsedInteger);
     }
@@ -150,7 +154,7 @@ public class InstructionMapperTest {
     }
 
     private void parseLogLevelString(String logLevelAsString, LogLevel expected) throws NjamsFormatException {
-        System.out.println(logLevelAsString);
+        LOG.debug(logLevelAsString);
         LogLevel parsedLogLevel = InstructionMapper.InstructionParser.parseLogLevel(logLevelAsString);
         assertEquals(expected, parsedLogLevel);
     }
@@ -183,7 +187,7 @@ public class InstructionMapperTest {
     }
 
     private void parseLogModeString(String logModeAsString, LogMode expected) throws NjamsFormatException {
-        System.out.println(logModeAsString);
+        LOG.debug(logModeAsString);
         LogMode parsedLogMode = InstructionMapper.InstructionParser.parseLogMode(logModeAsString);
         assertEquals(expected, parsedLogMode);
     }
@@ -217,7 +221,7 @@ public class InstructionMapperTest {
 
     private void parseLocalDateTimeString(String localDateTimeAsString, LocalDateTime expected)
             throws NjamsFormatException {
-        System.out.println(localDateTimeAsString);
+        LOG.debug(localDateTimeAsString);
         LocalDateTime parseLocalDateTime = InstructionMapper.InstructionParser
                 .parseLocalDateTime(localDateTimeAsString);
         assertEquals(expected, parseLocalDateTime);
@@ -261,7 +265,7 @@ public class InstructionMapperTest {
     }
 
     private void parseBooleanString(String booleanAsString, boolean expected) throws NjamsFormatException {
-        System.out.println(booleanAsString);
+        LOG.debug(booleanAsString);
         boolean parseBoolean = InstructionMapper.InstructionParser.parseBoolean(booleanAsString);
         assertEquals(expected, parseBoolean);
     }
@@ -309,7 +313,7 @@ public class InstructionMapperTest {
     }
 
     private void parseIntegerString(String IntegerAsString, int expected) throws NjamsFormatException {
-        System.out.println(IntegerAsString);
+        LOG.debug(IntegerAsString);
         int parseInteger = InstructionMapper.InstructionParser.parseInteger(IntegerAsString);
         assertEquals(expected, parseInteger);
     }
