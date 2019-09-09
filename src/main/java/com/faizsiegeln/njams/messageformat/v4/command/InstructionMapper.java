@@ -38,10 +38,18 @@ import java.util.Arrays;
  */
 public class InstructionMapper {
 
+    private InstructionMapper(){
+        //No initializing
+    }
+
     /**
      * Serializer nested class
      */
     public static class InstructionSerializer {
+
+        private InstructionSerializer(){
+            //No initializing
+        }
 
         /**
          * Returns the serialized String to the given LogLevel.
@@ -106,6 +114,10 @@ public class InstructionMapper {
          * Default prefix for parsing Exceptions.
          */
         private static final String UNABLE_TO_DESERIALIZE_OBJECT = "Unable to deserialize: ";
+
+        private InstructionParser(){
+            //No initializing
+        }
 
         /**
          * Returns the LogLevel to the given String.
