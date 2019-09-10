@@ -21,7 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package com.faizsiegeln.njams.messageformat.v4.command;
+package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
 
 import java.io.IOException;
 
@@ -31,7 +31,7 @@ import java.io.IOException;
  * @author krautenberg
  * @version 4.0.2
  */
-public class NjamsFormatException extends IOException {
+public class NjamsMessageFormatException extends IOException {
 
     /**
      * Use this if you do not have a Root Cause. Provide clear and informative Message with all needed Context
@@ -39,7 +39,7 @@ public class NjamsFormatException extends IOException {
      *
      * @param message the message for the exception
      */
-    public NjamsFormatException(String message) {
+    public NjamsMessageFormatException(String message) {
         super(message);
     }
 
@@ -49,7 +49,7 @@ public class NjamsFormatException extends IOException {
      * @param message the message for the exception
      * @param cause   the root cause for the exception
      */
-    public NjamsFormatException(String message, Throwable cause) {
+    public NjamsMessageFormatException(String message, Throwable cause) {
         super(message, cause);
     }
 }

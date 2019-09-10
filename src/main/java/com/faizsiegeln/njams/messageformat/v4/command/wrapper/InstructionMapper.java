@@ -21,7 +21,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-package com.faizsiegeln.njams.messageformat.v4.command;
+package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
 
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
@@ -124,9 +124,9 @@ public class InstructionMapper {
          *
          * @param logLevelToParse the LogLevel as String
          * @return the parsed LogLevel
-         * @throws NjamsFormatException is thrown if no correlating LogLevel was found for the given String
+         * @throws NjamsMessageFormatException is thrown if no correlating LogLevel was found for the given String
          */
-        public static LogLevel parseLogLevel(String logLevelToParse) throws NjamsFormatException {
+        public static LogLevel parseLogLevel(String logLevelToParse) throws NjamsMessageFormatException {
             return parseEnumParameter(logLevelToParse, LogLevel.class);
         }
 
@@ -135,22 +135,22 @@ public class InstructionMapper {
          *
          * @param logModeToParse the LogMode as String
          * @return the parsed LogMode
-         * @throws NjamsFormatException is thrown if no correlating LogMode was found for the given String
+         * @throws NjamsMessageFormatException is thrown if no correlating LogMode was found for the given String
          */
-        public static LogMode parseLogMode(String logModeToParse) throws NjamsFormatException {
+        public static LogMode parseLogMode(String logModeToParse) throws NjamsMessageFormatException {
             return parseEnumParameter(logModeToParse, LogMode.class);
         }
 
         private static <T extends Enum<T>> T parseEnumParameter(final String enumParameterToParse,
                 final Class<T> enumeration)
-                throws NjamsFormatException {
+                throws NjamsMessageFormatException {
             T foundEnumParameter = null;
             if (enumParameterToParse != null && enumeration != null && enumeration.getEnumConstants() != null) {
                 foundEnumParameter = Arrays.stream(enumeration.getEnumConstants())
                         .filter(c -> c.name().equalsIgnoreCase(enumParameterToParse)).findAny().orElse(null);
             }
             if (foundEnumParameter == null) {
-                throw new NjamsFormatException(
+                throw new NjamsMessageFormatException(
                         UNABLE_TO_DESERIALIZE_OBJECT + "\"" + enumParameterToParse + "\"" + " to " +
                         enumeration.getSimpleName());
             }
@@ -162,9 +162,9 @@ public class InstructionMapper {
          *
          * @param localDateTimeToParse the LocalDateTime as String
          * @return the parsed LocalDateTime
-         * @throws NjamsFormatException is thrown if the given parameter couldn't be parsed to a LocalDateTime object.
+         * @throws NjamsMessageFormatException is thrown if the given parameter couldn't be parsed to a LocalDateTime object.
          */
-        public static LocalDateTime parseLocalDateTime(String localDateTimeToParse) throws NjamsFormatException {
+        public static LocalDateTime parseLocalDateTime(String localDateTimeToParse) throws NjamsMessageFormatException {
             if (localDateTimeToParse == null || localDateTimeToParse.isEmpty() ||
                 onlyWhiteSpaces(localDateTimeToParse)) {
                 return null;
@@ -176,7 +176,7 @@ public class InstructionMapper {
                 }
                 return LocalDateTime.parse(localDateTimeToParse, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             } catch (RuntimeException parsingException) {
-                throw new NjamsFormatException(UNABLE_TO_DESERIALIZE_OBJECT + localDateTimeToParse, parsingException);
+                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + localDateTimeToParse, parsingException);
             }
         }
 
@@ -204,13 +204,13 @@ public class InstructionMapper {
          *
          * @param integerToParse the int as String
          * @return the parsed int
-         * @throws NjamsFormatException is thrown if the given parameter couldn't be parsed to a int.
+         * @throws NjamsMessageFormatException is thrown if the given parameter couldn't be parsed to a int.
          */
-        public static int parseInteger(String integerToParse) throws NjamsFormatException {
+        public static int parseInteger(String integerToParse) throws NjamsMessageFormatException {
             try {
                 return Integer.parseInt(integerToParse);
             } catch (NumberFormatException invalidIntegerException) {
-                throw new NjamsFormatException(UNABLE_TO_DESERIALIZE_OBJECT + integerToParse, invalidIntegerException);
+                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + integerToParse, invalidIntegerException);
             }
         }
     }
