@@ -9,12 +9,12 @@
     
     <artifactId>njams-messageformat</artifactId>
     <packaging>jar</packaging>
-    <version>4.0.1</version>
+    <version>4.0.2-SNAPSHOT</version>
     
     <scm>
         <connection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</connection>
         <developerConnection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</developerConnection>
-        <tag>njams-messageformat-4.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
     
     <properties>
