@@ -38,7 +38,7 @@ import java.util.Arrays;
  */
 public class InstructionMapper {
 
-    private InstructionMapper(){
+    private InstructionMapper() {
         //No initializing
     }
 
@@ -47,7 +47,7 @@ public class InstructionMapper {
      */
     public static class InstructionSerializer {
 
-        private InstructionSerializer(){
+        private InstructionSerializer() {
             //No initializing
         }
 
@@ -115,7 +115,7 @@ public class InstructionMapper {
          */
         private static final String UNABLE_TO_DESERIALIZE_OBJECT = "Unable to deserialize: ";
 
-        private InstructionParser(){
+        private InstructionParser() {
             //No initializing
         }
 
@@ -162,13 +162,10 @@ public class InstructionMapper {
          *
          * @param localDateTimeToParse the LocalDateTime as String
          * @return the parsed LocalDateTime
-         * @throws NjamsMessageFormatException is thrown if the given parameter couldn't be parsed to a LocalDateTime object.
+         * @throws NjamsMessageFormatException is thrown if the given parameter couldn't be parsed to a LocalDateTime
+         * object.
          */
         public static LocalDateTime parseLocalDateTime(String localDateTimeToParse) throws NjamsMessageFormatException {
-            if (localDateTimeToParse == null || localDateTimeToParse.isEmpty() ||
-                onlyWhiteSpaces(localDateTimeToParse)) {
-                return null;
-            }
             try {
                 if (localDateTimeToParse.charAt(localDateTimeToParse.length() - 1) == 'Z') {
                     return LocalDateTime.parse(localDateTimeToParse.substring(0, localDateTimeToParse.length() - 1),
@@ -176,17 +173,9 @@ public class InstructionMapper {
                 }
                 return LocalDateTime.parse(localDateTimeToParse, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             } catch (RuntimeException parsingException) {
-                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + localDateTimeToParse, parsingException);
+                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + localDateTimeToParse,
+                        parsingException);
             }
-        }
-
-        private static boolean onlyWhiteSpaces(String string) {
-            for (int i = 0; i < string.length(); i++) {
-                if (Character.isWhitespace(string.charAt(i)) == false) {
-                    return false;
-                }
-            }
-            return true;
         }
 
         /**
@@ -195,8 +184,13 @@ public class InstructionMapper {
          * @param booleanToParse the boolean as String
          * @return true, if input is case insensitive "true", else false
          */
-        public static boolean parseBoolean(String booleanToParse) {
-            return Boolean.parseBoolean(booleanToParse);
+        public static boolean parseBoolean(String booleanToParse) throws NjamsMessageFormatException {
+            if (booleanToParse != null &&
+                (booleanToParse.equalsIgnoreCase("true") || (booleanToParse.equalsIgnoreCase("false")))) {
+                return Boolean.parseBoolean(booleanToParse);
+            } else {
+                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + booleanToParse);
+            }
         }
 
         /**
@@ -210,7 +204,8 @@ public class InstructionMapper {
             try {
                 return Integer.parseInt(integerToParse);
             } catch (NumberFormatException invalidIntegerException) {
-                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + integerToParse, invalidIntegerException);
+                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + integerToParse,
+                        invalidIntegerException);
             }
         }
     }
