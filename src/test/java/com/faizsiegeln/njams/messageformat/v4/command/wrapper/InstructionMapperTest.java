@@ -37,113 +37,130 @@ public class InstructionMapperTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(InstructionMapperTest.class);
 
-//x = parse(serialize(x))
+//LogLevel serializing
 
-    @Test(expected = NjamsMessageFormatException.class)
-    public void serializeLogLevelNull() throws NjamsMessageFormatException {
-        serializeAndParseLogLevel(null);
+    @Test
+    public void serializeLogLevelNull() {
+        serializeLogLevel(null, null, NjamsMessageFormatException.class);
     }
 
     @Test
-    public void serializeAndParseLogLevelInfo() throws NjamsMessageFormatException {
-        serializeAndParseLogLevel(LogLevel.INFO);
+    public void serializeLogLevelInfo() {
+        serializeLogLevel(LogLevel.INFO, "INFO", null);
     }
 
     @Test
-    public void serializeAndParseLogLevelSuccess() throws NjamsMessageFormatException {
-        serializeAndParseLogLevel(LogLevel.SUCCESS);
+    public void serializeLogLevelSuccess() {
+        serializeLogLevel(LogLevel.SUCCESS, "SUCCESS", null);
     }
 
     @Test
-    public void serializeAndParseLogLevelWarning() throws NjamsMessageFormatException {
-        serializeAndParseLogLevel(LogLevel.WARNING);
+    public void serializeLogLevelWarning() {
+        serializeLogLevel(LogLevel.WARNING, "WARNING", null);
     }
 
     @Test
-    public void serializeAndParseLogLevelError() throws NjamsMessageFormatException {
-        serializeAndParseLogLevel(LogLevel.ERROR);
+    public void serializeLogLevelError() {
+        serializeLogLevel(LogLevel.ERROR, "ERROR", null);
     }
 
-    private void serializeAndParseLogLevel(LogLevel logLevelToCheck) throws NjamsMessageFormatException {
-        String serializedLogLevel = InstructionMapper.InstructionSerializer.serializeLogLevel(logLevelToCheck);
-        LOG.debug(serializedLogLevel);
-        LogLevel parsedLogLevel = InstructionMapper.InstructionParser.parseLogLevel(serializedLogLevel);
-        assertEquals(logLevelToCheck, parsedLogLevel);
+    private void serializeLogLevel(LogLevel logLevelToCheck, String logLevelSerialized,
+            Class<? extends Exception> exceptionThatIsThrown) {
+        LOG.debug(logLevelSerialized);
+        try {
+            String serializedLogLevel = InstructionMapper.InstructionSerializer.serializeLogLevel(logLevelToCheck);
+            assertEquals(logLevelSerialized, serializedLogLevel);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
     }
 
-    @Test(expected = NjamsMessageFormatException.class)
-    public void serializeLogModeNull() throws NjamsMessageFormatException {
-        serializeAndParseLogMode(null);
+//LogMode serializing
+
+    @Test
+    public void serializeLogModeNull() {
+        serializeLogMode(null, null, NjamsMessageFormatException.class);
     }
 
     @Test
-    public void serializeAndParseLogModeNone() throws NjamsMessageFormatException {
-        serializeAndParseLogMode(LogMode.NONE);
+    public void serializeLogModeNone() {
+        serializeLogMode(LogMode.NONE, "NONE", null);
     }
 
     @Test
-    public void serializeAndParseLogModeExclusive() throws NjamsMessageFormatException {
-        serializeAndParseLogMode(LogMode.EXCLUSIVE);
+    public void serializeLogModeExclusive() {
+        serializeLogMode(LogMode.EXCLUSIVE, "EXCLUSIVE", null);
     }
 
     @Test
-    public void serializeAndParseLogModeComplete() throws NjamsMessageFormatException {
-        serializeAndParseLogMode(LogMode.COMPLETE);
+    public void serializLogModeComplete() {
+        serializeLogMode(LogMode.COMPLETE, "COMPLETE", null);
     }
 
-    private void serializeAndParseLogMode(LogMode logModeToCheck) throws NjamsMessageFormatException {
-        String serializedLogMode = InstructionMapper.InstructionSerializer.serializeLogMode(logModeToCheck);
-        LOG.debug(serializedLogMode);
-        LogMode parsedLogMode = InstructionMapper.InstructionParser.parseLogMode(serializedLogMode);
-        assertEquals(logModeToCheck, parsedLogMode);
+    private void serializeLogMode(LogMode logModeToCheck, String logModeSerialized,
+            Class<? extends Exception> exceptionThatIsThrown) {
+        LOG.debug(logModeSerialized);
+        try {
+            String serializedLogMode = InstructionMapper.InstructionSerializer.serializeLogMode(logModeToCheck);
+            assertEquals(logModeSerialized, serializedLogMode);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
     }
 
-    @Test(expected = NjamsMessageFormatException.class)
-    public void serializeLocalDateTimeNull() throws NjamsMessageFormatException {
-        serializeAndParseLocalDateTime(null);
+//LocalDateTime serializing
+
+    @Test
+    public void serializeLocalDateTimeNull() {
+        serializeLocalDateTime(null, null, NjamsMessageFormatException.class);
     }
 
     @Test
-    public void serializeAndParseLocalDateTimeNormal() throws NjamsMessageFormatException {
-        serializeAndParseLocalDateTime(LocalDateTime.of(2019, 9, 10, 7, 32, 48, 559000000));
+    public void serializeLocalDateTimeNormal() {
+        serializeLocalDateTime(LocalDateTime.of(2019, 9, 10, 7, 32, 48, 559000000), "2019-09-10T07:32:48.559", null);
     }
 
-    private void serializeAndParseLocalDateTime(LocalDateTime localDateTimeToCheck) throws NjamsMessageFormatException {
-        String serializedLocalDateTime = InstructionMapper.InstructionSerializer
-                .serializeLocalDateTime(localDateTimeToCheck);
-        LOG.debug(serializedLocalDateTime);
-        LocalDateTime parsedLocalDateTime = InstructionMapper.InstructionParser
-                .parseLocalDateTime(serializedLocalDateTime);
-        assertEquals(localDateTimeToCheck, parsedLocalDateTime);
+    private void serializeLocalDateTime(LocalDateTime localDateTimeToCheck, String localDateTimeSerizalized, Class<?
+            extends Exception> exceptionThatIsThrown) {
+        LOG.debug(localDateTimeSerizalized);
+        try {
+            String serializedLocalDateTime = InstructionMapper.InstructionSerializer
+                    .serializeLocalDateTime(localDateTimeToCheck);
+            assertEquals(localDateTimeSerizalized, serializedLocalDateTime);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
+    }
+
+//Boolean serializing
+
+    @Test
+    public void serializeBooleanTrue() {
+        serializeBoolean(true, "true");
     }
 
     @Test
-    public void serializeAndParseBooleanTrue() throws NjamsMessageFormatException {
-        serializeAndParseBoolean(true);
+    public void serializeBooleanFalse() {
+        serializeBoolean(false, "false");
     }
 
-    @Test
-    public void serializeAndParseBooleanFalse() throws NjamsMessageFormatException {
-        serializeAndParseBoolean(false);
-    }
-
-    private void serializeAndParseBoolean(boolean booleanToCheck) throws NjamsMessageFormatException {
+    private void serializeBoolean(boolean booleanToCheck, String booleanSerialized) {
+        LOG.debug(booleanSerialized);
         String serializedBoolean = InstructionMapper.InstructionSerializer.serializeBoolean(booleanToCheck);
-        LOG.debug(serializedBoolean);
-        boolean parsedBoolean = InstructionMapper.InstructionParser.parseBoolean(serializedBoolean);
-        assertEquals(booleanToCheck, parsedBoolean);
+        assertEquals(booleanSerialized, serializedBoolean);
     }
+
+//Integer serializing
 
     @Test
-    public void serializeAndParseInteger() throws NjamsMessageFormatException {
-        serializeAndParseInteger(1);
+    public void serializeInteger() throws NjamsMessageFormatException {
+        serializeInteger(1, "1");
     }
 
-    private void serializeAndParseInteger(int integerToCheck) throws NjamsMessageFormatException {
+    private void serializeInteger(int integerToCheck, String integerSerialized) throws NjamsMessageFormatException {
+        LOG.debug(integerSerialized);
         String serializeInteger = InstructionMapper.InstructionSerializer.serializeInteger(integerToCheck);
-        LOG.debug(serializeInteger);
-        int parsedInteger = InstructionMapper.InstructionParser.parseInteger(serializeInteger);
-        assertEquals(integerToCheck, parsedInteger);
+        assertEquals(integerSerialized, serializeInteger);
     }
 
 //LogLevel parsing
@@ -151,17 +168,6 @@ public class InstructionMapperTest {
     @Test
     public void parseNullLogLevel() {
         parseLogLevelString(null, null, NjamsMessageFormatException.class);
-    }
-
-    private void parseLogLevelString(String logLevelAsString, LogLevel expected,
-            Class<? extends Exception> exceptionThatIsThrown) {
-        LOG.debug(logLevelAsString);
-        try {
-            LogLevel parsedLogLevel = InstructionMapper.InstructionParser.parseLogLevel(logLevelAsString);
-            assertEquals(expected, parsedLogLevel);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
-        }
     }
 
     @Test
@@ -175,6 +181,26 @@ public class InstructionMapperTest {
     }
 
     @Test
+    public void parseInfoAsStringLogLevel() {
+        parseLogLevelString("INFO", LogLevel.INFO, null);
+    }
+
+    @Test
+    public void parseSuccessAsStringLogLevel() {
+        parseLogLevelString("SUCCESS", LogLevel.SUCCESS, null);
+    }
+
+    @Test
+    public void parseWarningAsStringLogLevel() {
+        parseLogLevelString("WARNING", LogLevel.WARNING, null);
+    }
+
+    @Test
+    public void parseErrorAsStringLogLevel() {
+        parseLogLevelString("ERROR", LogLevel.ERROR, null);
+    }
+
+    @Test
     public void parseInFoLogLevel() {
         parseLogLevelString("InFo", LogLevel.INFO, null);
     }
@@ -184,22 +210,22 @@ public class InstructionMapperTest {
         parseLogLevelString("invalid", null, NjamsMessageFormatException.class);
     }
 
+    private void parseLogLevelString(String logLevelAsString, LogLevel expected,
+            Class<? extends Exception> exceptionThatIsThrown) {
+        LOG.debug(logLevelAsString);
+        try {
+            LogLevel parsedLogLevel = InstructionMapper.InstructionParser.parseLogLevel(logLevelAsString);
+            assertEquals(expected, parsedLogLevel);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
+    }
+
 //LogMode parsing
 
     @Test
     public void parseNullLogMode() {
         parseLogModeString(null, null, NjamsMessageFormatException.class);
-    }
-
-    private void parseLogModeString(String logModeAsString, LogMode expected,
-            Class<? extends Exception> exceptionThatIsThrown) {
-        LOG.debug(logModeAsString);
-        try {
-            LogMode parsedLogMode = InstructionMapper.InstructionParser.parseLogMode(logModeAsString);
-            assertEquals(expected, parsedLogMode);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
-        }
     }
 
     @Test
@@ -213,6 +239,21 @@ public class InstructionMapperTest {
     }
 
     @Test
+    public void parseNoneAsStringLogMode() {
+        parseLogModeString("NONE", LogMode.NONE, null);
+    }
+
+    @Test
+    public void parseExclusiveAsStringLogMode() {
+        parseLogModeString("EXCLUSIVE", LogMode.EXCLUSIVE, null);
+    }
+
+    @Test
+    public void parseCompleteAsStringLogMode() {
+        parseLogModeString("COMPLETE", LogMode.COMPLETE, null);
+    }
+
+    @Test
     public void parseNoNeLogMode() {
         parseLogModeString("NoNe", LogMode.NONE, null);
     }
@@ -222,23 +263,22 @@ public class InstructionMapperTest {
         parseLogModeString("invalid", null, NjamsMessageFormatException.class);
     }
 
+    private void parseLogModeString(String logModeAsString, LogMode expected,
+            Class<? extends Exception> exceptionThatIsThrown) {
+        LOG.debug(logModeAsString);
+        try {
+            LogMode parsedLogMode = InstructionMapper.InstructionParser.parseLogMode(logModeAsString);
+            assertEquals(expected, parsedLogMode);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
+    }
+
 //LocalDateTime parsing
 
     @Test
     public void parseNullLocalDateTime() {
         parseLocalDateTimeString(null, null, NjamsMessageFormatException.class);
-    }
-
-    private void parseLocalDateTimeString(String localDateTimeAsString, LocalDateTime expected, Class<?
-            extends Exception> exceptionThatIsThrown) {
-        LOG.debug(localDateTimeAsString);
-        try {
-            LocalDateTime parseLocalDateTime = InstructionMapper.InstructionParser
-                    .parseLocalDateTime(localDateTimeAsString);
-            assertEquals(expected, parseLocalDateTime);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
-        }
     }
 
     @Test
@@ -271,22 +311,23 @@ public class InstructionMapperTest {
         parseLocalDateTimeString("invalid", null, NjamsMessageFormatException.class);
     }
 
+    private void parseLocalDateTimeString(String localDateTimeAsString, LocalDateTime expected, Class<?
+            extends Exception> exceptionThatIsThrown) {
+        LOG.debug(localDateTimeAsString);
+        try {
+            LocalDateTime parseLocalDateTime = InstructionMapper.InstructionParser
+                    .parseLocalDateTime(localDateTimeAsString);
+            assertEquals(expected, parseLocalDateTime);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
+    }
+
 //Boolean parsing
 
     @Test
     public void parseNullBoolean() {
         parseBooleanString(null, null, NjamsMessageFormatException.class);
-    }
-
-    private void parseBooleanString(String booleanAsString, Boolean expected,
-            Class<? extends Exception> exceptionThatIsThrown) {
-        LOG.debug(booleanAsString);
-        try {
-            boolean parseBoolean = InstructionMapper.InstructionParser.parseBoolean(booleanAsString);
-            assertEquals(expected, parseBoolean);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
-        }
     }
 
     @Test
@@ -324,21 +365,22 @@ public class InstructionMapperTest {
         parseBooleanString("invalid", null, NjamsMessageFormatException.class);
     }
 
+    private void parseBooleanString(String booleanAsString, Boolean expected,
+            Class<? extends Exception> exceptionThatIsThrown) {
+        LOG.debug(booleanAsString);
+        try {
+            boolean parseBoolean = InstructionMapper.InstructionParser.parseBoolean(booleanAsString);
+            assertEquals(expected, parseBoolean);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
+    }
+
 //Integer parsing
 
     @Test
     public void parseNullInteger() {
         parseIntegerString(null, -1, NjamsMessageFormatException.class);
-    }
-
-    private void parseIntegerString(String IntegerAsString, int expected, Class<? extends Exception> exceptionThatIsThrown) {
-        LOG.debug(IntegerAsString);
-        try {
-            int parseInteger = InstructionMapper.InstructionParser.parseInteger(IntegerAsString);
-            assertEquals(expected, parseInteger);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
-        }
     }
 
     @Test
@@ -374,5 +416,16 @@ public class InstructionMapperTest {
     @Test
     public void parseInvalidInteger() {
         parseIntegerString("invalid", -1, NjamsMessageFormatException.class);
+    }
+
+    private void parseIntegerString(String IntegerAsString, int expected,
+            Class<? extends Exception> exceptionThatIsThrown) {
+        LOG.debug(IntegerAsString);
+        try {
+            int parseInteger = InstructionMapper.InstructionParser.parseInteger(IntegerAsString);
+            assertEquals(expected, parseInteger);
+        } catch (NjamsMessageFormatException e) {
+            assertEquals(e.getClass(), exceptionThatIsThrown);
+        }
     }
 }

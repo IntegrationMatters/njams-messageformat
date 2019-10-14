@@ -47,6 +47,11 @@ public class InstructionMapper {
      */
     public static class InstructionSerializer {
 
+        /**
+         * Default prefix for serializing Exceptions.
+         */
+        private static final String UNABLE_TO_SERIALIZE_OBJECT = "Unable to serialize: ";
+
         private InstructionSerializer() {
             //No initializing
         }
@@ -55,9 +60,10 @@ public class InstructionMapper {
          * Returns the serialized String to the given LogLevel.
          *
          * @param logLevel the LogLevel to serialize
-         * @return the serialized LogLevel or null, if input is null
+         * @return the serialized LogLevel
+         * @throws NjamsMessageFormatException is thrown if parameter is null
          */
-        public static String serializeLogLevel(LogLevel logLevel) {
+        public static String serializeLogLevel(LogLevel logLevel) throws NjamsMessageFormatException {
             return serializeEnum(logLevel);
         }
 
@@ -65,24 +71,34 @@ public class InstructionMapper {
          * Returns the serialized String to the given LogMode.
          *
          * @param logMode the LogMode to serialize
-         * @return the serialized LogMode or null, if input is null
+         * @return the serialized LogMode
+         * @throws NjamsMessageFormatException is thrown if parameter is null
          */
-        public static String serializeLogMode(LogMode logMode) {
+        public static String serializeLogMode(LogMode logMode) throws NjamsMessageFormatException {
             return serializeEnum(logMode);
         }
 
-        private static String serializeEnum(Enum enumParameter) {
-            return enumParameter != null ? enumParameter.name() : null;
+        private static String serializeEnum(Enum enumParameter) throws NjamsMessageFormatException {
+            if (enumParameter != null) {
+                return enumParameter.name();
+            } else {
+                throw new NjamsMessageFormatException(UNABLE_TO_SERIALIZE_OBJECT + "\"null\"");
+            }
         }
 
         /**
          * Returns the serialized String to the given LocalDateTime.
          *
          * @param localDateTime the LocalDateTime to serialize
-         * @return the serialized LocalDateTime or null, if input is null
+         * @return the serialized LocalDateTime
+         * @throws NjamsMessageFormatException is thrown if parameter is null
          */
-        public static String serializeLocalDateTime(LocalDateTime localDateTime) {
-            return localDateTime != null ? localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) : null;
+        public static String serializeLocalDateTime(LocalDateTime localDateTime) throws NjamsMessageFormatException {
+            if (localDateTime != null) {
+                return localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            } else {
+                throw new NjamsMessageFormatException(UNABLE_TO_SERIALIZE_OBJECT + "\"null\"");
+            }
         }
 
         /**
@@ -163,7 +179,7 @@ public class InstructionMapper {
          * @param localDateTimeToParse the LocalDateTime as String
          * @return the parsed LocalDateTime
          * @throws NjamsMessageFormatException is thrown if the given parameter couldn't be parsed to a LocalDateTime
-         * object.
+         *                                     object.
          */
         public static LocalDateTime parseLocalDateTime(String localDateTimeToParse) throws NjamsMessageFormatException {
             try {
@@ -182,7 +198,9 @@ public class InstructionMapper {
          * Returns the boolean to the given String.
          *
          * @param booleanToParse the boolean as String
-         * @return true, if input is case insensitive "true", else false
+         * @return true, if input is case insensitive "true", false, if input is case insensitive "false"
+         * @throws NjamsMessageFormatException is thrown if the given parameter is neither "true" nor "false" case
+         * insensitive
          */
         public static boolean parseBoolean(String booleanToParse) throws NjamsMessageFormatException {
             if (booleanToParse != null &&
