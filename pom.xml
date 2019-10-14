@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.faizsiegeln</groupId>
-        <artifactId>njams4-root</artifactId>
-        <version>0.9.6</version>
-    </parent>
-    
+
+    <groupId>com.faizsiegeln</groupId>
     <artifactId>njams-messageformat</artifactId>
     <packaging>jar</packaging>
-    <version>4.0.2-SNAPSHOT</version>
-    
+    <version>4.1.0-SNAPSHOT</version>
+
     <scm>
         <connection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</connection>
         <developerConnection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</developerConnection>
         <tag>HEAD</tag>
     </scm>
-    
+
     <properties>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPaths>${project.basedir}/target/coverage-reports/jacoco-ut.exec,${project.basedir}/target/coverage-reports/jacoco-it.exec</sonar.jacoco.reportPaths>
+        <sonar.language>java</sonar.language>
+
         <javaSourceLevel>1.8</javaSourceLevel>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <xmArguments>-Xms256m -Xmx512m</xmArguments>
+        <argLine>${xmArguments}</argLine>
+        <surefire.java.io.tmpdir>${project.build.directory}/tmp</surefire.java.io.tmpdir>
+
+        <!-- Maven plugin versions -->
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
+        <svn-revision-number-maven-plugin.version>1.13</svn-revision-number-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
     </properties>
-    
+
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${javaSourceLevel}</source>
+                        <target>${javaSourceLevel}</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven-resources-plugin.version}</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
+                    <artifactId>svn-revision-number-maven-plugin</artifactId>
+                    <version>${svn-revision-number-maven-plugin.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.tmatesoft.svnkit</groupId>
+                            <artifactId>svnkit</artifactId>
+                            <version>1.8.3-1</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <plugin>
                 <groupId>com.github.kongchen</groupId>
@@ -79,11 +127,12 @@
             </plugin>
         </plugins>
     </build>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>1.7.7</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -102,11 +151,13 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.7</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
