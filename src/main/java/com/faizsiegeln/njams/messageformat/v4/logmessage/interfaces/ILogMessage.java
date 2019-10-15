@@ -101,4 +101,8 @@ public interface ILogMessage {
 
     public void addPluginDataItem(IPluginDataItem pluginDataItem);
 
+    public Boolean getTruncated();
+
+    public void setTruncated(Boolean truncated);
+
 }
