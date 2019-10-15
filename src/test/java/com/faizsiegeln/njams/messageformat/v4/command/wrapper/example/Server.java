@@ -2,12 +2,13 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.example;
 
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.ResponseListener;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.ReplayRequest;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.response.ReplayResponse;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.response.*;
 
 import java.time.LocalDateTime;
 
-public class Server implements MessageListener{
+public class Server implements MessageListener, ResponseListener {
 
     private MessageQueue toClient;
 
@@ -43,15 +44,79 @@ public class Server implements MessageListener{
     public void onMessage() throws NjamsMessageFormatException {
         //--> receive Instruction via connection
         Instruction processedBySDK = toServer.remove();
-        //iterate over all commands and find the correct one
-        ReplayResponse replayResponse = new ReplayResponse(processedBySDK);
+
+        onInstruction(processedBySDK);
+    }
+
+    @Override
+    public void onInstruction(ReplayResponse response) throws NjamsMessageFormatException {
         //Read the response!
-        final int resultCode = replayResponse.getResultCode();
-        final String resultMessage = replayResponse.getResultMessage();
-        final LocalDateTime dateTime = replayResponse.getDateTime();
-        final String mainLogId = replayResponse.getMainLogId();
-        final String exception = replayResponse.getException();
+        final int resultCode = response.getResultCode();
+        final String resultMessage = response.getResultMessage();
+        final LocalDateTime dateTime = response.getDateTime();
+        final String mainLogId = response.getMainLogId();
+        final String exception = response.getException();
 
         //Finished
+    }
+
+    @Override
+    public void onInstruction(ConfigureExtractResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(DeleteExtractResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(GetExtractResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(GetLogLevelResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(GetLogModeResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(GetTracingResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(RecordResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(SendProjectMessageResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(SetLogLevelResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(SetLogModeResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(SetTracingResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
+    }
+
+    @Override
+    public void onInstruction(TestExpressionResponse response) throws NjamsMessageFormatException {
+        //Do nothing for this example
     }
 }
