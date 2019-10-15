@@ -23,7 +23,7 @@ import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
-import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.GetLogModeRequest;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
@@ -32,11 +32,11 @@ public class GetLogModeResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_LOG_MODE;
 
-    public GetLogModeResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage,
-            LogMode logModeToSet)
+    public GetLogModeResponse(GetLogModeRequest request, int resultCode, String resultMessage,
+                              LogMode logModeToSet)
             throws NjamsMessageFormatException {
 
-        super(instructionToWriteTo, resultCode, resultMessage);
+        super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
         this.instructionToAdapt.setResponseParameter(LOG_MODE_KEY,
                 InstructionMapper.InstructionSerializer.serializeLogMode(logModeToSet));

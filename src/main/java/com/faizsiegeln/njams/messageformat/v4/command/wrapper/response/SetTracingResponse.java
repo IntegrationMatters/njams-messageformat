@@ -22,15 +22,16 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.SetTracingRequest;
 
 public class SetTracingResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_TRACING;
 
-    public SetTracingResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage)
+    public SetTracingResponse(SetTracingRequest request, int resultCode, String resultMessage)
             throws NjamsMessageFormatException {
 
-        super(instructionToWriteTo, resultCode, resultMessage);
+        super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
     }
 

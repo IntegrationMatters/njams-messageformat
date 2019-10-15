@@ -22,15 +22,16 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.DeleteExtractRequest;
 
 public class DeleteExtractResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.DELETE_EXTRACT;
 
-    public DeleteExtractResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage)
+    public DeleteExtractResponse(DeleteExtractRequest request, int resultCode, String resultMessage)
             throws NjamsMessageFormatException {
 
-        super(instructionToWriteTo, resultCode, resultMessage);
+        super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
     }
 

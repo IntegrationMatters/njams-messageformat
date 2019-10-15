@@ -22,6 +22,7 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.GetExtractRequest;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.EXTRACT_KEY;
 
@@ -29,11 +30,11 @@ public class GetExtractResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_EXTRACT;
 
-    public GetExtractResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage,
-            String extractToSet)
+    public GetExtractResponse(GetExtractRequest request, int resultCode, String resultMessage,
+                              String extractToSet)
             throws NjamsMessageFormatException {
 
-        super(instructionToWriteTo, resultCode, resultMessage);
+        super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
         this.instructionToAdapt.setResponseParameter(EXTRACT_KEY, extractToSet);
     }

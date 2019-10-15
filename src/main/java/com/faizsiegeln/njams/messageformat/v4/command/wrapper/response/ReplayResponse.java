@@ -22,6 +22,7 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.ReplayRequest;
 
 import java.time.LocalDateTime;
 
@@ -33,11 +34,11 @@ public class ReplayResponse extends AbstractResponse {
 
     private static final String EXCEPTION = "Exception";
 
-    public ReplayResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage, String mainLogId,
-            String exception, LocalDateTime dateTime)
+    public ReplayResponse(ReplayRequest request, int resultCode, String resultMessage, String mainLogId,
+                          String exception, LocalDateTime dateTime)
             throws NjamsMessageFormatException {
 
-        super(instructionToWriteTo, resultCode, resultMessage);
+        super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
         this.instructionToAdapt.setResponseParameter(MAIN_LOG_ID, mainLogId);
         this.instructionToAdapt.setResponseParameter(EXCEPTION, exception);

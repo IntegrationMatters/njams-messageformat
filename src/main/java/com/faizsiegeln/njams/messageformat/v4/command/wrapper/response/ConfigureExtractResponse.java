@@ -22,15 +22,16 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.ConfigureExtractRequest;
 
 public class ConfigureExtractResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.CONFIGURE_EXTRACT;
 
-    public ConfigureExtractResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage)
+    public ConfigureExtractResponse(ConfigureExtractRequest request, int resultCode, String resultMessage)
             throws NjamsMessageFormatException {
 
-        super(instructionToWriteTo, resultCode, resultMessage);
+        super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
     }
 

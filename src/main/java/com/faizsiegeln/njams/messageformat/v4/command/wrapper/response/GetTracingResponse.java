@@ -23,6 +23,7 @@ import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.GetTracingRequest;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
@@ -34,10 +35,10 @@ public class GetTracingResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_TRACING;
 
-    public GetTracingResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage,
-            LocalDateTime startTime, LocalDateTime endTime, int iterations, boolean isDeepTrace)
+    public GetTracingResponse(GetTracingRequest request, int resultCode, String resultMessage,
+                              LocalDateTime startTime, LocalDateTime endTime, int iterations, boolean isDeepTrace)
             throws NjamsMessageFormatException {
-        this(instructionToWriteTo, resultCode, resultMessage);
+        this(request.getInstruction(), resultCode, resultMessage);
 
         this.instructionToAdapt.setResponseParameter(START_TIME_KEY,
                 InstructionMapper.InstructionSerializer.serializeLocalDateTime(startTime));

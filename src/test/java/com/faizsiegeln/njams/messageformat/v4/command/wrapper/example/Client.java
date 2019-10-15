@@ -39,7 +39,7 @@ public class Client implements MessageListener, RequestListener {
     @Override
     public void onInstruction(ReplayRequest request) throws NjamsMessageFormatException {
         //Process the request...
-        ReplayResponse replayResponse = new ReplayResponse(request.getInstruction(), 0, "Success", "testMainLogId",
+        ReplayResponse replayResponse = new ReplayResponse(request, 0, "Success", "testMainLogId",
                 "testException", LocalDateTime.now(ZoneOffset.UTC));
 
         //send back to Server!
