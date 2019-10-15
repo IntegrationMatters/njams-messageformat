@@ -23,7 +23,6 @@ import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.response.ConfigureExtractResponse;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
