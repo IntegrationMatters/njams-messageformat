@@ -170,4 +170,18 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Internal Releases on Nexus</name>
+            <url>http://vslnexus01:8081/repository/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Nightly builds on Nexus</name>
+            <url>http://vslnexus01:8081/repository/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>
