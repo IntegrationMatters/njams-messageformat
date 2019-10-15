@@ -37,20 +37,20 @@ public class ReplayRequest {
 
     private Instruction instructionToAdapt;
 
-    public ReplayRequest(String processToSet, String startActivityToSet, String payloadToSet, boolean deepTraceToSet,
-            boolean testToSet) {
+    public ReplayRequest(String processPath, String startActivity, String payload, boolean deepTrace,
+                         boolean test) {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(PROCESS, processToSet);
-        instructionToAdapt.setRequestParameter(START_ACTIVITY, startActivityToSet);
-        instructionToAdapt.setRequestParameter(PAYLOAD, payloadToSet);
+        instructionToAdapt.setRequestParameter(PROCESS, processPath);
+        instructionToAdapt.setRequestParameter(START_ACTIVITY, startActivity);
+        instructionToAdapt.setRequestParameter(PAYLOAD, payload);
         instructionToAdapt.setRequestParameter(DEEPTRACE,
-                InstructionMapper.InstructionSerializer.serializeBoolean(deepTraceToSet));
+                InstructionMapper.InstructionSerializer.serializeBoolean(deepTrace));
         instructionToAdapt
-                .setRequestParameter(TEST, InstructionMapper.InstructionSerializer.serializeBoolean(testToSet));
+                .setRequestParameter(TEST, InstructionMapper.InstructionSerializer.serializeBoolean(test));
     }
 
     public ReplayRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {

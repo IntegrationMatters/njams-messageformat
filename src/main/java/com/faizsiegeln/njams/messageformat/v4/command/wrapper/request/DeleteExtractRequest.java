@@ -32,14 +32,14 @@ public class DeleteExtractRequest {
 
     private Instruction instructionToAdapt;
 
-    public DeleteExtractRequest(String processPathToSet, String activityIdToSet) {
+    public DeleteExtractRequest(String processPath, String activityId) {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPathToSet);
-        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityIdToSet);
+        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
+        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityId);
     }
 
     public DeleteExtractRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {

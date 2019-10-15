@@ -37,13 +37,12 @@ public class RecordRequest {
      * This constructor should be used if clientWideRecording should be set and afterwards the processRecording for one
      * specific
      * process should be changed as well.
-     *
-     * @param processPathToSet
+     *  @param processPath
      * @param clientWideRecording
      * @param processRecording
      */
-    public RecordRequest(String processPathToSet, boolean clientWideRecording, boolean processRecording) {
-        this(processPathToSet, InstructionMapper.InstructionSerializer.serializeBoolean(clientWideRecording),
+    public RecordRequest(String processPath, boolean clientWideRecording, boolean processRecording) {
+        this(processPath, InstructionMapper.InstructionSerializer.serializeBoolean(clientWideRecording),
                 processRecording);
     }
 

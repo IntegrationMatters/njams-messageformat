@@ -35,17 +35,17 @@ public class SetLogLevelRequest {
 
     private Instruction instructionToAdapt;
 
-    public SetLogLevelRequest(String processPathToSet, LogLevel logLevelToSet, boolean exclude, LogMode logModeToSet)
+    public SetLogLevelRequest(String processPath, LogLevel logLevel, boolean exclude, LogMode logMode)
             throws NjamsMessageFormatException {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPathToSet);
-        instructionToAdapt.setRequestParameter(LOG_LEVEL_KEY, InstructionMapper.InstructionSerializer.serializeLogLevel(logLevelToSet));
+        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
+        instructionToAdapt.setRequestParameter(LOG_LEVEL_KEY, InstructionMapper.InstructionSerializer.serializeLogLevel(logLevel));
         instructionToAdapt.setRequestParameter(EXCLUDE_KEY, InstructionMapper.InstructionSerializer.serializeBoolean(exclude));
-        instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logModeToSet));
+        instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
     public SetLogLevelRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {

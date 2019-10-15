@@ -32,14 +32,14 @@ public class GetTracingRequest {
 
     private Instruction instructionToAdapt;
 
-    public GetTracingRequest(String processPathToSet, String activityIdToSet) {
+    public GetTracingRequest(String processPath, String activityId) {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPathToSet);
-        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityIdToSet);
+        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
+        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityId);
     }
 
     public GetTracingRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {

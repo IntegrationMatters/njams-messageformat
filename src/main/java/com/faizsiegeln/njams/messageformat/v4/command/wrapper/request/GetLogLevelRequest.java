@@ -32,13 +32,13 @@ public class GetLogLevelRequest {
 
     private Instruction instructionToAdapt;
 
-    public GetLogLevelRequest(String processPathToSet) {
+    public GetLogLevelRequest(String processPath) {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPathToSet);
+        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
     }
 
     public GetLogLevelRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {

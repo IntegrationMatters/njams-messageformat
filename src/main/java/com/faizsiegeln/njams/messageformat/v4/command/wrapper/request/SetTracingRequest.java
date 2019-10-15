@@ -35,14 +35,14 @@ public class SetTracingRequest {
 
     private Instruction instructionToAdapt;
 
-    public SetTracingRequest(String processPathToSet, String activityIdToSet, boolean enableTracing) {
+    public SetTracingRequest(String processPath, String activityId, boolean enableTracing) {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPathToSet);
-        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityIdToSet);
+        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
+        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityId);
         instructionToAdapt.setRequestParameter(ENABLE_TRACING_KEY,
                 InstructionMapper.InstructionSerializer.serializeBoolean(enableTracing));
     }

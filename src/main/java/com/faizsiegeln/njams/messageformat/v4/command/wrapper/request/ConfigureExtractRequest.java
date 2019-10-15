@@ -32,15 +32,15 @@ public class ConfigureExtractRequest {
 
     private Instruction instructionToAdapt;
 
-    public ConfigureExtractRequest(String processPathToSet, String activityIdToSet, String extractToSet) {
+    public ConfigureExtractRequest(String processPath, String activityId, String extract) {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPathToSet);
-        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityIdToSet);
-        instructionToAdapt.setRequestParameter(EXTRACT_KEY, extractToSet);
+        instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
+        instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityId);
+        instructionToAdapt.setRequestParameter(EXTRACT_KEY, extract);
     }
 
     public ConfigureExtractRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {

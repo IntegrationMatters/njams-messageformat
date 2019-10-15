@@ -34,14 +34,14 @@ public class SetLogModeRequest {
 
     private Instruction instructionToAdapt;
 
-    public SetLogModeRequest(LogMode logModeToSet)
+    public SetLogModeRequest(LogMode logMode)
             throws NjamsMessageFormatException {
         this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logModeToSet));
+        instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
     public SetLogModeRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
