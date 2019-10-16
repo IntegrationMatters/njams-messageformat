@@ -34,17 +34,17 @@ public class GetLogLevelResponse extends AbstractResponse {
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_LOG_LEVEL;
 
     public GetLogLevelResponse(GetLogLevelRequest request, int resultCode, String resultMessage,
-                               LogLevel logLevelToSet, boolean isExcluded, LogMode logModeToSet)
+                               LogLevel logLevel, boolean isExcluded, LogMode logMode)
             throws NjamsMessageFormatException {
 
         super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
         this.instructionToAdapt.setResponseParameter(LOG_LEVEL_KEY,
-                InstructionMapper.InstructionSerializer.serializeLogLevel(logLevelToSet));
+                InstructionMapper.InstructionSerializer.serializeLogLevel(logLevel));
         this.instructionToAdapt.setResponseParameter(EXCLUDE_KEY,
                 InstructionMapper.InstructionSerializer.serializeBoolean(isExcluded));
         this.instructionToAdapt.setResponseParameter(LOG_MODE_KEY,
-                InstructionMapper.InstructionSerializer.serializeLogMode(logModeToSet));
+                InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
     private void validateCommand() throws NjamsMessageFormatException {

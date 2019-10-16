@@ -33,13 +33,13 @@ public class GetLogModeResponse extends AbstractResponse {
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_LOG_MODE;
 
     public GetLogModeResponse(GetLogModeRequest request, int resultCode, String resultMessage,
-                              LogMode logModeToSet)
+                              LogMode logMode)
             throws NjamsMessageFormatException {
 
         super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
         this.instructionToAdapt.setResponseParameter(LOG_MODE_KEY,
-                InstructionMapper.InstructionSerializer.serializeLogMode(logModeToSet));
+                InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
     private void validateCommand() throws NjamsMessageFormatException {

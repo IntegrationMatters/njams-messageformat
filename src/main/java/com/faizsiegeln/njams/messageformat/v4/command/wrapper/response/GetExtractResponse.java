@@ -31,12 +31,12 @@ public class GetExtractResponse extends AbstractResponse {
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_EXTRACT;
 
     public GetExtractResponse(GetExtractRequest request, int resultCode, String resultMessage,
-                              String extractToSet)
+                              String extract)
             throws NjamsMessageFormatException {
 
         super(request.getInstruction(), resultCode, resultMessage);
         validateCommand();
-        this.instructionToAdapt.setResponseParameter(EXTRACT_KEY, extractToSet);
+        this.instructionToAdapt.setResponseParameter(EXTRACT_KEY, extract);
     }
 
     private void validateCommand() throws NjamsMessageFormatException {
