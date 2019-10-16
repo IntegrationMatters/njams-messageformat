@@ -34,29 +34,37 @@ public class SubProcess implements Serializable {
     private static final long serialVersionUID = 6365591352276117846L;
     @ApiModelProperty(value = "Name of the subprocess if it is an inline subprocess.", required = false)
     private String name;
-    @ApiModelProperty(value = "Path of the subprocess if it is an inline subprocess.", required = false)
+    @Deprecated
+    @ApiModelProperty(value = "Path of the subprocess if it is an inline subprocess. This attribute is " +
+            "deprecated. Please use new property subProcessPath.", required = false)
     private String path;
+    @ApiModelProperty(value = "Path of the subprocess if it is an inline subprocess.", required = false)
+    private String subProcessPath;
     @ApiModelProperty(value = "LogID of the subprocess if the subprocess is a spawned subprocess.", required = false)
     private String logId;
 
+    /**
+     * Needed for JSON serialization
+     */
     public SubProcess() {
     }
 
     /**
      * Constructor of a subprocess call.
-     * 
+     *
      * @param name
      *            mandatory if process is inline
-     * @param path
+     * @param subProcessPath
      *            mandatory if process is inline
      * @param logId
      *            mandatory if is spawned
      */
-    public SubProcess(String name, String path, String logId) {
+    public SubProcess(String name, String subProcessPath, String logId) {
         this.name = name;
-        this.path = path;
+        this.subProcessPath = subProcessPath;
         this.logId = logId;
     }
+
 
     /**
      * Get the name of the called subprocess
@@ -82,6 +90,7 @@ public class SubProcess implements Serializable {
      * 
      * @return the path as string
      */
+    @Deprecated
     public String getPath() {
         return path;
     }
@@ -92,8 +101,28 @@ public class SubProcess implements Serializable {
      * @param path
      *            the path as string
      */
+    @Deprecated
     public void setPath(String path) {
         this.path = path;
+    }
+
+    /**
+     * Get the path of the called subprocess
+     *
+     * @return the path as string
+     */
+    public String getSubProcessPath() {
+        return subProcessPath;
+    }
+
+    /**
+     * Set the path of the called subprocess
+     *
+     * @param subProcessPath
+     *            the path as string
+     */
+    public void setSubProcessPath(String subProcessPath) {
+        this.subProcessPath = subProcessPath;
     }
 
     /**
