@@ -24,30 +24,28 @@ import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 
+import java.util.Objects;
+
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class GetLogLevelRequest {
+public class GetLogLevelRequest extends AbstractRequest{
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_LOG_LEVEL;
 
-    private Instruction instructionToAdapt;
-
     public GetLogLevelRequest(String processPath) {
-        this.instructionToAdapt = new Instruction();
+        Objects.requireNonNull(processPath, "processPath must not be null");
+
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
+        instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
     }
 
-    public GetLogLevelRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
-        if (instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            this.instructionToAdapt = instructionToAdapt;
-        } else {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
+    public GetLogLevelRequest(Instruction instructionToAdapt) {
+        validateCommand(COMMAND_FOR_THIS_CLASS);
+        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {

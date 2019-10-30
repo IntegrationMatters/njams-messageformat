@@ -27,11 +27,9 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormat
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class RecordRequest {
+public class RecordRequest extends AbstractRequest{
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.RECORD;
-
-    private Instruction instructionToAdapt;
 
     /**
      * This constructor should be used if clientWideRecording should be set and afterwards the processRecording for one
@@ -82,27 +80,22 @@ public class RecordRequest {
      * This constructor should be used if you have got an instruction and want to adapt it with this class.
      *
      * @param instructionToAdapt
-     * @throws NjamsMessageFormatException
      */
-    public RecordRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
-        if (instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            this.instructionToAdapt = instructionToAdapt;
-        } else {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
+    public RecordRequest(Instruction instructionToAdapt) {
+        validateCommand(COMMAND_FOR_THIS_CLASS);
+        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {
         return instructionToAdapt.getRequestParameterByName(PROCESS_PATH_KEY);
     }
 
-    public boolean isClientWideRecording() throws NjamsMessageFormatException {
+    public boolean isClientWideRecording() {
         return InstructionMapper.InstructionParser
                 .parseBoolean(instructionToAdapt.getRequestParameterByName(CLIENT_WIDE_RECORDING_KEY));
     }
 
-    public boolean isProcessRecording() throws NjamsMessageFormatException {
+    public boolean isProcessRecording() {
         return InstructionMapper.InstructionParser
                 .parseBoolean(instructionToAdapt.getResponseParameterByName(PROCESS_RECORDING_KEY));
     }

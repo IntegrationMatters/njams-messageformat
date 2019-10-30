@@ -27,20 +27,23 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormat
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
+import java.util.Objects;
+
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class SetLogLevelRequest {
+public class SetLogLevelRequest extends AbstractRequest{
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_LOG_LEVEL;
 
-    private Instruction instructionToAdapt;
+    public SetLogLevelRequest(String processPath, LogLevel logLevel, boolean exclude, LogMode logMode) {
+        Objects.requireNonNull(processPath, "processPath must not be null");
+        Objects.requireNonNull(logLevel, "logLevel must not be null");
+        Objects.requireNonNull(logMode, "logMode must not be null");
 
-    public SetLogLevelRequest(String processPath, LogLevel logLevel, boolean exclude, LogMode logMode)
-            throws NjamsMessageFormatException {
-        this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
+        instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
         instructionToAdapt.setRequestParameter(LOG_LEVEL_KEY, InstructionMapper.InstructionSerializer.serializeLogLevel(logLevel));
@@ -48,28 +51,24 @@ public class SetLogLevelRequest {
         instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
-    public SetLogLevelRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
-        if (instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            this.instructionToAdapt = instructionToAdapt;
-        } else {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
+    public SetLogLevelRequest(Instruction instructionToAdapt) {
+        validateCommand(COMMAND_FOR_THIS_CLASS);
+        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {
         return instructionToAdapt.getRequestParameterByName(PROCESS_PATH_KEY);
     }
 
-    public LogLevel getLogLevel() throws NjamsMessageFormatException {
+    public LogLevel getLogLevel() {
         return InstructionMapper.InstructionParser.parseLogLevel(instructionToAdapt.getRequestParameterByName(LOG_LEVEL_KEY));
     }
 
-    public boolean isExcluded() throws NjamsMessageFormatException {
+    public boolean isExcluded() {
         return InstructionMapper.InstructionParser.parseBoolean(instructionToAdapt.getRequestParameterByName(EXCLUDE_KEY));
     }
 
-    public LogMode getLogMode() throws NjamsMessageFormatException {
+    public LogMode getLogMode() {
         return InstructionMapper.InstructionParser.parseLogMode(instructionToAdapt.getRequestParameterByName(LOG_MODE_KEY));
     }
 

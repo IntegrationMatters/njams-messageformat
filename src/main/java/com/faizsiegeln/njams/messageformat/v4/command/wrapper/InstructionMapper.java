@@ -29,6 +29,7 @@ import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * This class provides static parsing and serializing functionality.
@@ -47,11 +48,6 @@ public class InstructionMapper {
      */
     public static class InstructionSerializer {
 
-        /**
-         * Default prefix for serializing Exceptions.
-         */
-        private static final String UNABLE_TO_SERIALIZE_OBJECT = "Unable to serialize: ";
-
         private InstructionSerializer() {
             //No initializing
         }
@@ -61,9 +57,8 @@ public class InstructionMapper {
          *
          * @param logLevel the LogLevel to serialize
          * @return the serialized LogLevel
-         * @throws NjamsMessageFormatException is thrown if parameter is null
          */
-        public static String serializeLogLevel(LogLevel logLevel) throws NjamsMessageFormatException {
+        public static String serializeLogLevel(LogLevel logLevel) {
             return serializeEnum(logLevel);
         }
 
@@ -72,18 +67,14 @@ public class InstructionMapper {
          *
          * @param logMode the LogMode to serialize
          * @return the serialized LogMode
-         * @throws NjamsMessageFormatException is thrown if parameter is null
          */
-        public static String serializeLogMode(LogMode logMode) throws NjamsMessageFormatException {
+        public static String serializeLogMode(LogMode logMode) {
             return serializeEnum(logMode);
         }
 
-        private static String serializeEnum(Enum enumParameter) throws NjamsMessageFormatException {
-            if (enumParameter != null) {
-                return enumParameter.name();
-            } else {
-                throw new NjamsMessageFormatException(UNABLE_TO_SERIALIZE_OBJECT + "\"null\"");
-            }
+        private static String serializeEnum(Enum enumParameter) {
+            Objects.requireNonNull(enumParameter, "enumParameter must not be null");
+            return enumParameter.name();
         }
 
         /**
@@ -91,14 +82,9 @@ public class InstructionMapper {
          *
          * @param localDateTime the LocalDateTime to serialize
          * @return the serialized LocalDateTime
-         * @throws NjamsMessageFormatException is thrown if parameter is null
          */
-        public static String serializeLocalDateTime(LocalDateTime localDateTime) throws NjamsMessageFormatException {
-            if (localDateTime != null) {
-                return localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-            } else {
-                throw new NjamsMessageFormatException(UNABLE_TO_SERIALIZE_OBJECT + "\"null\"");
-            }
+        public static String serializeLocalDateTime(LocalDateTime localDateTime) {
+            return localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         }
 
         /**
@@ -129,7 +115,7 @@ public class InstructionMapper {
         /**
          * Default prefix for parsing Exceptions.
          */
-        private static final String UNABLE_TO_DESERIALIZE_OBJECT = "Unable to deserialize: ";
+        private static final String UNABLE_TO_PARSE_OBJECT = "Unable to parse: ";
 
         private InstructionParser() {
             //No initializing
@@ -140,9 +126,9 @@ public class InstructionMapper {
          *
          * @param logLevelToParse the LogLevel as String
          * @return the parsed LogLevel
-         * @throws NjamsMessageFormatException is thrown if no correlating LogLevel was found for the given String
+         * @throws InstructionParsingException is thrown if no correlating LogLevel was found for the given String
          */
-        public static LogLevel parseLogLevel(String logLevelToParse) throws NjamsMessageFormatException {
+        public static LogLevel parseLogLevel(String logLevelToParse) throws InstructionParsingException {
             return parseEnumParameter(logLevelToParse, LogLevel.class);
         }
 
@@ -151,23 +137,24 @@ public class InstructionMapper {
          *
          * @param logModeToParse the LogMode as String
          * @return the parsed LogMode
-         * @throws NjamsMessageFormatException is thrown if no correlating LogMode was found for the given String
+         * @throws InstructionParsingException is thrown if no correlating LogMode was found for the given String
          */
-        public static LogMode parseLogMode(String logModeToParse) throws NjamsMessageFormatException {
+        public static LogMode parseLogMode(String logModeToParse) throws InstructionParsingException {
             return parseEnumParameter(logModeToParse, LogMode.class);
         }
 
-        private static <T extends Enum<T>> T parseEnumParameter(final String enumParameterToParse,
-                final Class<T> enumeration)
-                throws NjamsMessageFormatException {
+        private static <T extends Enum<T>> T parseEnumParameter(final String enumParameterToParse, final Class<T> enumeration)
+                throws InstructionParsingException {
+            Objects.requireNonNull(enumParameterToParse, "enumParameterToParse must not be null");
+
             T foundEnumParameter = null;
-            if (enumParameterToParse != null && enumeration != null && enumeration.getEnumConstants() != null) {
+            if (enumeration != null && enumeration.getEnumConstants() != null) {
                 foundEnumParameter = Arrays.stream(enumeration.getEnumConstants())
                         .filter(c -> c.name().equalsIgnoreCase(enumParameterToParse)).findAny().orElse(null);
             }
             if (foundEnumParameter == null) {
-                throw new NjamsMessageFormatException(
-                        UNABLE_TO_DESERIALIZE_OBJECT + "\"" + enumParameterToParse + "\"" + " to " +
+                throw new InstructionParsingException(
+                        UNABLE_TO_PARSE_OBJECT + "\"" + enumParameterToParse + "\"" + " to " +
                         enumeration.getSimpleName());
             }
             return foundEnumParameter;
@@ -178,10 +165,11 @@ public class InstructionMapper {
          *
          * @param localDateTimeToParse the LocalDateTime as String
          * @return the parsed LocalDateTime
-         * @throws NjamsMessageFormatException is thrown if the given parameter couldn't be parsed to a LocalDateTime
+         * @throws InstructionParsingException is thrown if the given parameter couldn't be parsed to a LocalDateTime
          *                                     object.
          */
-        public static LocalDateTime parseLocalDateTime(String localDateTimeToParse) throws NjamsMessageFormatException {
+        public static LocalDateTime parseLocalDateTime(String localDateTimeToParse) throws InstructionParsingException {
+            Objects.requireNonNull(localDateTimeToParse, "localDateTimeToParse must not be null");
             try {
                 if (localDateTimeToParse.charAt(localDateTimeToParse.length() - 1) == 'Z') {
                     return LocalDateTime.parse(localDateTimeToParse.substring(0, localDateTimeToParse.length() - 1),
@@ -189,7 +177,7 @@ public class InstructionMapper {
                 }
                 return LocalDateTime.parse(localDateTimeToParse, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             } catch (RuntimeException parsingException) {
-                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + localDateTimeToParse,
+                throw new InstructionParsingException(UNABLE_TO_PARSE_OBJECT + localDateTimeToParse,
                         parsingException);
             }
         }
@@ -199,15 +187,16 @@ public class InstructionMapper {
          *
          * @param booleanToParse the boolean as String
          * @return true, if input is case insensitive "true", false, if input is case insensitive "false"
-         * @throws NjamsMessageFormatException is thrown if the given parameter is neither "true" nor "false" case
+         * @throws InstructionParsingException is thrown if the given parameter is neither "true" nor "false" case
          * insensitive
          */
-        public static boolean parseBoolean(String booleanToParse) throws NjamsMessageFormatException {
-            if (booleanToParse != null &&
-                (booleanToParse.equalsIgnoreCase("true") || (booleanToParse.equalsIgnoreCase("false")))) {
+        public static boolean parseBoolean(String booleanToParse) throws InstructionParsingException {
+            Objects.requireNonNull(booleanToParse, "booleanToParse must not be null");
+
+            if (booleanToParse.equalsIgnoreCase("true") || (booleanToParse.equalsIgnoreCase("false"))) {
                 return Boolean.parseBoolean(booleanToParse);
             } else {
-                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + booleanToParse);
+                throw new InstructionParsingException(UNABLE_TO_PARSE_OBJECT + booleanToParse);
             }
         }
 
@@ -216,13 +205,15 @@ public class InstructionMapper {
          *
          * @param integerToParse the int as String
          * @return the parsed int
-         * @throws NjamsMessageFormatException is thrown if the given parameter couldn't be parsed to a int.
+         * @throws InstructionParsingException is thrown if the given parameter couldn't be parsed to a int.
          */
-        public static int parseInteger(String integerToParse) throws NjamsMessageFormatException {
+        public static int parseInteger(String integerToParse) throws InstructionParsingException {
+            Objects.requireNonNull(integerToParse, "integerToParse must not be null");
+
             try {
                 return Integer.parseInt(integerToParse);
             } catch (NumberFormatException invalidIntegerException) {
-                throw new NjamsMessageFormatException(UNABLE_TO_DESERIALIZE_OBJECT + integerToParse,
+                throw new InstructionParsingException(UNABLE_TO_PARSE_OBJECT + integerToParse,
                         invalidIntegerException);
             }
         }

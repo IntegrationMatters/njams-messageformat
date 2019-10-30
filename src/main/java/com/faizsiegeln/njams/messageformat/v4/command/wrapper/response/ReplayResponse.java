@@ -21,40 +21,33 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.ReplayRequest;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class ReplayResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.REPLAY;
 
     private static final String MAIN_LOG_ID = "MainLogId";
-
     private static final String EXCEPTION = "Exception";
 
     public ReplayResponse(ReplayRequest request, int resultCode, String resultMessage, String mainLogId,
-                          String exception, LocalDateTime dateTime)
-            throws NjamsMessageFormatException {
-
+                          String exception, LocalDateTime dateTime) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
+
+        Objects.requireNonNull(mainLogId, "mainLogId must not be null");
+        Objects.requireNonNull(exception, "exception must not be null");
+        Objects.requireNonNull(dateTime, "dateTime must not be null");
         this.instructionToAdapt.setResponseParameter(MAIN_LOG_ID, mainLogId);
         this.instructionToAdapt.setResponseParameter(EXCEPTION, exception);
         this.instructionToAdapt.getResponse().setDateTime(dateTime);
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public ReplayResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public ReplayResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 
     public String getMainLogId() {

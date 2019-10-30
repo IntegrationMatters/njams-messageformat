@@ -21,29 +21,18 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.SetLogLevelRequest;
 
 public class SetLogLevelResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_LOG_LEVEL;
 
-    public SetLogLevelResponse(SetLogLevelRequest request, int resultCode, String resultMessage)
-            throws NjamsMessageFormatException {
-
+    public SetLogLevelResponse(SetLogLevelRequest request, int resultCode, String resultMessage) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public SetLogLevelResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public SetLogLevelResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 }

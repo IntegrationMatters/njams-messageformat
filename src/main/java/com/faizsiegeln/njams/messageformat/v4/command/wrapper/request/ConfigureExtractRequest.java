@@ -24,32 +24,32 @@ import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 
+import java.util.Objects;
+
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class ConfigureExtractRequest {
+public class ConfigureExtractRequest extends AbstractRequest{
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.CONFIGURE_EXTRACT;
 
-    private Instruction instructionToAdapt;
-
     public ConfigureExtractRequest(String processPath, String activityId, String extract) {
-        this.instructionToAdapt = new Instruction();
+        Objects.requireNonNull(processPath, "processPath must not be null");
+        Objects.requireNonNull(activityId, "activityId must not be null");
+        Objects.requireNonNull(extract, "extract must not be null");
+
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
+        instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
         instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityId);
         instructionToAdapt.setRequestParameter(EXTRACT_KEY, extract);
     }
 
-    public ConfigureExtractRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
-        if (instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            this.instructionToAdapt = instructionToAdapt;
-        } else {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
+    public ConfigureExtractRequest(Instruction instructionToAdapt) {
+        validateCommand(COMMAND_FOR_THIS_CLASS);
+        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {

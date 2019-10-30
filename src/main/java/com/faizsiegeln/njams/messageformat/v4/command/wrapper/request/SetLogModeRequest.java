@@ -26,34 +26,31 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
+import java.util.Objects;
+
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class SetLogModeRequest {
+public class SetLogModeRequest extends AbstractRequest{
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_LOG_MODE;
 
-    private Instruction instructionToAdapt;
+    public SetLogModeRequest(LogMode logMode) {
+        Objects.requireNonNull(logMode, "logMode must not be null");
 
-    public SetLogModeRequest(LogMode logMode)
-            throws NjamsMessageFormatException {
-        this.instructionToAdapt = new Instruction();
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
+        instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
-    public SetLogModeRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
-        if (instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            this.instructionToAdapt = instructionToAdapt;
-        } else {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
+    public SetLogModeRequest(Instruction instructionToAdapt) {
+        validateCommand(COMMAND_FOR_THIS_CLASS);
+        this.instructionToAdapt = instructionToAdapt;
     }
 
-    public LogMode getLogMode() throws NjamsMessageFormatException {
+    public LogMode getLogMode() {
         return InstructionMapper.InstructionParser.parseLogMode(instructionToAdapt.getRequestParameterByName(LOG_MODE_KEY));
     }
 

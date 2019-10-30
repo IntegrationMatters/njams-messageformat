@@ -41,7 +41,7 @@ public class Server implements MessageListener, ResponseListener {
     }
 
     @Override
-    public void onMessage() throws NjamsMessageFormatException {
+    public void onMessage() {
         //--> receive Instruction via connection
         Instruction processedBySDK = toServer.remove();
 
@@ -49,7 +49,7 @@ public class Server implements MessageListener, ResponseListener {
     }
 
     @Override
-    public void onInstruction(ReplayResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(ReplayResponse response){
         //Read the response!
         final int resultCode = response.getResultCode();
         final String resultMessage = response.getResultMessage();
@@ -61,62 +61,62 @@ public class Server implements MessageListener, ResponseListener {
     }
 
     @Override
-    public void onInstruction(ConfigureExtractResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(ConfigureExtractResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(DeleteExtractResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(DeleteExtractResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(GetExtractResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(GetExtractResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(GetLogLevelResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(GetLogLevelResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(GetLogModeResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(GetLogModeResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(GetTracingResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(GetTracingResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(RecordResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(RecordResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(SendProjectMessageResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(SendProjectMessageResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(SetLogLevelResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(SetLogLevelResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(SetLogModeResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(SetLogModeResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(SetTracingResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(SetTracingResponse response) {
         //Do nothing for this example
     }
 
     @Override
-    public void onInstruction(TestExpressionResponse response) throws NjamsMessageFormatException {
+    public void onInstruction(TestExpressionResponse response) {
         //Do nothing for this example
     }
 }

@@ -26,12 +26,12 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
 import java.io.IOException;
 
 /**
- * Exception that is thrown if parsing didn't work.
+ * Exception that is thrown in messageformat module
  *
  * @author krautenberg
  * @version 4.0.2
  */
-public class NjamsMessageFormatException extends IOException {
+public class NjamsMessageFormatException extends RuntimeException {
 
     /**
      * Use this if you do not have a Root Cause. Provide clear and informative Message with all needed Context

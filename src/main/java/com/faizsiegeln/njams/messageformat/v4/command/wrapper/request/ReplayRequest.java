@@ -25,7 +25,9 @@ import com.faizsiegeln.njams.messageformat.v4.command.Request;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 
-public class ReplayRequest {
+import java.util.Objects;
+
+public class ReplayRequest extends AbstractRequest{
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.REPLAY;
 
@@ -35,14 +37,16 @@ public class ReplayRequest {
     private static final String DEEPTRACE = "Deeptrace";
     private static final String TEST = "Test";
 
-    private Instruction instructionToAdapt;
-
     public ReplayRequest(String processPath, String startActivity, String payload, boolean deepTrace,
                          boolean test) {
-        this.instructionToAdapt = new Instruction();
+        Objects.requireNonNull(processPath, "processPath must not be null");
+        Objects.requireNonNull(startActivity, "startActivity must not be null");
+        Objects.requireNonNull(payload, "payload must not be null");
+
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
+        instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(PROCESS, processPath);
         instructionToAdapt.setRequestParameter(START_ACTIVITY, startActivity);
@@ -53,13 +57,9 @@ public class ReplayRequest {
                 .setRequestParameter(TEST, InstructionMapper.InstructionSerializer.serializeBoolean(test));
     }
 
-    public ReplayRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
-        if (instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            this.instructionToAdapt = instructionToAdapt;
-        } else {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
+    public ReplayRequest(Instruction instructionToAdapt) {
+        validateCommand(COMMAND_FOR_THIS_CLASS);
+        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcess() {
@@ -74,12 +74,12 @@ public class ReplayRequest {
         return instructionToAdapt.getRequestParameterByName(PAYLOAD);
     }
 
-    public boolean isDeepTrace() throws NjamsMessageFormatException {
+    public boolean isDeepTrace() {
         return InstructionMapper.InstructionParser
                 .parseBoolean(instructionToAdapt.getRequestParameterByName(DEEPTRACE));
     }
 
-    public boolean isTest() throws NjamsMessageFormatException {
+    public boolean isTest() {
         return InstructionMapper.InstructionParser.parseBoolean(instructionToAdapt.getRequestParameterByName(TEST));
     }
 

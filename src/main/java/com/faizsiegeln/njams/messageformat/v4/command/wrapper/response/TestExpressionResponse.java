@@ -28,22 +28,12 @@ public class TestExpressionResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.TEST_EXPRESSION;
 
-    public TestExpressionResponse(TestExpressionRequest request, int resultCode, String resultMessage)
-            throws NjamsMessageFormatException {
-
+    public TestExpressionResponse(TestExpressionRequest request, int resultCode, String resultMessage) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public TestExpressionResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public TestExpressionResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 }

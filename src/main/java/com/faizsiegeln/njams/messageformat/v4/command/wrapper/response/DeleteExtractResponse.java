@@ -21,29 +21,18 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.DeleteExtractRequest;
 
 public class DeleteExtractResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.DELETE_EXTRACT;
 
-    public DeleteExtractResponse(DeleteExtractRequest request, int resultCode, String resultMessage)
-            throws NjamsMessageFormatException {
-
+    public DeleteExtractResponse(DeleteExtractRequest request, int resultCode, String resultMessage) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public DeleteExtractResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public DeleteExtractResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 }

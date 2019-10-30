@@ -21,23 +21,19 @@ public class Client implements MessageListener, RequestListener {
     }
 
     @Override
-    public void onMessage() throws NjamsMessageFormatException {
+    public void onMessage() {
         //--> receive Instruction via connection
         Instruction instructionFromServer = toClient.remove();
         //Iterate over all possible instructions
         boolean wasCorrectInstruction = true;
-        try {
-            wasCorrectInstruction = onInstruction(instructionFromServer);
-        }catch(NjamsMessageFormatException ex){
-            //might be thrown if something happened inside the corresponding onInstruction(...Request) methods
-        }
+        wasCorrectInstruction = onInstruction(instructionFromServer);
         if(!wasCorrectInstruction) {
             //Error handling because the instruction wasn't a correct instruction
         }
     }
 
     @Override
-    public void onInstruction(ReplayRequest request) throws NjamsMessageFormatException {
+    public void onInstruction(ReplayRequest request) {
         //Process the request...
         ReplayResponse replayResponse = new ReplayResponse(request, 0, "Success", "testMainLogId",
                 "testException", LocalDateTime.now(ZoneOffset.UTC));

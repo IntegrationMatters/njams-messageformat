@@ -22,10 +22,11 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.GetLogLevelRequest;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
+
+import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
@@ -34,11 +35,11 @@ public class GetLogLevelResponse extends AbstractResponse {
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_LOG_LEVEL;
 
     public GetLogLevelResponse(GetLogLevelRequest request, int resultCode, String resultMessage,
-                               LogLevel logLevel, boolean isExcluded, LogMode logMode)
-            throws NjamsMessageFormatException {
-
+                               LogLevel logLevel, boolean isExcluded, LogMode logMode) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
+        Objects.requireNonNull(logLevel, "logLevel must not be null");
+        Objects.requireNonNull(logMode, "logMode must not be null");
+
         this.instructionToAdapt.setResponseParameter(LOG_LEVEL_KEY,
                 InstructionMapper.InstructionSerializer.serializeLogLevel(logLevel));
         this.instructionToAdapt.setResponseParameter(EXCLUDE_KEY,
@@ -47,29 +48,22 @@ public class GetLogLevelResponse extends AbstractResponse {
                 InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public GetLogLevelResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public GetLogLevelResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 
-    public LogLevel getLogLevel() throws NjamsMessageFormatException {
+    public LogLevel getLogLevel() {
         return InstructionMapper.InstructionParser
                 .parseLogLevel(instructionToAdapt.getResponseParameterByName(LOG_LEVEL_KEY));
     }
 
-    public boolean isExcluded() throws NjamsMessageFormatException {
+    public boolean isExcluded() {
         return InstructionMapper.InstructionParser
                 .parseBoolean(instructionToAdapt.getResponseParameterByName(EXCLUDE_KEY));
     }
 
-    public LogMode getLogMode() throws NjamsMessageFormatException {
+    public LogMode getLogMode() {
         return InstructionMapper.InstructionParser
                 .parseLogMode(instructionToAdapt.getResponseParameterByName(LOG_MODE_KEY));
     }

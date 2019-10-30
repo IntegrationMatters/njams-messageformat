@@ -28,22 +28,12 @@ public class SetLogModeResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_LOG_MODE;
 
-    public SetLogModeResponse(SetLogModeRequest request, int resultCode, String resultMessage)
-            throws NjamsMessageFormatException {
-
+    public SetLogModeResponse(SetLogModeRequest request, int resultCode, String resultMessage){
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public SetLogModeResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public SetLogModeResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 }

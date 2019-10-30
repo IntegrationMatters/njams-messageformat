@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 public class InstructionWrapperTest {
 
     @Test
-    public void replayFromServerToClientAndBack() throws NjamsMessageFormatException {
+    public void replayFromServerToClientAndBack() {
 
         MessageQueue toServer = new MessageQueue();
         MessageQueue toClient = new MessageQueue();
@@ -29,7 +29,7 @@ public class InstructionWrapperTest {
         verifyClientMethods(client);
     }
 
-    private void verifyServerMethods(Server server) throws NjamsMessageFormatException {
+    private void verifyServerMethods(Server server) {
         verify(server, times(1)).triggerReplayEvent();
         verify(server, times(1)).onMessage();
         verify(server, times(1)).onInstruction((Instruction) any());
@@ -49,7 +49,7 @@ public class InstructionWrapperTest {
         verify(server, times(0)).onInstruction((TestExpressionResponse) any());
     }
 
-    private void verifyClientMethods(Client client) throws NjamsMessageFormatException {
+    private void verifyClientMethods(Client client) {
         verify(client, times(1)).onMessage();
         verify(client, times(1)).onInstruction((Instruction) any());
         verify(client, times(1)).onInstruction((ReplayRequest) any());

@@ -28,22 +28,12 @@ public class SendProjectMessageResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SEND_PROJECTMESSAGE;
 
-    public SendProjectMessageResponse(SendProjectMessageRequest request, int resultCode, String resultMessage)
-            throws NjamsMessageFormatException {
-
+    public SendProjectMessageResponse(SendProjectMessageRequest request, int resultCode, String resultMessage) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public SendProjectMessageResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public SendProjectMessageResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 }

@@ -15,9 +15,8 @@ public interface RequestListener {
      *
      * @param instruction the incoming instruction
      * @return true, if a corresponding request class was found and used, else false
-     * @throws NjamsMessageFormatException could be thrown while processing one of the onInstruction methods
      */
-    default boolean onInstruction(Instruction instruction) throws NjamsMessageFormatException {
+    default boolean onInstruction(Instruction instruction) {
         boolean foundCorrespondingRequestClass = true;
         if (instruction != null) {
             Command command = Command.getFromCommandString(instruction.getCommand());
@@ -75,29 +74,29 @@ public interface RequestListener {
         return foundCorrespondingRequestClass;
     }
 
-    void onInstruction(ConfigureExtractRequest request) throws NjamsMessageFormatException;
+    void onInstruction(ConfigureExtractRequest request);
 
-    void onInstruction(DeleteExtractRequest request) throws NjamsMessageFormatException;
+    void onInstruction(DeleteExtractRequest request);
 
-    void onInstruction(GetExtractRequest request) throws NjamsMessageFormatException;
+    void onInstruction(GetExtractRequest request);
 
-    void onInstruction(GetLogLevelRequest request) throws NjamsMessageFormatException;
+    void onInstruction(GetLogLevelRequest request);
 
-    void onInstruction(GetLogModeRequest request) throws NjamsMessageFormatException;
+    void onInstruction(GetLogModeRequest request);
 
-    void onInstruction(GetTracingRequest request) throws NjamsMessageFormatException;
+    void onInstruction(GetTracingRequest request);
 
-    void onInstruction(RecordRequest request) throws NjamsMessageFormatException;
+    void onInstruction(RecordRequest request);
 
-    void onInstruction(ReplayRequest request) throws NjamsMessageFormatException;
+    void onInstruction(ReplayRequest request);
 
-    void onInstruction(SendProjectMessageRequest request) throws NjamsMessageFormatException;
+    void onInstruction(SendProjectMessageRequest request);
 
-    void onInstruction(SetLogLevelRequest request) throws NjamsMessageFormatException;
+    void onInstruction(SetLogLevelRequest request);
 
-    void onInstruction(SetLogModeRequest request) throws NjamsMessageFormatException;
+    void onInstruction(SetLogModeRequest request);
 
-    void onInstruction(SetTracingRequest request) throws NjamsMessageFormatException;
+    void onInstruction(SetTracingRequest request);
 
-    void onInstruction(TestExpressionRequest request) throws NjamsMessageFormatException;
+    void onInstruction(TestExpressionRequest request);
 }

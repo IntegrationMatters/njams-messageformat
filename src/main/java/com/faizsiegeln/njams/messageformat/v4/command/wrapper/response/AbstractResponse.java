@@ -19,8 +19,12 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 
+import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Response;
+import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
+
+import java.util.Objects;
 
 public class AbstractResponse {
 
@@ -34,7 +38,10 @@ public class AbstractResponse {
      * @param resultMessage
      */
     public AbstractResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage) {
-        this.instructionToAdapt = instructionToWriteTo;
+        Objects.requireNonNull(instructionToWriteTo, "instructionToWriteTo must not be null");
+        Objects.requireNonNull(resultMessage, "resultMessage must not be null");
+
+        instructionToAdapt = instructionToWriteTo;
         if (instructionToAdapt.getResponse() == null) {
             Response response = new Response();
             instructionToAdapt.setResponse(response);
@@ -49,6 +56,7 @@ public class AbstractResponse {
      * @param instructionToReadFrom
      */
     public AbstractResponse(Instruction instructionToReadFrom) {
+        Objects.requireNonNull(instructionToReadFrom, "instructionToReadFrom must not be null");
         this.instructionToAdapt = instructionToReadFrom;
     }
 
@@ -66,5 +74,13 @@ public class AbstractResponse {
 
     public Instruction getInstruction(){
         return instructionToAdapt;
+    }
+
+    protected void validateCommand(Command command) {
+        if (!instructionToAdapt.getCommand().equals(command.commandString())) {
+            throw new NjamsMessageFormatException(
+                    "Request command " + instructionToAdapt.getCommand() + " is not suitable for Response command "
+                            + command.commandString());
+        }
     }
 }

@@ -26,20 +26,22 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class SetTracingRequest {
+public class SetTracingRequest extends AbstractRequest{
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_TRACING;
 
-    private Instruction instructionToAdapt;
-
     public SetTracingRequest(String processPath, String activityId, boolean enableTracing) {
-        this.instructionToAdapt = new Instruction();
+        Objects.requireNonNull(processPath, "processPath must not be null");
+        Objects.requireNonNull(activityId, "activityId must not be null");
+
         Request requestToSet = new Request();
         requestToSet.setCommand(COMMAND_FOR_THIS_CLASS.commandString());
 
+        instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
         instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityId);
@@ -47,13 +49,9 @@ public class SetTracingRequest {
                 InstructionMapper.InstructionSerializer.serializeBoolean(enableTracing));
     }
 
-    public SetTracingRequest(Instruction instructionToAdapt) throws NjamsMessageFormatException {
-        if (instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            this.instructionToAdapt = instructionToAdapt;
-        } else {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
+    public SetTracingRequest(Instruction instructionToAdapt) {
+        validateCommand(COMMAND_FOR_THIS_CLASS);
+        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {
@@ -64,27 +62,27 @@ public class SetTracingRequest {
         return instructionToAdapt.getRequestParameterByName(ACTIVITY_ID_KEY);
     }
 
-    public boolean isTracingEnabled() throws NjamsMessageFormatException {
+    public boolean isTracingEnabled() {
         return InstructionMapper.InstructionParser
                 .parseBoolean(instructionToAdapt.getRequestParameterByName(ENABLE_TRACING_KEY));
     }
 
-    public void setStartTime(LocalDateTime startTimeToSet) throws NjamsMessageFormatException {
+    public void setStartTime(LocalDateTime startTimeToSet) {
         instructionToAdapt.setRequestParameter(START_TIME_KEY,
                 InstructionMapper.InstructionSerializer.serializeLocalDateTime(startTimeToSet));
     }
 
-    public LocalDateTime getStartTime() throws NjamsMessageFormatException {
+    public LocalDateTime getStartTime() {
         return InstructionMapper.InstructionParser
                 .parseLocalDateTime(instructionToAdapt.getRequestParameterByName(START_TIME_KEY));
     }
 
-    public void setEndTime(LocalDateTime endTimeToSet) throws NjamsMessageFormatException {
+    public void setEndTime(LocalDateTime endTimeToSet) {
         instructionToAdapt.setRequestParameter(END_TIME_KEY,
                 InstructionMapper.InstructionSerializer.serializeLocalDateTime(endTimeToSet));
     }
 
-    public LocalDateTime getEndTime() throws NjamsMessageFormatException {
+    public LocalDateTime getEndTime() {
         return InstructionMapper.InstructionParser
                 .parseLocalDateTime(instructionToAdapt.getRequestParameterByName(END_TIME_KEY));
     }
@@ -94,7 +92,7 @@ public class SetTracingRequest {
                 InstructionMapper.InstructionSerializer.serializeInteger(iterationsToSet));
     }
 
-    public int getIterations() throws NjamsMessageFormatException {
+    public int getIterations() {
         return InstructionMapper.InstructionParser
                 .parseInteger(instructionToAdapt.getRequestParameterByName(ITERATIONS_KEY));
     }
@@ -104,7 +102,7 @@ public class SetTracingRequest {
                 InstructionMapper.InstructionSerializer.serializeBoolean(isDeepTrace));
     }
 
-    public boolean isDeepTrace() throws NjamsMessageFormatException {
+    public boolean isDeepTrace() {
         return InstructionMapper.InstructionParser
                 .parseBoolean(instructionToAdapt.getRequestParameterByName(DEEP_TRACE_KEY));
     }

@@ -24,31 +24,23 @@ import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.GetExtractRequest;
 
+import java.util.Objects;
+
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.EXTRACT_KEY;
 
 public class GetExtractResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_EXTRACT;
 
-    public GetExtractResponse(GetExtractRequest request, int resultCode, String resultMessage,
-                              String extract)
-            throws NjamsMessageFormatException {
-
+    public GetExtractResponse(GetExtractRequest request, int resultCode, String resultMessage, String extract) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
+        Objects.requireNonNull(extract, "extract must not be null");
         this.instructionToAdapt.setResponseParameter(EXTRACT_KEY, extract);
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public GetExtractResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public GetExtractResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 
     public String getExtract() {

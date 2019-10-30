@@ -22,9 +22,10 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.response;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.GetLogModeRequest;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
+
+import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
@@ -32,29 +33,20 @@ public class GetLogModeResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_LOG_MODE;
 
-    public GetLogModeResponse(GetLogModeRequest request, int resultCode, String resultMessage,
-                              LogMode logMode)
-            throws NjamsMessageFormatException {
-
+    public GetLogModeResponse(GetLogModeRequest request, int resultCode, String resultMessage, LogMode logMode) {
         super(request.getInstruction(), resultCode, resultMessage);
-        validateCommand();
+
+        Objects.requireNonNull(logMode, "logMode must not be null");
         this.instructionToAdapt.setResponseParameter(LOG_MODE_KEY,
                 InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public GetLogModeResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public GetLogModeResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 
-    public LogMode getLogMode() throws NjamsMessageFormatException {
+    public LogMode getLogMode() {
         return InstructionMapper.InstructionParser
                 .parseLogMode(instructionToAdapt.getResponseParameterByName(LOG_MODE_KEY));
     }

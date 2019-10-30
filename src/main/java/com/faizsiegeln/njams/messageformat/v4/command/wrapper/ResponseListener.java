@@ -15,9 +15,8 @@ public interface ResponseListener {
      *
      * @param instruction the incoming instruction
      * @return true, if a corresponding response class was found and used, else false
-     * @throws NjamsMessageFormatException could be thrown while processing one of the onInstruction methods
      */
-    default boolean onInstruction(Instruction instruction) throws NjamsMessageFormatException {
+    default boolean onInstruction(Instruction instruction) {
         boolean foundCorrespondingResponseClass = true;
         if (instruction != null) {
             Command command = Command.getFromCommandString(instruction.getCommand());
@@ -75,29 +74,29 @@ public interface ResponseListener {
         return foundCorrespondingResponseClass;
     }
 
-    void onInstruction(ConfigureExtractResponse response) throws NjamsMessageFormatException;
+    void onInstruction(ConfigureExtractResponse response);
 
-    void onInstruction(DeleteExtractResponse response) throws NjamsMessageFormatException;
+    void onInstruction(DeleteExtractResponse response);
 
-    void onInstruction(GetExtractResponse response) throws NjamsMessageFormatException;
+    void onInstruction(GetExtractResponse response);
 
-    void onInstruction(GetLogLevelResponse response) throws NjamsMessageFormatException;
+    void onInstruction(GetLogLevelResponse response);
 
-    void onInstruction(GetLogModeResponse response) throws NjamsMessageFormatException;
+    void onInstruction(GetLogModeResponse response);
 
-    void onInstruction(GetTracingResponse response) throws NjamsMessageFormatException;
+    void onInstruction(GetTracingResponse response);
 
-    void onInstruction(RecordResponse response) throws NjamsMessageFormatException;
+    void onInstruction(RecordResponse response);
 
-    void onInstruction(ReplayResponse response) throws NjamsMessageFormatException;
+    void onInstruction(ReplayResponse response);
 
-    void onInstruction(SendProjectMessageResponse response) throws NjamsMessageFormatException;
+    void onInstruction(SendProjectMessageResponse response);
 
-    void onInstruction(SetLogLevelResponse response) throws NjamsMessageFormatException;
+    void onInstruction(SetLogLevelResponse response);
 
-    void onInstruction(SetLogModeResponse response) throws NjamsMessageFormatException;
+    void onInstruction(SetLogModeResponse response);
 
-    void onInstruction(SetTracingResponse response) throws NjamsMessageFormatException;
+    void onInstruction(SetTracingResponse response);
 
-    void onInstruction(TestExpressionResponse response) throws NjamsMessageFormatException;
+    void onInstruction(TestExpressionResponse response);
 }

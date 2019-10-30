@@ -29,6 +29,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
@@ -41,7 +42,7 @@ public class InstructionMapperTest {
 
     @Test
     public void serializeLogLevelNull() {
-        serializeLogLevel(null, null, NjamsMessageFormatException.class);
+        serializeLogLevel(null, null, NullPointerException.class);
     }
 
     @Test
@@ -70,8 +71,8 @@ public class InstructionMapperTest {
         try {
             String serializedLogLevel = InstructionMapper.InstructionSerializer.serializeLogLevel(logLevelToCheck);
             assertEquals(logLevelSerialized, serializedLogLevel);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 
@@ -79,7 +80,7 @@ public class InstructionMapperTest {
 
     @Test
     public void serializeLogModeNull() {
-        serializeLogMode(null, null, NjamsMessageFormatException.class);
+        serializeLogMode(null, null, NullPointerException.class);
     }
 
     @Test
@@ -103,8 +104,8 @@ public class InstructionMapperTest {
         try {
             String serializedLogMode = InstructionMapper.InstructionSerializer.serializeLogMode(logModeToCheck);
             assertEquals(logModeSerialized, serializedLogMode);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 
@@ -112,7 +113,7 @@ public class InstructionMapperTest {
 
     @Test
     public void serializeLocalDateTimeNull() {
-        serializeLocalDateTime(null, null, NjamsMessageFormatException.class);
+        serializeLocalDateTime(null, null, NullPointerException.class);
     }
 
     @Test
@@ -127,8 +128,8 @@ public class InstructionMapperTest {
             String serializedLocalDateTime = InstructionMapper.InstructionSerializer
                     .serializeLocalDateTime(localDateTimeToCheck);
             assertEquals(localDateTimeSerizalized, serializedLocalDateTime);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 
@@ -153,11 +154,11 @@ public class InstructionMapperTest {
 //Integer serializing
 
     @Test
-    public void serializeInteger() throws NjamsMessageFormatException {
+    public void serializeInteger() {
         serializeInteger(1, "1");
     }
 
-    private void serializeInteger(int integerToCheck, String integerSerialized) throws NjamsMessageFormatException {
+    private void serializeInteger(int integerToCheck, String integerSerialized) {
         LOG.debug(integerSerialized);
         String serializeInteger = InstructionMapper.InstructionSerializer.serializeInteger(integerToCheck);
         assertEquals(integerSerialized, serializeInteger);
@@ -167,17 +168,17 @@ public class InstructionMapperTest {
 
     @Test
     public void parseNullLogLevel() {
-        parseLogLevelString(null, null, NjamsMessageFormatException.class);
+        parseLogLevelString(null, null, NullPointerException.class);
     }
 
     @Test
     public void parseEmptyLogLevel() {
-        parseLogLevelString("", null, NjamsMessageFormatException.class);
+        parseLogLevelString("", null, InstructionParsingException.class);
     }
 
     @Test
     public void parseNullAsStringLogLevel() {
-        parseLogLevelString("null", null, NjamsMessageFormatException.class);
+        parseLogLevelString("null", null, InstructionParsingException.class);
     }
 
     @Test
@@ -207,7 +208,7 @@ public class InstructionMapperTest {
 
     @Test
     public void parseInvalidLogLevel() {
-        parseLogLevelString("invalid", null, NjamsMessageFormatException.class);
+        parseLogLevelString("invalid", null, InstructionParsingException.class);
     }
 
     private void parseLogLevelString(String logLevelAsString, LogLevel expected,
@@ -216,8 +217,8 @@ public class InstructionMapperTest {
         try {
             LogLevel parsedLogLevel = InstructionMapper.InstructionParser.parseLogLevel(logLevelAsString);
             assertEquals(expected, parsedLogLevel);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 
@@ -225,17 +226,17 @@ public class InstructionMapperTest {
 
     @Test
     public void parseNullLogMode() {
-        parseLogModeString(null, null, NjamsMessageFormatException.class);
+        parseLogModeString(null, null, NullPointerException.class);
     }
 
     @Test
     public void parseEmptyLogMode() {
-        parseLogModeString("", null, NjamsMessageFormatException.class);
+        parseLogModeString("", null, InstructionParsingException.class);
     }
 
     @Test
     public void parseNullAsStringLogMode() {
-        parseLogModeString("null", null, NjamsMessageFormatException.class);
+        parseLogModeString("null", null, InstructionParsingException.class);
     }
 
     @Test
@@ -260,7 +261,7 @@ public class InstructionMapperTest {
 
     @Test
     public void parseInvalidLogMode() {
-        parseLogModeString("invalid", null, NjamsMessageFormatException.class);
+        parseLogModeString("invalid", null, InstructionParsingException.class);
     }
 
     private void parseLogModeString(String logModeAsString, LogMode expected,
@@ -269,8 +270,8 @@ public class InstructionMapperTest {
         try {
             LogMode parsedLogMode = InstructionMapper.InstructionParser.parseLogMode(logModeAsString);
             assertEquals(expected, parsedLogMode);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 
@@ -278,22 +279,22 @@ public class InstructionMapperTest {
 
     @Test
     public void parseNullLocalDateTime() {
-        parseLocalDateTimeString(null, null, NjamsMessageFormatException.class);
+        parseLocalDateTimeString(null, null, NullPointerException.class);
     }
 
     @Test
     public void parseEmptyLocalDateTime() {
-        parseLocalDateTimeString("", null, NjamsMessageFormatException.class);
+        parseLocalDateTimeString("", null, InstructionParsingException.class);
     }
 
     @Test
     public void parseNullAsStringLocalDateTime() {
-        parseLocalDateTimeString("null", null, NjamsMessageFormatException.class);
+        parseLocalDateTimeString("null", null, InstructionParsingException.class);
     }
 
     @Test
     public void parseWhiteSpaceStringLocalDateTime() {
-        parseLocalDateTimeString("   ", null, NjamsMessageFormatException.class);
+        parseLocalDateTimeString("   ", null, InstructionParsingException.class);
     }
 
     @Test
@@ -308,7 +309,7 @@ public class InstructionMapperTest {
 
     @Test
     public void parseInvalidLocalDateTime() {
-        parseLocalDateTimeString("invalid", null, NjamsMessageFormatException.class);
+        parseLocalDateTimeString("invalid", null, InstructionParsingException.class);
     }
 
     private void parseLocalDateTimeString(String localDateTimeAsString, LocalDateTime expected, Class<?
@@ -318,8 +319,8 @@ public class InstructionMapperTest {
             LocalDateTime parseLocalDateTime = InstructionMapper.InstructionParser
                     .parseLocalDateTime(localDateTimeAsString);
             assertEquals(expected, parseLocalDateTime);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 
@@ -327,17 +328,17 @@ public class InstructionMapperTest {
 
     @Test
     public void parseNullBoolean() {
-        parseBooleanString(null, null, NjamsMessageFormatException.class);
+        parseBooleanString(null, null, NullPointerException.class);
     }
 
     @Test
     public void parseEmptyBoolean() {
-        parseBooleanString("", null, NjamsMessageFormatException.class);
+        parseBooleanString("", null, InstructionParsingException.class);
     }
 
     @Test
     public void parseNullAsStringBoolean() {
-        parseBooleanString("null", null, NjamsMessageFormatException.class);
+        parseBooleanString("null", null, InstructionParsingException.class);
     }
 
     @Test
@@ -362,7 +363,7 @@ public class InstructionMapperTest {
 
     @Test
     public void parseInvalidBoolean() {
-        parseBooleanString("invalid", null, NjamsMessageFormatException.class);
+        parseBooleanString("invalid", null, InstructionParsingException.class);
     }
 
     private void parseBooleanString(String booleanAsString, Boolean expected,
@@ -371,8 +372,8 @@ public class InstructionMapperTest {
         try {
             boolean parseBoolean = InstructionMapper.InstructionParser.parseBoolean(booleanAsString);
             assertEquals(expected, parseBoolean);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 
@@ -380,17 +381,17 @@ public class InstructionMapperTest {
 
     @Test
     public void parseNullInteger() {
-        parseIntegerString(null, -1, NjamsMessageFormatException.class);
+        parseIntegerString(null, -1, NullPointerException.class);
     }
 
     @Test
     public void parseEmptyInteger() {
-        parseIntegerString("", -1, NjamsMessageFormatException.class);
+        parseIntegerString("", -1, InstructionParsingException.class);
     }
 
     @Test
     public void parseNullAsStringInteger() {
-        parseIntegerString("null", -1, NjamsMessageFormatException.class);
+        parseIntegerString("null", -1, InstructionParsingException.class);
     }
 
     @Test
@@ -405,17 +406,17 @@ public class InstructionMapperTest {
 
     @Test
     public void parseMinAsHexInteger() {
-        parseIntegerString("0x80000000", -1, NjamsMessageFormatException.class);
+        parseIntegerString("0x80000000", -1, InstructionParsingException.class);
     }
 
     @Test
     public void parseIntegerThatIsLowerThanMinValue() {
-        parseIntegerString("-3000000000", -1, NjamsMessageFormatException.class);
+        parseIntegerString("-3000000000", -1, InstructionParsingException.class);
     }
 
     @Test
     public void parseInvalidInteger() {
-        parseIntegerString("invalid", -1, NjamsMessageFormatException.class);
+        parseIntegerString("invalid", -1, InstructionParsingException.class);
     }
 
     private void parseIntegerString(String IntegerAsString, int expected,
@@ -424,8 +425,8 @@ public class InstructionMapperTest {
         try {
             int parseInteger = InstructionMapper.InstructionParser.parseInteger(IntegerAsString);
             assertEquals(expected, parseInteger);
-        } catch (NjamsMessageFormatException e) {
-            assertEquals(e.getClass(), exceptionThatIsThrown);
+        } catch (Exception e) {
+            assertEquals(exceptionThatIsThrown, e.getClass());
         }
     }
 }

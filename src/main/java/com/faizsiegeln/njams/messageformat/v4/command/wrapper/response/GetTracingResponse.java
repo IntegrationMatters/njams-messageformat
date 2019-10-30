@@ -28,6 +28,7 @@ import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
@@ -36,9 +37,11 @@ public class GetTracingResponse extends AbstractResponse {
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_TRACING;
 
     public GetTracingResponse(GetTracingRequest request, int resultCode, String resultMessage,
-                              LocalDateTime startTime, LocalDateTime endTime, int iterations, boolean isDeepTrace)
-            throws NjamsMessageFormatException {
+                              LocalDateTime startTime, LocalDateTime endTime, int iterations, boolean isDeepTrace) {
         this(request.getInstruction(), resultCode, resultMessage);
+
+        Objects.requireNonNull(startTime, "startTime must not be null");
+        Objects.requireNonNull(endTime, "endTime must not be null");
 
         this.instructionToAdapt.setResponseParameter(START_TIME_KEY,
                 InstructionMapper.InstructionSerializer.serializeLocalDateTime(startTime));
@@ -50,35 +53,26 @@ public class GetTracingResponse extends AbstractResponse {
                 InstructionMapper.InstructionSerializer.serializeBoolean(isDeepTrace));
     }
 
-    public GetTracingResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage)
-            throws NjamsMessageFormatException {
+    public GetTracingResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage) {
         super(instructionToWriteTo, resultCode, resultMessage);
-        validateCommand();
     }
 
-    private void validateCommand() throws NjamsMessageFormatException {
-        if (!instructionToAdapt.getCommand().equals(COMMAND_FOR_THIS_CLASS.commandString())) {
-            throw new NjamsMessageFormatException(
-                    "Command " + instructionToAdapt.getCommand() + " is not suitable for " + this.getClass());
-        }
-    }
-
-    public GetTracingResponse(Instruction instructionToReadFrom) throws NjamsMessageFormatException {
+    public GetTracingResponse(Instruction instructionToReadFrom) {
         super(instructionToReadFrom);
-        validateCommand();
+        validateCommand(COMMAND_FOR_THIS_CLASS);
     }
 
-    public LogLevel getLogLevel() throws NjamsMessageFormatException {
+    public LogLevel getLogLevel() {
         return InstructionMapper.InstructionParser
                 .parseLogLevel(instructionToAdapt.getResponseParameterByName(LOG_LEVEL_KEY));
     }
 
-    public boolean isExcluded() throws NjamsMessageFormatException {
+    public boolean isExcluded() {
         return InstructionMapper.InstructionParser
                 .parseBoolean(instructionToAdapt.getResponseParameterByName(EXCLUDE_KEY));
     }
 
-    public LogMode getLogMode() throws NjamsMessageFormatException {
+    public LogMode getLogMode() {
         return InstructionMapper.InstructionParser
                 .parseLogMode(instructionToAdapt.getResponseParameterByName(LOG_MODE_KEY));
     }
