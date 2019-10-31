@@ -22,11 +22,11 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.request;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 
 import java.util.Objects;
 
-import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
+import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.ACTIVITY_ID_KEY;
+import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.PROCESS_PATH_KEY;
 
 public class DeleteExtractRequest extends AbstractRequest{
 
@@ -46,8 +46,8 @@ public class DeleteExtractRequest extends AbstractRequest{
     }
 
     public DeleteExtractRequest(Instruction instructionToAdapt) {
+        super(instructionToAdapt);
         validateCommand(COMMAND_FOR_THIS_CLASS);
-        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {

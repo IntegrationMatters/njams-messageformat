@@ -22,7 +22,6 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper.request;
 import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 
 public class GetLogModeRequest extends AbstractRequest{
 
@@ -37,8 +36,8 @@ public class GetLogModeRequest extends AbstractRequest{
     }
 
     public GetLogModeRequest(Instruction instructionToAdapt) {
+        super(instructionToAdapt);
         validateCommand(COMMAND_FOR_THIS_CLASS);
-        this.instructionToAdapt = instructionToAdapt;
     }
 
     public Instruction getInstruction() {

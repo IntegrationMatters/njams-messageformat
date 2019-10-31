@@ -8,7 +8,14 @@ public class AbstractRequest {
 
     protected Instruction instructionToAdapt;
 
-    public Instruction getInstruction(){
+    AbstractRequest() {
+    }
+
+    AbstractRequest(Instruction instructionToAdapt) {
+        this.instructionToAdapt = instructionToAdapt;
+    }
+
+    public Instruction getInstruction() {
         return instructionToAdapt;
     }
 

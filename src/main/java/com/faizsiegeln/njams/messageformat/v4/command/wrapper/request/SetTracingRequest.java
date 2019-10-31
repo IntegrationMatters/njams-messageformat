@@ -23,7 +23,6 @@ import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -50,8 +49,8 @@ public class SetTracingRequest extends AbstractRequest{
     }
 
     public SetTracingRequest(Instruction instructionToAdapt) {
+        super(instructionToAdapt);
         validateCommand(COMMAND_FOR_THIS_CLASS);
-        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {

@@ -23,12 +23,11 @@ import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
 import java.util.Objects;
 
-import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
+import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.LOG_MODE_KEY;
 
 public class SetLogModeRequest extends AbstractRequest{
 
@@ -46,8 +45,8 @@ public class SetLogModeRequest extends AbstractRequest{
     }
 
     public SetLogModeRequest(Instruction instructionToAdapt) {
+        super(instructionToAdapt);
         validateCommand(COMMAND_FOR_THIS_CLASS);
-        this.instructionToAdapt = instructionToAdapt;
     }
 
     public LogMode getLogMode() {

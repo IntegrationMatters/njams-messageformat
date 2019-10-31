@@ -23,7 +23,6 @@ import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.Request;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
@@ -52,8 +51,8 @@ public class SetLogLevelRequest extends AbstractRequest{
     }
 
     public SetLogLevelRequest(Instruction instructionToAdapt) {
+        super(instructionToAdapt);
         validateCommand(COMMAND_FOR_THIS_CLASS);
-        this.instructionToAdapt = instructionToAdapt;
     }
 
     public String getProcessPath() {
