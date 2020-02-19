@@ -24,8 +24,9 @@ public enum RuleType {
     REGEXP("regexp"),
     VALUE("value"),
     XPATH("xpath"),
+    JMESPATH("jmespath"),
     DISABLED("");
-    
+
     private final String value;
 
     private RuleType(final String value) {
@@ -36,19 +37,22 @@ public enum RuleType {
     public String toString() {
         return this.value;
     }
-    
+
     public static RuleType fromValue(String value) {
-        switch(value) {
-            case "eventType" :
-                return RuleType.EVENT;
-            case "regexp":
-                return RuleType.REGEXP;
-            case "value" :
-                return RuleType.VALUE;
-            case "xpath":
-                return RuleType.XPATH;
-            default:
-                return RuleType.DISABLED;
+        switch (value) {
+        case "eventType":
+            return RuleType.EVENT;
+        case "regexp":
+            return RuleType.REGEXP;
+        case "value":
+            return RuleType.VALUE;
+        case "xpath":
+            return RuleType.XPATH;
+        case "jmespath":
+            return RuleType.JMESPATH;
+
+        default:
+            return RuleType.DISABLED;
         }
     }
 }

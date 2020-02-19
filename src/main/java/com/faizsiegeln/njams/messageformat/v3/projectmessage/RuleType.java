@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="regexp"/&gt;
  *     &lt;enumeration value="value"/&gt;
  *     &lt;enumeration value="xpath"/&gt;
+ *     &lt;enumeration value="jmespath"/&gt;
  *     &lt;enumeration value="disabled"/&gt;
  *   &lt;/restriction&gt;
  * &lt;/simpleType&gt;
@@ -49,7 +50,8 @@ public enum RuleType {
     EVENT("event"), @XmlEnumValue("regexp")
     REGEXP("regexp"), @XmlEnumValue("value")
     VALUE("value"), @XmlEnumValue("xpath")
-    XPATH("xpath"), @XmlEnumValue("disabled")
+    XPATH("xpath"), @XmlEnumValue("jmespath")
+    JMESPATH("jmespath"), @XmlEnumValue("disabled")
     DISABLED("disabled");
     private final String value;
 
