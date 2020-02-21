@@ -24,6 +24,7 @@ public enum RuleType {
     REGEXP("regexp"),
     VALUE("value"),
     XPATH("xpath"),
+    JMESPATH("jmespath"),
     DISABLED("");
     
     private final String value;
@@ -47,6 +48,8 @@ public enum RuleType {
                 return RuleType.VALUE;
             case "xpath":
                 return RuleType.XPATH;
+            case "jmespath":
+                return RuleType.JMESPATH;
             default:
                 return RuleType.DISABLED;
         }
