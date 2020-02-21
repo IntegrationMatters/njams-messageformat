@@ -63,38 +63,108 @@
   "definitions" : {
     "Activity" : {
       "type" : "object",
+      "required" : [ "instanceId", "modelId" ],
       "properties" : {
-        "id" : {
-          "type" : "string"
+        "modelId" : {
+          "type" : "string",
+          "description" : "ID of the activity in the process"
         },
-        "name" : {
-          "type" : "string"
+        "instanceId" : {
+          "type" : "string",
+          "description" : "Unique ID of the activity instance"
         },
-        "extract" : {
-          "$ref" : "#/definitions/Extract"
+        "iteration" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Number of the iteration if activity is inside a group."
         },
-        "tracePoint" : {
-          "$ref" : "#/definitions/Tracepoint"
+        "maxIterations" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Number of iteration count if actvity represents a group."
         },
-        "config" : {
-          "type" : "string"
+        "parentInstanceId" : {
+          "type" : "string",
+          "description" : "If activity has a parent like a group, the ID of that parent instance."
         },
-        "mapping" : {
-          "type" : "string"
+        "sequence" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "A unique increasing sequence number."
         },
-        "parentId" : {
-          "type" : "string"
+        "execution" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Start timestamp of the activity's event"
         },
-        "type" : {
-          "type" : "string"
+        "duration" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Duration of the activity instance in milliseconds."
         },
-        "isGroup" : {
-          "type" : "boolean"
+        "cpuTime" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of CPU usage for this activity instance"
+        },
+        "activityStatus" : {
+          "type" : "string",
+          "description" : "The state of the activity instance.",
+          "enum" : [ "RUNNING", "SUCCESS", "WARNING", "ERROR" ]
+        },
+        "input" : {
+          "type" : "string",
+          "description" : "Input data into this activity instance"
+        },
+        "output" : {
+          "type" : "string",
+          "description" : "Output data from this activity instance"
+        },
+        "eventStatus" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Status of the event 0=INFO, 1=SUCCESS, 2=WARNING, 3=ERROR"
+        },
+        "eventMessage" : {
+          "type" : "string",
+          "description" : "Message of event."
+        },
+        "eventCode" : {
+          "type" : "string",
+          "description" : "Code of the event."
+        },
+        "eventPayload" : {
+          "type" : "string",
+          "description" : "Event payload."
+        },
+        "stackTrace" : {
+          "type" : "string",
+          "description" : "A possible stack trace happened on an event."
+        },
+        "attributes" : {
+          "type" : "object",
+          "description" : "A map of attributes with name and value.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "startData" : {
+          "type" : "string",
+          "description" : "Payload of the activity that starts the process instance."
         },
         "subProcess" : {
+          "description" : "Required if activity calls a subprocess.",
           "$ref" : "#/definitions/SubProcess"
+        },
+        "predecessors" : {
+          "type" : "array",
+          "description" : "A list of all predecessor transitions which leads to this activity.",
+          "items" : {
+            "$ref" : "#/definitions/Predecessor"
+          }
         }
-      }
+      },
+      "description" : "A nJAMS Activity instance."
     },
     "Extract" : {
       "type" : "object",
