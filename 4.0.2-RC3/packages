@@ -1,0 +1,12 @@
+com.faizsiegeln.swagger
+com.faizsiegeln.njams.messageformat.v4.tracemessage
+com.faizsiegeln.njams.messageformat.v4.command
+com.faizsiegeln.njams.messageformat.v4.projectmessage
+com.faizsiegeln.njams.messageformat.v4.logmessage
+com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces
+com.faizsiegeln.njams.messageformat.v4.common
+com.faizsiegeln.njams.messageformat.command
+com.faizsiegeln.njams.messageformat.common
+com.faizsiegeln.njams.messageformat.v3.projectmessage
+com.faizsiegeln.njams.messageformat.v3.projectmessageNewNamespace
+com.faizsiegeln.njams.messageformat.v3.logmessage
