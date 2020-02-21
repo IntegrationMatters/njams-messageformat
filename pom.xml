@@ -5,7 +5,7 @@
     <groupId>com.faizsiegeln</groupId>
     <artifactId>njams-messageformat</artifactId>
     <packaging>jar</packaging>
-    <version>4.0.2</version>
+    <version>4.0.2-SNAPSHOT</version>
 
     <scm>
         <connection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</connection>
