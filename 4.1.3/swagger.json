@@ -1,0 +1,571 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This is the Swagger API Documentation for nJAMS Messageformat. This format\n                                    is used for thec communication between the nJAMS Clients and the nJAMS Server.\n                                    ATTENTION: The sample POST requests are just added for this documentation. It is\n                                    not possible to call nJAMS Server via REST Requestbut only by JMS communication.",
+    "version" : "4.1.3",
+    "title" : "nJAMS Message Format API Documentation"
+  },
+  "tags" : [ {
+    "name" : "logmessage"
+  }, {
+    "name" : "projectmessage"
+  } ],
+  "paths" : {
+    "/logmessage" : {
+      "post" : {
+        "tags" : [ "logmessage" ],
+        "summary" : "Sample Request for Documentation Purpose.",
+        "description" : "",
+        "operationId" : "sampleRequest",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "The logmessage.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/LogMessage"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/projectmessage" : {
+      "post" : {
+        "tags" : [ "projectmessage" ],
+        "summary" : "Sample Request for Documentation Purpose.",
+        "description" : "",
+        "operationId" : "sampleRequest",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "The projectmessage.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/ProjectMessage"
+          }
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Activity" : {
+      "type" : "object",
+      "required" : [ "instanceId", "modelId" ],
+      "properties" : {
+        "modelId" : {
+          "type" : "string",
+          "description" : "ID of the activity in the process"
+        },
+        "instanceId" : {
+          "type" : "string",
+          "description" : "Unique ID of the activity instance"
+        },
+        "iteration" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Number of the iteration if activity is inside a group."
+        },
+        "maxIterations" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Number of iteration count if actvity represents a group."
+        },
+        "parentInstanceId" : {
+          "type" : "string",
+          "description" : "If activity has a parent like a group, the ID of that parent instance."
+        },
+        "sequence" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "A unique increasing sequence number."
+        },
+        "execution" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Start timestamp of the activity's event"
+        },
+        "duration" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Duration of the activity instance in milliseconds."
+        },
+        "cpuTime" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Time of CPU usage for this activity instance"
+        },
+        "activityStatus" : {
+          "type" : "string",
+          "description" : "The state of the activity instance.",
+          "enum" : [ "RUNNING", "SUCCESS", "WARNING", "ERROR" ]
+        },
+        "input" : {
+          "type" : "string",
+          "description" : "Input data into this activity instance"
+        },
+        "output" : {
+          "type" : "string",
+          "description" : "Output data from this activity instance"
+        },
+        "eventStatus" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Status of the event 0=INFO, 1=SUCCESS, 2=WARNING, 3=ERROR"
+        },
+        "eventMessage" : {
+          "type" : "string",
+          "description" : "Message of event."
+        },
+        "eventCode" : {
+          "type" : "string",
+          "description" : "Code of the event."
+        },
+        "eventPayload" : {
+          "type" : "string",
+          "description" : "Event payload."
+        },
+        "stackTrace" : {
+          "type" : "string",
+          "description" : "A possible stack trace happened on an event."
+        },
+        "attributes" : {
+          "type" : "object",
+          "description" : "A map of attributes with name and value.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "startData" : {
+          "type" : "string",
+          "description" : "Payload of the activity that starts the process instance."
+        },
+        "subProcess" : {
+          "description" : "Required if activity calls a subprocess.",
+          "$ref" : "#/definitions/SubProcess"
+        },
+        "predecessors" : {
+          "type" : "array",
+          "description" : "A list of all predecessor transitions which leads to this activity.",
+          "items" : {
+            "$ref" : "#/definitions/Predecessor"
+          }
+        }
+      },
+      "description" : "A nJAMS Activity instance."
+    },
+    "Extract" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "extractRules" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ExtractRule"
+          }
+        }
+      }
+    },
+    "ExtractRule" : {
+      "type" : "object",
+      "properties" : {
+        "attribute" : {
+          "type" : "string"
+        },
+        "attributeType" : {
+          "type" : "string",
+          "enum" : [ "EVENT", "ATTRIBUTE", "UNKNOWN" ]
+        },
+        "ruleType" : {
+          "type" : "string",
+          "enum" : [ "EVENT", "REGEXP", "VALUE", "XPATH", "JMESPATH", "DISABLED" ]
+        },
+        "rule" : {
+          "type" : "string"
+        },
+        "inout" : {
+          "type" : "string"
+        }
+      }
+    },
+    "LogMessage" : {
+      "type" : "object",
+      "required" : [ "businessEnd", "businessStart", "category", "clientVersion", "jobStart", "logId", "messageNo", "path", "processName", "sentAt", "status" ],
+      "properties" : {
+        "clientVersion" : {
+          "type" : "string",
+          "description" : "The version of the client"
+        },
+        "sdkVersion" : {
+          "type" : "string",
+          "description" : "The version of the SDK used by the client."
+        },
+        "category" : {
+          "type" : "string",
+          "description" : "Technology identifier, used to find technology icons."
+        },
+        "path" : {
+          "type" : "string",
+          "description" : "Full path of the process (starting and ending with a greater-as sign)"
+        },
+        "messageVersion" : {
+          "type" : "string",
+          "description" : "The version of the nJAMS message. Defaults to V4.",
+          "enum" : [ "V3", "V4" ]
+        },
+        "messageNo" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "If a process instance comes splitted in several messages, a message number has to be provided."
+        },
+        "sentAt" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "The timestamp of the client at the time it will send the message."
+        },
+        "logId" : {
+          "type" : "string",
+          "description" : "A unique ID for the process instance."
+        },
+        "correlationLogId" : {
+          "type" : "string",
+          "description" : "An ID to correlate several process instances together in nJAMS."
+        },
+        "parentLogId" : {
+          "type" : "string",
+          "description" : "An ID of a parent process instance."
+        },
+        "externalLogId" : {
+          "type" : "string",
+          "description" : "Customer process instance ID"
+        },
+        "jobId" : {
+          "type" : "string",
+          "description" : "ID of the client job/process instance."
+        },
+        "processName" : {
+          "type" : "string",
+          "description" : "Name of the process"
+        },
+        "machineName" : {
+          "type" : "string",
+          "description" : "Name of the server machine where client runs oin."
+        },
+        "serviceName" : {
+          "type" : "string",
+          "description" : "Business service name"
+        },
+        "objectName" : {
+          "type" : "string",
+          "description" : "Business object name."
+        },
+        "jobStart" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "The start timestamp of the process instance."
+        },
+        "jobEnd" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "The end timestamp of the process instance."
+        },
+        "businessStart" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "The start timestamp of the business process instance."
+        },
+        "businessEnd" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "The end timestamp of the business process instance."
+        },
+        "status" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "The state of the process instance: 0=RUNNING, 1=SUCCESS, 2=WARNING, 3=ERROR",
+          "enum" : [ 0, 1, 2, 3 ]
+        },
+        "maxSeverity" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "Highest status the process instance ever had."
+        },
+        "trace" : {
+          "type" : "boolean",
+          "description" : "Set true if any activity contains trace data."
+        },
+        "attributes" : {
+          "type" : "object",
+          "description" : "A map of attributes with name and value.",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "activities" : {
+          "type" : "array",
+          "description" : "A list of all activities in this instance.",
+          "items" : {
+            "$ref" : "#/definitions/Activity"
+          }
+        },
+        "plugins" : {
+          "type" : "array",
+          "description" : "A list of additional data send by plugins.",
+          "items" : {
+            "$ref" : "#/definitions/PluginDataItem"
+          }
+        },
+        "truncated" : {
+          "type" : "boolean",
+          "description" : "Set true the client has stopped processing activities/transistions."
+        }
+      },
+      "description" : "A nJAMS Logmessage."
+    },
+    "PluginDataItem" : {
+      "type" : "object",
+      "required" : [ "pluginData", "pluginId", "timestamp" ],
+      "properties" : {
+        "timestamp" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Timestamp when the plugin sent the data."
+        },
+        "pluginId" : {
+          "type" : "string",
+          "description" : "ID of the plugin which sent the data."
+        },
+        "pluginData" : {
+          "type" : "string",
+          "description" : "The data sent."
+        }
+      },
+      "description" : "Data send by client plugins to client server, has to be handled by every pluginId for its own."
+    },
+    "Predecessor" : {
+      "type" : "object",
+      "required" : [ "fromInstanceId", "modelId" ],
+      "properties" : {
+        "modelId" : {
+          "type" : "string",
+          "description" : "ID of the transition in the process model"
+        },
+        "fromInstanceId" : {
+          "type" : "string",
+          "description" : "ID of the activity instance from where the transition starts."
+        }
+      },
+      "description" : "A nJAMS Predecessor instance."
+    },
+    "ProcessModel" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "svg" : {
+          "type" : "string"
+        },
+        "svgStatus" : {
+          "type" : "string"
+        },
+        "logLevel" : {
+          "type" : "string",
+          "enum" : [ "INFO", "SUCCESS", "WARNING", "ERROR" ]
+        },
+        "exclude" : {
+          "type" : "boolean"
+        },
+        "globalVariables" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "activities" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Activity"
+          }
+        },
+        "transitions" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Transition"
+          }
+        },
+        "deploymentTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        }
+      }
+    },
+    "ProjectMessage" : {
+      "type" : "object",
+      "required" : [ "category", "clientVersion", "path" ],
+      "properties" : {
+        "clientVersion" : {
+          "type" : "string",
+          "description" : "The version of the client"
+        },
+        "sdkVersion" : {
+          "type" : "string",
+          "description" : "The version of the SDK used by the client."
+        },
+        "category" : {
+          "type" : "string",
+          "description" : "Technology identifier, used to find technology icons."
+        },
+        "path" : {
+          "type" : "string",
+          "description" : "Full path of the process (starting and ending with a greater-as sign)"
+        },
+        "treeElements" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/TreeElement"
+          }
+        },
+        "features" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "event" : {
+          "type" : "string"
+        },
+        "startTime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "logMode" : {
+          "type" : "string",
+          "enum" : [ "NONE", "EXCLUSIVE", "COMPLETE" ]
+        },
+        "machine" : {
+          "type" : "string"
+        },
+        "globalVariables" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "images" : {
+          "type" : "object",
+          "additionalProperties" : {
+            "type" : "string"
+          }
+        },
+        "processes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ProcessModel"
+          }
+        }
+      },
+      "description" : "Base Message for nJAMS containing common fields."
+    },
+    "SubProcess" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "description" : "Name of the subprocess if it is an inline subprocess."
+        },
+        "path" : {
+          "type" : "string",
+          "description" : "Path of the subprocess if it is an inline subprocess. This attribute is deprecated. Please use new property subProcessPath."
+        },
+        "subProcessPath" : {
+          "type" : "string",
+          "description" : "Path of the subprocess if it is an inline subprocess."
+        },
+        "logId" : {
+          "type" : "string",
+          "description" : "LogID of the subprocess if the subprocess is a spawned subprocess."
+        }
+      },
+      "description" : "A call to a subprocess. If the subprocess is inline, name and path are mandatory. If the subprocess is spawned, the logId is mandatory"
+    },
+    "Tracepoint" : {
+      "type" : "object",
+      "properties" : {
+        "starttime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "endtime" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "iterations" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "deeptrace" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "Transition" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "config" : {
+          "type" : "string"
+        },
+        "from" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "string"
+        }
+      }
+    },
+    "TreeElement" : {
+      "type" : "object",
+      "properties" : {
+        "path" : {
+          "type" : "string"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string"
+        },
+        "treeElementType" : {
+          "type" : "string",
+          "enum" : [ "CLIENT", "PROCESS" ]
+        },
+        "starter" : {
+          "type" : "boolean"
+        }
+      }
+    }
+  }
+}
