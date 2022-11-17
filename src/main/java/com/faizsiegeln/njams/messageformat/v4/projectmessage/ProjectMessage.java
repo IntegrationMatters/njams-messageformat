@@ -40,6 +40,7 @@ public class ProjectMessage extends CommonMessage {
     private LocalDateTime startTime;
     private LogMode logMode = LogMode.COMPLETE;
     private String machine;
+    private String clientId;
     private final Map<String, String> globalVariables;
     private final Map<String, String> images;
     private final List<ProcessModel> processes;
@@ -117,5 +118,19 @@ public class ProjectMessage extends CommonMessage {
      */
     public void setMachine(String machine) {
         this.machine = machine;
+    }
+
+    /**
+     * @return the unique client id (needed for container setups with replicas)
+     */
+    public String getClientId() {
+        return clientId;
+    }
+
+    /**
+     * @param clientId the unique client id to set
+     */
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 }
