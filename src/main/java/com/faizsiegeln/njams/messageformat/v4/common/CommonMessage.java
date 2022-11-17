@@ -33,6 +33,11 @@ public abstract class CommonMessage {
     @ApiModelProperty(value = "The version of the SDK used by the client.", required = false)
     private String sdkVersion;
 
+    @ApiModelProperty(value = "The version of the runtime environment in which the client is deployed.",
+            required = false,
+            example = "Mule Server Runtime 4.2.2 EE")
+    private String runtimeVersion;
+
     @ApiModelProperty(value = "Technology identifier, used to find technology icons.", required = true)
     private String category;
 
@@ -113,5 +118,23 @@ public abstract class CommonMessage {
      */
     public void setPath(String path) {
         this.path = path;
+    }
+
+    /**
+     * Get the version of the runtime environment/engine from where the message has been produced
+     *
+     * @return the runtimeVersion as string
+     */
+    public String getRuntimeVersion() {
+        return runtimeVersion;
+    }
+
+    /**
+     * Set the ersion of the runtime environment/engine from where the message has been produced
+     *
+     * @param runtimeVersion as string
+     */
+    public void setRuntimeVersion(String runtimeVersion) {
+        this.runtimeVersion = runtimeVersion;
     }
 }
