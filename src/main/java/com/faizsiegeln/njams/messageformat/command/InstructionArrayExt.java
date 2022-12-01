@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
@@ -16,12 +16,12 @@
  */
 package com.faizsiegeln.njams.messageformat.command;
 
-import com.faizsiegeln.njams.messageformat.command.Parametergroup.Parameter;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
@@ -29,6 +29,9 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.faizsiegeln.njams.messageformat.command.Parametergroup.Parameter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,9 +44,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author cwinkler
  *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "Instruction")
+@Deprecated
 public class InstructionArrayExt extends InstructionExt {
 
     private static final Logger LOG = LoggerFactory.getLogger(InstructionArrayExt.class);
@@ -77,6 +83,7 @@ public class InstructionArrayExt extends InstructionExt {
         return null;
     }
 
+    @Override
     public String toXml() {
         try {
             JAXBContext context = JAXBContext.newInstance(Instruction.class);
@@ -181,7 +188,7 @@ public class InstructionArrayExt extends InstructionExt {
         }
 
         key = ARRAY_MARKER + key;
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         for (Parametergroup g : groups) {
             List<Parameter> params = g.getParameter();
             if (params == null) {
@@ -265,7 +272,7 @@ public class InstructionArrayExt extends InstructionExt {
         List<Parameter> params = request ? createRequestParameters() : createResponseParameters();
 
         key = ARRAY_MARKER + key;
-        List<Parameter> toRemove = new ArrayList<Parameter>();
+        List<Parameter> toRemove = new ArrayList<>();
         for (Parameter p : params) {
             if (p.getName().equals(key)) {
                 toRemove.add(p);

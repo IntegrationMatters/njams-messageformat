@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>
  * Java class for Instruction element declaration.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;element name="Instruction"&gt;
  *   &lt;complexType&gt;
@@ -83,12 +83,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexType&gt;
  * &lt;/element&gt;
  * </pre>
- * 
- * 
+ *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "request", "response" })
 @XmlRootElement(name = "Instruction")
+@Deprecated
 public class Instruction {
 
     @XmlElement(name = "Request", required = true)
@@ -98,9 +100,9 @@ public class Instruction {
 
     /**
      * Gets the value of the request property.
-     * 
+     *
      * @return possible object is {@link Instruction.Request }
-     * 
+     *
      */
     public Instruction.Request getRequest() {
         return request;
@@ -108,20 +110,20 @@ public class Instruction {
 
     /**
      * Sets the value of the request property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Instruction.Request }
-     * 
+     *
      */
     public void setRequest(Instruction.Request value) {
-        this.request = value;
+        request = value;
     }
 
     /**
      * Gets the value of the response property.
-     * 
+     *
      * @return possible object is {@link Instruction.Response }
-     * 
+     *
      */
     public Instruction.Response getResponse() {
         return response;
@@ -129,22 +131,22 @@ public class Instruction {
 
     /**
      * Sets the value of the response property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Instruction.Response }
-     * 
+     *
      */
     public void setResponse(Instruction.Response value) {
-        this.response = value;
+        response = value;
     }
 
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -159,11 +161,13 @@ public class Instruction {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "parametergroup" })
+    @Deprecated
     public static class Request {
 
         @XmlElement(name = "Parametergroup", required = true)
@@ -177,37 +181,37 @@ public class Instruction {
 
         /**
          * Gets the value of the parametergroup property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you
          * make to the returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE>
          * method for the parametergroup property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getParametergroup().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list {@link Parametergroup }
-         * 
+         *
          * @return the parametergroup
          */
         public List<Parametergroup> getParametergroup() {
             if (parametergroup == null) {
-                parametergroup = new ArrayList<Parametergroup>();
+                parametergroup = new ArrayList<>();
             }
-            return this.parametergroup;
+            return parametergroup;
         }
 
         /**
          * Gets the value of the command property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getCommand() {
             return command;
@@ -215,20 +219,20 @@ public class Instruction {
 
         /**
          * Sets the value of the command property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setCommand(String value) {
-            this.command = value;
+            command = value;
         }
 
         /**
          * Gets the value of the plugin property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getPlugin() {
             return plugin;
@@ -236,20 +240,20 @@ public class Instruction {
 
         /**
          * Sets the value of the plugin property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setPlugin(String value) {
-            this.plugin = value;
+            plugin = value;
         }
 
         /**
          * Gets the value of the timestamp property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getTimestamp() {
             return timestamp;
@@ -257,13 +261,13 @@ public class Instruction {
 
         /**
          * Sets the value of the timestamp property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setTimestamp(Long value) {
-            this.timestamp = value;
+            timestamp = value;
         }
 
     }
@@ -271,10 +275,10 @@ public class Instruction {
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -299,11 +303,13 @@ public class Instruction {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "parametergroup" })
+    @Deprecated
     public static class Response {
 
         @XmlElement(name = "Parametergroup", required = true)
@@ -319,37 +325,37 @@ public class Instruction {
 
         /**
          * Gets the value of the parametergroup property.
-         * 
+         *
          * <p>
          * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you
          * make to the returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE>
          * method for the parametergroup property.
-         * 
+         *
          * <p>
          * For example, to add a new item, do as follows:
-         * 
+         *
          * <pre>
          * getParametergroup().add(newItem);
          * </pre>
-         * 
-         * 
+         *
+         *
          * <p>
          * Objects of the following type(s) are allowed in the list {@link Parametergroup }
-         * 
+         *
          * @return the parametergroup
          */
         public List<Parametergroup> getParametergroup() {
             if (parametergroup == null) {
-                parametergroup = new ArrayList<Parametergroup>();
+                parametergroup = new ArrayList<>();
             }
-            return this.parametergroup;
+            return parametergroup;
         }
 
         /**
          * Gets the value of the resultCode property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getResultCode() {
             return resultCode;
@@ -357,20 +363,20 @@ public class Instruction {
 
         /**
          * Sets the value of the resultCode property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setResultCode(String value) {
-            this.resultCode = value;
+            resultCode = value;
         }
 
         /**
          * Gets the value of the resultMessage property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getResultMessage() {
             return resultMessage;
@@ -378,20 +384,20 @@ public class Instruction {
 
         /**
          * Sets the value of the resultMessage property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setResultMessage(String value) {
-            this.resultMessage = value;
+            resultMessage = value;
         }
 
         /**
          * Gets the value of the result property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getResult() {
             return result;
@@ -399,20 +405,20 @@ public class Instruction {
 
         /**
          * Sets the value of the result property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setResult(String value) {
-            this.result = value;
+            result = value;
         }
 
         /**
          * Gets the value of the timestamp property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getTimestamp() {
             return timestamp;
@@ -420,13 +426,13 @@ public class Instruction {
 
         /**
          * Sets the value of the timestamp property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setTimestamp(Long value) {
-            this.timestamp = value;
+            timestamp = value;
         }
 
     }

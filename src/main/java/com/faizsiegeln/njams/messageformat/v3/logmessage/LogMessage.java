@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
@@ -18,6 +18,7 @@ package com.faizsiegeln.njams.messageformat.v3.logmessage;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -30,10 +31,10 @@ import javax.xml.bind.annotation.XmlValue;
 /**
  * <p>
  * Java class for anonymous complex type.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -104,14 +105,16 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "logID", "correlationLogID", "parentLogID", "externalLogID", "jobID", "domainName",
         "machineName", "engineName", "deployment", "processName", "businessService", "businessObject", "businessStart",
         "businessEnd", "jobStart", "jobEnd", "status", "lastEventStatus", "eventsOrAttributesOrTrack" })
 @XmlRootElement(name = "LogMessage", namespace = "")
+@Deprecated
 public class LogMessage {
 
     @XmlElement(name = "LogID", required = true)
@@ -223,9 +226,9 @@ public class LogMessage {
 
     /**
      * Gets the value of the logID property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getLogID() {
         return logID;
@@ -233,20 +236,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the logID property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setLogID(String value) {
-        this.logID = value;
+        logID = value;
     }
 
     /**
      * Gets the value of the correlationLogID property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getCorrelationLogID() {
         return correlationLogID;
@@ -254,13 +257,13 @@ public class LogMessage {
 
     /**
      * Sets the value of the correlationLogID property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setCorrelationLogID(String value) {
-        this.correlationLogID = value;
+        correlationLogID = value;
     }
 
     /**
@@ -279,9 +282,9 @@ public class LogMessage {
 
     /**
      * Gets the value of the parentLogID property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getParentLogID() {
         return parentLogID;
@@ -289,20 +292,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the parentLogID property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setParentLogID(String value) {
-        this.parentLogID = value;
+        parentLogID = value;
     }
 
     /**
      * Gets the value of the externalLogID property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getExternalLogID() {
         return externalLogID;
@@ -310,18 +313,18 @@ public class LogMessage {
 
     /**
      * Sets the value of the externalLogID property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setExternalLogID(String value) {
-        this.externalLogID = value;
+        externalLogID = value;
     }
 
     /**
      * Gets the value of the jobID property.
-     * 
+     *
      */
     public long getJobID() {
         return jobID;
@@ -329,17 +332,17 @@ public class LogMessage {
 
     /**
      * Sets the value of the jobID property.
-     * 
+     *
      */
     public void setJobID(long value) {
-        this.jobID = value;
+        jobID = value;
     }
 
     /**
      * Gets the value of the domainName property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getDomainName() {
         return domainName;
@@ -347,20 +350,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the domainName property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setDomainName(String value) {
-        this.domainName = value;
+        domainName = value;
     }
 
     /**
      * Gets the value of the machineName property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getMachineName() {
         return machineName;
@@ -368,20 +371,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the machineName property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setMachineName(String value) {
-        this.machineName = value;
+        machineName = value;
     }
 
     /**
      * Gets the value of the engineName property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getEngineName() {
         return engineName;
@@ -389,20 +392,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the engineName property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setEngineName(String value) {
-        this.engineName = value;
+        engineName = value;
     }
 
     /**
      * Gets the value of the deployment property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getDeployment() {
         return deployment;
@@ -410,20 +413,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the deployment property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setDeployment(String value) {
-        this.deployment = value;
+        deployment = value;
     }
 
     /**
      * Gets the value of the processName property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getProcessName() {
         return processName;
@@ -431,20 +434,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the processName property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setProcessName(String value) {
-        this.processName = value;
+        processName = value;
     }
 
     /**
      * Gets the value of the businessService property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getBusinessService() {
         return businessService;
@@ -452,20 +455,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the businessService property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setBusinessService(String value) {
-        this.businessService = value;
+        businessService = value;
     }
 
     /**
      * Gets the value of the businessObject property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getBusinessObject() {
         return businessObject;
@@ -473,20 +476,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the businessObject property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setBusinessObject(String value) {
-        this.businessObject = value;
+        businessObject = value;
     }
 
     /**
      * Gets the value of the businessStart property.
-     * 
+     *
      * @return possible object is {@link LogMessage.BusinessStart }
-     * 
+     *
      */
     public LogMessage.BusinessStart getBusinessStart() {
         return businessStart;
@@ -494,20 +497,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the businessStart property.
-     * 
+     *
      * @param value
      *            allowed object is {@link LogMessage.BusinessStart }
-     * 
+     *
      */
     public void setBusinessStart(LogMessage.BusinessStart value) {
-        this.businessStart = value;
+        businessStart = value;
     }
 
     /**
      * Gets the value of the businessEnd property.
-     * 
+     *
      * @return possible object is {@link LogMessage.BusinessEnd }
-     * 
+     *
      */
     public LogMessage.BusinessEnd getBusinessEnd() {
         return businessEnd;
@@ -515,20 +518,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the businessEnd property.
-     * 
+     *
      * @param value
      *            allowed object is {@link LogMessage.BusinessEnd }
-     * 
+     *
      */
     public void setBusinessEnd(LogMessage.BusinessEnd value) {
-        this.businessEnd = value;
+        businessEnd = value;
     }
 
     /**
      * Gets the value of the jobStart property.
-     * 
+     *
      * @return possible object is {@link LogMessage.JobStart }
-     * 
+     *
      */
     public LogMessage.JobStart getJobStart() {
         return jobStart;
@@ -536,20 +539,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the jobStart property.
-     * 
+     *
      * @param value
      *            allowed object is {@link LogMessage.JobStart }
-     * 
+     *
      */
     public void setJobStart(LogMessage.JobStart value) {
-        this.jobStart = value;
+        jobStart = value;
     }
 
     /**
      * Gets the value of the jobEnd property.
-     * 
+     *
      * @return possible object is {@link LogMessage.JobEnd }
-     * 
+     *
      */
     public LogMessage.JobEnd getJobEnd() {
         return jobEnd;
@@ -557,18 +560,18 @@ public class LogMessage {
 
     /**
      * Sets the value of the jobEnd property.
-     * 
+     *
      * @param value
      *            allowed object is {@link LogMessage.JobEnd }
-     * 
+     *
      */
     public void setJobEnd(LogMessage.JobEnd value) {
-        this.jobEnd = value;
+        jobEnd = value;
     }
 
     /**
      * Gets the value of the status property.
-     * 
+     *
      */
     public int getStatus() {
         return status;
@@ -576,15 +579,15 @@ public class LogMessage {
 
     /**
      * Sets the value of the status property.
-     * 
+     *
      */
     public void setStatus(int value) {
-        this.status = value;
+        status = value;
     }
 
     /**
      * Gets the value of the lastEventStatus property.
-     * 
+     *
      */
     public int getLastEventStatus() {
         return lastEventStatus;
@@ -592,46 +595,46 @@ public class LogMessage {
 
     /**
      * Sets the value of the lastEventStatus property.
-     * 
+     *
      */
     public void setLastEventStatus(int value) {
-        this.lastEventStatus = value;
+        lastEventStatus = value;
     }
 
     /**
      * Gets the value of the eventsOrAttributesOrTrack property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to
      * the returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for
      * the eventsOrAttributesOrTrack property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
-     * 
+     *
      * <pre>
      * getEventsOrAttributesOrTrack().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list {@link Track } {@link Events } {@link PluginData }
      * {@link Traces } {@link Attributes }
-     * 
-     * 
+     *
+     *
      */
     public List<Object> getEventsOrAttributesOrTrack() {
         if (eventsOrAttributesOrTrack == null) {
-            eventsOrAttributesOrTrack = new ArrayList<Object>();
+            eventsOrAttributesOrTrack = new ArrayList<>();
         }
-        return this.eventsOrAttributesOrTrack;
+        return eventsOrAttributesOrTrack;
     }
 
     /**
      * Gets the value of the logsource property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getLogsource() {
         if (logsource == null) {
@@ -643,20 +646,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the logsource property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setLogsource(String value) {
-        this.logsource = value;
+        logsource = value;
     }
 
     /**
      * Gets the value of the version property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getVersion() {
         return version;
@@ -664,20 +667,20 @@ public class LogMessage {
 
     /**
      * Sets the value of the version property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setVersion(String value) {
-        this.version = value;
+        version = value;
     }
 
     /**
      * Gets the value of the timestamp property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getTimestamp() {
         return timestamp;
@@ -685,22 +688,22 @@ public class LogMessage {
 
     /**
      * Sets the value of the timestamp property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setTimestamp(Long value) {
-        this.timestamp = value;
+        timestamp = value;
     }
 
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;simpleContent&gt;
@@ -710,11 +713,13 @@ public class LogMessage {
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "value" })
+    @Deprecated
     public static class BusinessEnd {
 
         @XmlValue
@@ -724,9 +729,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the value property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getValue() {
             return value;
@@ -734,10 +739,10 @@ public class LogMessage {
 
         /**
          * Sets the value of the value property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setValue(String value) {
             this.value = value;
@@ -745,9 +750,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the timestamp property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getTimestamp() {
             return timestamp;
@@ -755,13 +760,13 @@ public class LogMessage {
 
         /**
          * Sets the value of the timestamp property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setTimestamp(Long value) {
-            this.timestamp = value;
+            timestamp = value;
         }
 
     }
@@ -769,10 +774,10 @@ public class LogMessage {
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;simpleContent&gt;
@@ -782,11 +787,13 @@ public class LogMessage {
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "value" })
+    @Deprecated
     public static class BusinessStart {
 
         @XmlValue
@@ -796,9 +803,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the value property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getValue() {
             return value;
@@ -806,10 +813,10 @@ public class LogMessage {
 
         /**
          * Sets the value of the value property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setValue(String value) {
             this.value = value;
@@ -817,9 +824,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the timestamp property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getTimestamp() {
             return timestamp;
@@ -827,13 +834,13 @@ public class LogMessage {
 
         /**
          * Sets the value of the timestamp property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setTimestamp(Long value) {
-            this.timestamp = value;
+            timestamp = value;
         }
 
     }
@@ -841,10 +848,10 @@ public class LogMessage {
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;simpleContent&gt;
@@ -854,11 +861,13 @@ public class LogMessage {
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "value" })
+    @Deprecated
     public static class JobEnd {
 
         @XmlValue
@@ -868,9 +877,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the value property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getValue() {
             return value;
@@ -878,10 +887,10 @@ public class LogMessage {
 
         /**
          * Sets the value of the value property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setValue(String value) {
             this.value = value;
@@ -889,9 +898,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the timestamp property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getTimestamp() {
             return timestamp;
@@ -899,13 +908,13 @@ public class LogMessage {
 
         /**
          * Sets the value of the timestamp property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setTimestamp(Long value) {
-            this.timestamp = value;
+            timestamp = value;
         }
 
     }
@@ -913,10 +922,10 @@ public class LogMessage {
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;simpleContent&gt;
@@ -926,11 +935,13 @@ public class LogMessage {
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "value" })
+    @Deprecated
     public static class JobStart {
 
         @XmlValue
@@ -940,9 +951,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the value property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getValue() {
             return value;
@@ -950,10 +961,10 @@ public class LogMessage {
 
         /**
          * Sets the value of the value property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setValue(String value) {
             this.value = value;
@@ -961,9 +972,9 @@ public class LogMessage {
 
         /**
          * Gets the value of the timestamp property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getTimestamp() {
             return timestamp;
@@ -971,13 +982,13 @@ public class LogMessage {
 
         /**
          * Sets the value of the timestamp property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setTimestamp(Long value) {
-            this.timestamp = value;
+            timestamp = value;
         }
 
     }

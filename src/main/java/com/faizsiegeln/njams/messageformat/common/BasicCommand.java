@@ -19,7 +19,10 @@ package com.faizsiegeln.njams.messageformat.common;
 /**
  *
  * @author pnientiedt
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
+@Deprecated
 public interface BasicCommand {
 
     public String getCommand();

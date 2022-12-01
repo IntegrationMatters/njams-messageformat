@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlValue;
 /**
  * <p>
  * Java class for anonymous complex type.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -64,14 +64,16 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "eventId", "sequence", "trackSequence", "eventDateTime", "processName",
         "activityName", "eventMsg", "eventMsgCode", "logErrorMsg", "logErrorMsgCode", "logErrorSeverity", "status",
         "payload", "stacktrace", "attributes" })
 @XmlRootElement(name = "Event", namespace = "http://www.faizsiegeln.com/schema/njams/event/2011-04-21/")
+@Deprecated
 public class Event {
 
     @XmlElement(name = "EventId", namespace = "http://www.faizsiegeln.com/schema/njams/event/2011-04-21/")
@@ -114,9 +116,9 @@ public class Event {
 
     /**
      * Gets the value of the eventId property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getEventId() {
         return eventId;
@@ -124,20 +126,20 @@ public class Event {
 
     /**
      * Sets the value of the eventId property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setEventId(Long value) {
-        this.eventId = value;
+        eventId = value;
     }
 
     /**
      * Gets the value of the sequence property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getSequence() {
         return sequence;
@@ -145,20 +147,20 @@ public class Event {
 
     /**
      * Sets the value of the sequence property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setSequence(Long value) {
-        this.sequence = value;
+        sequence = value;
     }
 
     /**
      * Gets the value of the trackSequence property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getTrackSequence() {
         return trackSequence;
@@ -166,20 +168,20 @@ public class Event {
 
     /**
      * Sets the value of the sequence property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setTrackSequence(Long value) {
-        this.trackSequence = value;
+        trackSequence = value;
     }
 
     /**
      * Gets the value of the eventDateTime property.
-     * 
+     *
      * @return possible object is {@link Event.EventDateTime }
-     * 
+     *
      */
     public Event.EventDateTime getEventDateTime() {
         return eventDateTime;
@@ -187,20 +189,20 @@ public class Event {
 
     /**
      * Sets the value of the eventDateTime property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Event.EventDateTime }
-     * 
+     *
      */
     public void setEventDateTime(Event.EventDateTime value) {
-        this.eventDateTime = value;
+        eventDateTime = value;
     }
 
     /**
      * Gets the value of the processName property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getProcessName() {
         return processName;
@@ -208,20 +210,20 @@ public class Event {
 
     /**
      * Sets the value of the processName property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setProcessName(String value) {
-        this.processName = value;
+        processName = value;
     }
 
     /**
      * Gets the value of the activityName property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getActivityName() {
         return activityName;
@@ -229,20 +231,20 @@ public class Event {
 
     /**
      * Sets the value of the activityName property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setActivityName(String value) {
-        this.activityName = value;
+        activityName = value;
     }
 
     /**
      * Gets the value of the eventMsg property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getEventMsg() {
         return eventMsg;
@@ -250,20 +252,20 @@ public class Event {
 
     /**
      * Sets the value of the eventMsg property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setEventMsg(String value) {
-        this.eventMsg = value;
+        eventMsg = value;
     }
 
     /**
      * Gets the value of the eventMsgCode property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getEventMsgCode() {
         return eventMsgCode;
@@ -271,20 +273,20 @@ public class Event {
 
     /**
      * Sets the value of the eventMsgCode property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setEventMsgCode(String value) {
-        this.eventMsgCode = value;
+        eventMsgCode = value;
     }
 
     /**
      * Gets the value of the logErrorMsg property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getLogErrorMsg() {
         return logErrorMsg;
@@ -292,20 +294,20 @@ public class Event {
 
     /**
      * Sets the value of the logErrorMsg property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setLogErrorMsg(String value) {
-        this.logErrorMsg = value;
+        logErrorMsg = value;
     }
 
     /**
      * Gets the value of the logErrorMsgCode property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getLogErrorMsgCode() {
         return logErrorMsgCode;
@@ -313,18 +315,18 @@ public class Event {
 
     /**
      * Sets the value of the logErrorMsgCode property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setLogErrorMsgCode(String value) {
-        this.logErrorMsgCode = value;
+        logErrorMsgCode = value;
     }
 
     /**
      * Gets the value of the logErrorSeverity property.
-     * 
+     *
      */
     public int getLogErrorSeverity() {
         return logErrorSeverity;
@@ -332,15 +334,15 @@ public class Event {
 
     /**
      * Sets the value of the logErrorSeverity property.
-     * 
+     *
      */
     public void setLogErrorSeverity(int value) {
-        this.logErrorSeverity = value;
+        logErrorSeverity = value;
     }
 
     /**
      * Gets the value of the status property.
-     * 
+     *
      */
     public int getStatus() {
         return status;
@@ -348,17 +350,17 @@ public class Event {
 
     /**
      * Sets the value of the status property.
-     * 
+     *
      */
     public void setStatus(int value) {
-        this.status = value;
+        status = value;
     }
 
     /**
      * Gets the value of the payload property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getPayload() {
         return payload;
@@ -366,20 +368,20 @@ public class Event {
 
     /**
      * Sets the value of the payload property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setPayload(String value) {
-        this.payload = value;
+        payload = value;
     }
 
     /**
      * Gets the value of the stacktrace property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getStacktrace() {
         return stacktrace;
@@ -387,20 +389,20 @@ public class Event {
 
     /**
      * Sets the value of the stacktrace property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setStacktrace(String value) {
-        this.stacktrace = value;
+        stacktrace = value;
     }
 
     /**
      * Gets the value of the attributes property.
-     * 
+     *
      * @return possible object is {@link Attributes }
-     * 
+     *
      */
     public Attributes getAttributes() {
         return attributes;
@@ -408,22 +410,22 @@ public class Event {
 
     /**
      * Sets the value of the attributes property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Attributes }
-     * 
+     *
      */
     public void setAttributes(Attributes value) {
-        this.attributes = value;
+        attributes = value;
     }
 
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;simpleContent&gt;
@@ -433,11 +435,13 @@ public class Event {
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "value" })
+    @Deprecated
     public static class EventDateTime {
 
         @XmlValue
@@ -447,9 +451,9 @@ public class Event {
 
         /**
          * Gets the value of the value property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getValue() {
             return value;
@@ -457,10 +461,10 @@ public class Event {
 
         /**
          * Sets the value of the value property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setValue(String value) {
             this.value = value;
@@ -468,9 +472,9 @@ public class Event {
 
         /**
          * Gets the value of the timestamp property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getTimestamp() {
             return timestamp;
@@ -478,13 +482,13 @@ public class Event {
 
         /**
          * Sets the value of the timestamp property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setTimestamp(Long value) {
-            this.timestamp = value;
+            timestamp = value;
         }
 
     }

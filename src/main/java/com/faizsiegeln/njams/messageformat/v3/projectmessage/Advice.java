@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
@@ -25,10 +25,10 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>
  * Java class for anonymous complex type.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -49,12 +49,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "advice", namespace = "http://www.faizsiegeln.com/schema/njams/advice/2011-04-21/")
+@Deprecated
 public class Advice {
 
     @XmlAttribute(name = "domain_object_id")
@@ -84,9 +86,9 @@ public class Advice {
 
     /**
      * Gets the value of the domainObjectId property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getDomainObjectId() {
         return domainObjectId;
@@ -94,20 +96,20 @@ public class Advice {
 
     /**
      * Sets the value of the domainObjectId property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setDomainObjectId(Long value) {
-        this.domainObjectId = value;
+        domainObjectId = value;
     }
 
     /**
      * Gets the value of the aspect property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getAspect() {
         return aspect;
@@ -115,20 +117,20 @@ public class Advice {
 
     /**
      * Sets the value of the aspect property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setAspect(String value) {
-        this.aspect = value;
+        aspect = value;
     }
 
     /**
      * Gets the value of the process property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getProcess() {
         return process;
@@ -136,20 +138,20 @@ public class Advice {
 
     /**
      * Sets the value of the process property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setProcess(String value) {
-        this.process = value;
+        process = value;
     }
 
     /**
      * Gets the value of the activity property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getActivity() {
         return activity;
@@ -157,20 +159,20 @@ public class Advice {
 
     /**
      * Sets the value of the activity property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setActivity(String value) {
-        this.activity = value;
+        activity = value;
     }
 
     /**
      * Gets the value of the where property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getWhere() {
         return where;
@@ -178,20 +180,20 @@ public class Advice {
 
     /**
      * Sets the value of the where property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setWhere(String value) {
-        this.where = value;
+        where = value;
     }
 
     /**
      * Gets the value of the name property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getName() {
         return name;
@@ -199,20 +201,20 @@ public class Advice {
 
     /**
      * Sets the value of the name property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setName(String value) {
-        this.name = value;
+        name = value;
     }
 
     /**
      * Gets the value of the engine property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getEngine() {
         return engine;
@@ -220,20 +222,20 @@ public class Advice {
 
     /**
      * Sets the value of the engine property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setEngine(String value) {
-        this.engine = value;
+        engine = value;
     }
 
     /**
      * Gets the value of the deployment property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getDeployment() {
         return deployment;
@@ -241,20 +243,20 @@ public class Advice {
 
     /**
      * Sets the value of the deployment property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setDeployment(String value) {
-        this.deployment = value;
+        deployment = value;
     }
 
     /**
      * Gets the value of the domain property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getDomain() {
         return domain;
@@ -262,20 +264,20 @@ public class Advice {
 
     /**
      * Sets the value of the domain property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setDomain(String value) {
-        this.domain = value;
+        domain = value;
     }
 
     /**
      * Gets the value of the engineId property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getEngineId() {
         return engineId;
@@ -283,20 +285,20 @@ public class Advice {
 
     /**
      * Sets the value of the engineId property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setEngineId(Long value) {
-        this.engineId = value;
+        engineId = value;
     }
 
     /**
      * Gets the value of the deploymentId property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getDeploymentId() {
         return deploymentId;
@@ -304,20 +306,20 @@ public class Advice {
 
     /**
      * Sets the value of the deploymentId property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setDeploymentId(Long value) {
-        this.deploymentId = value;
+        deploymentId = value;
     }
 
     /**
      * Gets the value of the domainId property.
-     * 
+     *
      * @return possible object is {@link Long }
-     * 
+     *
      */
     public Long getDomainId() {
         return domainId;
@@ -325,13 +327,13 @@ public class Advice {
 
     /**
      * Sets the value of the domainId property.
-     * 
+     *
      * @param value
      *            allowed object is {@link Long }
-     * 
+     *
      */
     public void setDomainId(Long value) {
-        this.domainId = value;
+        domainId = value;
     }
 
 }

@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
@@ -18,6 +18,7 @@ package com.faizsiegeln.njams.messageformat.v3.logmessage;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -29,10 +30,10 @@ import javax.xml.bind.annotation.XmlValue;
 /**
  * <p>
  * Java class for anonymous complex type.
- * 
+ *
  * <p>
  * The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -61,12 +62,14 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
+ *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = { "transition" })
 @XmlRootElement(name = "Track", namespace = "http://www.faizsiegeln.com/schema/njams/track/2011-04-21/")
+@Deprecated
 public class Track {
 
     @XmlElement(name = "Transition", namespace = "http://www.faizsiegeln.com/schema/njams/track/2011-04-21/")
@@ -76,37 +79,37 @@ public class Track {
 
     /**
      * Gets the value of the transition property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list, not a snapshot. Therefore any modification you make to
      * the returned list will be present inside the JAXB object. This is why there is not a <CODE>set</CODE> method for
      * the transition property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
-     * 
+     *
      * <pre>
      * getTransition().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list {@link Track.Transition }
-     * 
-     * 
+     *
+     *
      */
     public List<Track.Transition> getTransition() {
         if (transition == null) {
-            transition = new ArrayList<Track.Transition>();
+            transition = new ArrayList<>();
         }
-        return this.transition;
+        return transition;
     }
 
     /**
      * Gets the value of the process property.
-     * 
+     *
      * @return possible object is {@link String }
-     * 
+     *
      */
     public String getProcess() {
         return process;
@@ -114,22 +117,22 @@ public class Track {
 
     /**
      * Sets the value of the process property.
-     * 
+     *
      * @param value
      *            allowed object is {@link String }
-     * 
+     *
      */
     public void setProcess(String value) {
-        this.process = value;
+        process = value;
     }
 
     /**
      * <p>
      * Java class for anonymous complex type.
-     * 
+     *
      * <p>
      * The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;simpleContent&gt;
@@ -147,11 +150,13 @@ public class Track {
      *   &lt;/simpleContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
+     *
+     * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = { "value" })
+    @Deprecated
     public static class Transition {
 
         @XmlValue
@@ -177,9 +182,9 @@ public class Track {
 
         /**
          * Gets the value of the value property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getValue() {
             return value;
@@ -187,10 +192,10 @@ public class Track {
 
         /**
          * Sets the value of the value property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setValue(String value) {
             this.value = value;
@@ -198,9 +203,9 @@ public class Track {
 
         /**
          * Gets the value of the name property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getName() {
             return name;
@@ -208,20 +213,20 @@ public class Track {
 
         /**
          * Sets the value of the name property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setName(String value) {
-            this.name = value;
+            name = value;
         }
 
         /**
          * Gets the value of the sequence property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getSequence() {
             return sequence;
@@ -229,20 +234,20 @@ public class Track {
 
         /**
          * Sets the value of the sequence property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setSequence(Long value) {
-            this.sequence = value;
+            sequence = value;
         }
 
         /**
          * Gets the value of the stack property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getStack() {
             return stack;
@@ -250,20 +255,20 @@ public class Track {
 
         /**
          * Sets the value of the stack property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setStack(String value) {
-            this.stack = value;
+            stack = value;
         }
 
         /**
          * Gets the value of the calledSubprocess property.
-         * 
+         *
          * @return possible object is {@link String }
-         * 
+         *
          */
         public String getCalledSubprocess() {
             return calledSubprocess;
@@ -271,20 +276,20 @@ public class Track {
 
         /**
          * Sets the value of the calledSubprocess property.
-         * 
+         *
          * @param value
          *            allowed object is {@link String }
-         * 
+         *
          */
         public void setCalledSubprocess(String value) {
-            this.calledSubprocess = value;
+            calledSubprocess = value;
         }
 
         /**
          * Gets the value of the calledSubprocessId property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getCalledSubprocessId() {
             return calledSubprocessId;
@@ -292,20 +297,20 @@ public class Track {
 
         /**
          * Sets the value of the calledSubprocessId property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setCalledSubprocessId(Long value) {
-            this.calledSubprocessId = value;
+            calledSubprocessId = value;
         }
 
         /**
          * Gets the value of the iteration property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getIteration() {
             return iteration;
@@ -313,20 +318,20 @@ public class Track {
 
         /**
          * Sets the value of the iteration property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setIteration(Long value) {
-            this.iteration = value;
+            iteration = value;
         }
 
         /**
          * Gets the value of the domainObjectId property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getDomainObjectId() {
             return domainObjectId;
@@ -334,20 +339,20 @@ public class Track {
 
         /**
          * Sets the value of the domainObjectId property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setDomainObjectId(Long value) {
-            this.domainObjectId = value;
+            domainObjectId = value;
         }
 
         /**
          * Gets the value of the elapsedTime property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getElapsedTime() {
             return elapsedTime;
@@ -355,20 +360,20 @@ public class Track {
 
         /**
          * Sets the value of the elapsedTime property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setElapsedTime(Long value) {
-            this.elapsedTime = value;
+            elapsedTime = value;
         }
 
         /**
          * Gets the value of the executionTime property.
-         * 
+         *
          * @return possible object is {@link Long }
-         * 
+         *
          */
         public Long getExecutionTime() {
             return executionTime;
@@ -376,13 +381,13 @@ public class Track {
 
         /**
          * Sets the value of the executionTime property.
-         * 
+         *
          * @param value
          *            allowed object is {@link Long }
-         * 
+         *
          */
         public void setExecutionTime(Long value) {
-            this.executionTime = value;
+            executionTime = value;
         }
 
     }

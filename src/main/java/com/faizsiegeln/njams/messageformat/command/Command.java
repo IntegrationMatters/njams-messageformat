@@ -1,14 +1,14 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
@@ -21,21 +21,32 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Defines the commands handled by this instruction listener implementation.
+ *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
+ *
  */
+@Deprecated
 public enum Command {
     GET_RESOURCE("GetResource"),
     /**
      * actually not used by the server, not implemented yet
      */
-    GET_STATS("GetStats"), GET_LOG_LEVEL("GetLogLevel"),
+    GET_STATS("GetStats"),
+    GET_LOG_LEVEL("GetLogLevel"),
     /**
      * actually not used by the server, not implemented yet
      */
-    GET_IMAGE("GetImage"), SET_LOG_LEVEL("SetLogLevel"),
+    GET_IMAGE("GetImage"),
+    SET_LOG_LEVEL("SetLogLevel"),
     /**
      * actually not used by the server, not implemented yet
      */
-    GET_ASPECT_CONFIG("GetAspectConfig"), SET_TRACING("SetTracing"), CONFIGURE_ASPECT("ConfigureAspect"), DELETE_ASPECT_CONFIG("DeleteAspectConfig"), HEARTBEAT("HeartBeat"), SEND_PROJECTMESSAGE("SendProjectmessage");
+    GET_ASPECT_CONFIG("GetAspectConfig"),
+    SET_TRACING("SetTracing"),
+    CONFIGURE_ASPECT("ConfigureAspect"),
+    DELETE_ASPECT_CONFIG("DeleteAspectConfig"),
+    HEARTBEAT("HeartBeat"),
+    SEND_PROJECTMESSAGE("SendProjectmessage");
 
     private static final Logger LOG = LoggerFactory.getLogger(Command.class);
 

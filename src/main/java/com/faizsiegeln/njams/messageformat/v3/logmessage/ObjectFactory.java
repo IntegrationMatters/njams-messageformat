@@ -1,20 +1,22 @@
-/* 
+/*
  * Copyright (c) 2018 Faiz & Siegeln Software GmbH
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- * 
+ *
  * The Software shall be used for Good, not Evil.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
 package com.faizsiegeln.njams.messageformat.v3.logmessage;
+
+import javax.xml.bind.annotation.XmlRegistry;
 
 import com.faizsiegeln.njams.messageformat.v3.logmessage.Attributes.Attribute;
 import com.faizsiegeln.njams.messageformat.v3.logmessage.Event.EventDateTime;
@@ -24,7 +26,6 @@ import com.faizsiegeln.njams.messageformat.v3.logmessage.LogMessage.JobEnd;
 import com.faizsiegeln.njams.messageformat.v3.logmessage.LogMessage.JobStart;
 import com.faizsiegeln.njams.messageformat.v3.logmessage.PluginData.PluginDataItem;
 import com.faizsiegeln.njams.messageformat.v3.logmessage.Track.Transition;
-import javax.xml.bind.annotation.XmlRegistry;
 
 /**
  * This object contains factory methods for each Java content interface and Java element interface generated in the
@@ -34,22 +35,24 @@ import javax.xml.bind.annotation.XmlRegistry;
  * The Java representation of XML content can consist of schema derived interfaces and classes representing the binding
  * of schema type definitions, element declarations and model groups. Factory methods for each of these are provided in
  * this class.
- * 
+ *
+ * @deprecated Message format V3 has been removed in nJAMS server 5.2.0
  */
 @XmlRegistry
+@Deprecated
 public class ObjectFactory {
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package:
      * com.faizsiegeln.njams.jaxb.IMAF
-     * 
+     *
      */
     public ObjectFactory() {
     }
 
     /**
      * Create an instance of {@link LogMessage }
-     * 
+     *
      */
     public LogMessage createLogMessage() {
         return new LogMessage();
@@ -57,7 +60,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Event }
-     * 
+     *
      */
     public Event createEvent() {
         return new Event();
@@ -65,7 +68,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Attributes }
-     * 
+     *
      */
     public Attributes createAttributes() {
         return new Attributes();
@@ -73,7 +76,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Track }
-     * 
+     *
      */
     public Track createTrack() {
         return new Track();
@@ -81,7 +84,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Trace }
-     * 
+     *
      */
     public Trace createTrace() {
         return new Trace();
@@ -89,7 +92,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PluginData }
-     * 
+     *
      */
     public PluginData createPluginData() {
         return new PluginData();
@@ -97,7 +100,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Attributes.Attribute }
-     * 
+     *
      */
     public Attribute createAttributesAttribute() {
         return new Attributes.Attribute();
@@ -105,7 +108,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LogMessage.BusinessStart }
-     * 
+     *
      */
     public BusinessStart createLogMessageBusinessStart() {
         return new LogMessage.BusinessStart();
@@ -113,7 +116,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LogMessage.BusinessEnd }
-     * 
+     *
      */
     public BusinessEnd createLogMessageBusinessEnd() {
         return new LogMessage.BusinessEnd();
@@ -121,7 +124,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LogMessage.JobStart }
-     * 
+     *
      */
     public JobStart createLogMessageJobStart() {
         return new LogMessage.JobStart();
@@ -129,7 +132,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link LogMessage.JobEnd }
-     * 
+     *
      */
     public JobEnd createLogMessageJobEnd() {
         return new LogMessage.JobEnd();
@@ -137,7 +140,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Events }
-     * 
+     *
      */
     public Events createEvents() {
         return new Events();
@@ -145,7 +148,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Event.EventDateTime }
-     * 
+     *
      */
     public EventDateTime createEventEventDateTime() {
         return new Event.EventDateTime();
@@ -153,7 +156,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Track.Transition }
-     * 
+     *
      */
     public Transition createTrackTransition() {
         return new Track.Transition();
@@ -161,7 +164,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Traces }
-     * 
+     *
      */
     public Traces createTraces() {
         return new Traces();
@@ -169,7 +172,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Trace.Timestamp }
-     * 
+     *
      */
     public com.faizsiegeln.njams.messageformat.v3.logmessage.Trace.Timestamp
             createTraceTimestamp() {
@@ -178,7 +181,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link PluginData.PluginDataItem }
-     * 
+     *
      */
     public PluginDataItem createPluginDataPluginDataItem() {
         return new PluginData.PluginDataItem();
@@ -186,7 +189,7 @@ public class ObjectFactory {
 
     /**
      * Create an instance of {@link Attributes.Attribute.Timestamp }
-     * 
+     *
      */
     public Attributes.Attribute.Timestamp createAttributesAttributeTimestamp() {
         return new Attributes.Attribute.Timestamp();
