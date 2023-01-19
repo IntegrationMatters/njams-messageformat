@@ -17,7 +17,7 @@
 package com.faizsiegeln.njams.messageformat.v4.common;
 
 import java.time.LocalDateTime;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 /**
  * Converts LocalDateTimes from String to JavaObjects and back.

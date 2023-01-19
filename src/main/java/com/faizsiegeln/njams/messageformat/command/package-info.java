@@ -14,7 +14,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.faizsiegeln.com/njams/client/plugin/instruction",
-        elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@jakarta.xml.bind.annotation.XmlSchema(namespace = "http://www.faizsiegeln.com/njams/client/plugin/instruction",
+        elementFormDefault = jakarta.xml.bind.annotation.XmlNsForm.QUALIFIED)
 @java.lang.Deprecated
 package com.faizsiegeln.njams.messageformat.command;

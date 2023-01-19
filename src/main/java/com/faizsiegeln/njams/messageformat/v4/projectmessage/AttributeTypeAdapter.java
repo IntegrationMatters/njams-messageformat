@@ -16,7 +16,7 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
-import javax.xml.bind.annotation.adapters.XmlAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
 
 public class AttributeTypeAdapter extends XmlAdapter<String, AttributeType> {
 

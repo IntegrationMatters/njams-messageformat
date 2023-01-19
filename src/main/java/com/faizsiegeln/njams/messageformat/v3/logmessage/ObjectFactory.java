@@ -16,7 +16,7 @@
  */
 package com.faizsiegeln.njams.messageformat.v3.logmessage;
 
-import javax.xml.bind.annotation.XmlRegistry;
+import jakarta.xml.bind.annotation.XmlRegistry;
 
 import com.faizsiegeln.njams.messageformat.v3.logmessage.Attributes.Attribute;
 import com.faizsiegeln.njams.messageformat.v3.logmessage.Event.EventDateTime;

@@ -18,7 +18,7 @@ package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
 import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
 import java.time.LocalDateTime;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * A Tracepoint can be configured for an {@link Activity}.

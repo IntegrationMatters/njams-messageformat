@@ -16,7 +16,7 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @XmlJavaTypeAdapter(AttributeTypeAdapter.class)
 public enum AttributeType {
