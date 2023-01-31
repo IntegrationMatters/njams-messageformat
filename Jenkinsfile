@@ -11,7 +11,7 @@ properties([
 
 node ('master') {
    def mvnHome
-   env.JAVA_HOME = tool 'jdk-8u92'
+   env.JAVA_HOME = tool 'openJDK-11.0.2'
 
    stage ('Clean') {
       deleteDir()
