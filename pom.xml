@@ -21,7 +21,7 @@
         </sonar.jacoco.reportPaths>
         <sonar.language>java</sonar.language>
 
-        <javaSourceLevel>1.8</javaSourceLevel>
+        <javaSourceLevel>11</javaSourceLevel>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <xmArguments>-Xms256m -Xmx512m</xmArguments>
@@ -33,6 +33,7 @@
         <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
         <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
         <maven-source-plugin.version>2.3</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
         <svn-revision-number-maven-plugin.version>1.13</svn-revision-number-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
     </properties>
@@ -153,7 +154,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>${maven-javadoc-plugin.version}</version>
             </plugin>
         </plugins>
     </build>
