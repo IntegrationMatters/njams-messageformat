@@ -11,7 +11,7 @@ properties([
 
 node ('master') {
    def mvnHome
-   env.JAVA_HOME = tool 'openJDK-11.0.2'
+   env.JAVA_HOME = tool 'jdk-8u92'
 
    stage ('Clean') {
       deleteDir()
@@ -21,7 +21,7 @@ node ('master') {
       // Get the Maven tool.
       // ** NOTE: This 'M3' Maven tool must be configured
       // **       in the global configuration.           
-      mvnHome = tool 'Maven 3.8.5'
+      mvnHome = tool 'Maven 3.2.1'
       echo 'Getting source code...'
       checkout scm
    }
