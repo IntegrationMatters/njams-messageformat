@@ -21,7 +21,7 @@
         </sonar.jacoco.reportPaths>
         <sonar.language>java</sonar.language>
 
-        <javaSourceLevel>11</javaSourceLevel>
+        <javaSourceLevel>1.8</javaSourceLevel>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <xmArguments>-Xms256m -Xmx512m</xmArguments>
