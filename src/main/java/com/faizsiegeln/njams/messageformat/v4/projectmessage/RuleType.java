@@ -35,24 +35,18 @@ public enum RuleType {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
     }
 
     public static RuleType fromValue(String value) {
-        switch (value) {
-        case "eventType":
-            return RuleType.EVENT;
-        case "regexp":
-            return RuleType.REGEXP;
-        case "value":
-            return RuleType.VALUE;
-        case "xpath":
-            return RuleType.XPATH;
-        case "jmespath":
-            return RuleType.JMESPATH;
-
-        default:
-            return RuleType.DISABLED;
+        if (value == null) {
+            return DISABLED;
         }
+        for (RuleType type : values()) {
+            if (type.value.equals(value)) {
+                return type;
+            }
+        }
+        return DISABLED;
     }
 }

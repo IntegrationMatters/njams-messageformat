@@ -32,17 +32,18 @@ public enum AttributeType {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
     }
 
     public static AttributeType fromValue(String value) {
-        switch (value) {
-            case "event":
-                return AttributeType.EVENT;
-            case "attribute":
-                return AttributeType.ATTRIBUTE;
-            default:
-                return AttributeType.UNKNOWN;
+        if (value == null) {
+            return UNKNOWN;
         }
+        for (AttributeType type : values()) {
+            if (type.value.equals(value)) {
+                return type;
+            }
+        }
+        return UNKNOWN;
     }
 }
