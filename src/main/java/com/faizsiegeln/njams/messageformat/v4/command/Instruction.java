@@ -19,18 +19,15 @@ package com.faizsiegeln.njams.messageformat.v4.command;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.faizsiegeln.njams.messageformat.common.BasicCommand;
-
 /**
  *
  * @author pnientiedt
  */
-public class Instruction implements BasicCommand {
+public class Instruction {
 
     private Request request;
     private Response response;
 
-    @Override
     public String getRequestParameterByName(String name) {
         if (name == null || getRequest() == null) {
             return null;
@@ -43,7 +40,6 @@ public class Instruction implements BasicCommand {
                 .map(Entry::getValue).findFirst().orElse(null);
     }
 
-    @Override
     public String getResponseParameterByName(String name) {
         if (name == null || getResponse() == null) {
             return null;
@@ -56,7 +52,6 @@ public class Instruction implements BasicCommand {
                 .map(Entry::getValue).findFirst().orElse(null);
     }
 
-    @Override
     public void setRequestParameter(String name, String value) {
         if (getRequest() == null) {
             setRequest(new Request());
@@ -64,7 +59,6 @@ public class Instruction implements BasicCommand {
         getRequest().getParameters().put(name, value);
     }
 
-    @Override
     public void setResponseParameter(String name, String value) {
         if (getResponse() == null) {
             setResponse(new Response());
