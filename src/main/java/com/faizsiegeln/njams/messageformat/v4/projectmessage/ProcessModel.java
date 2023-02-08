@@ -16,14 +16,12 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
-import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  *
@@ -40,13 +38,12 @@ public class ProcessModel {
     private final Map<String, String> globalVariables;
     private final List<Activity> activities;
     private final List<Transition> transitions;
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime deploymentTime = LocalDateTime.now(ZoneOffset.UTC);
 
     public ProcessModel() {
-        this.transitions = new ArrayList<>();
-        this.activities = new ArrayList<>();
-        this.globalVariables = new HashMap<>();
+        transitions = new ArrayList<>();
+        activities = new ArrayList<>();
+        globalVariables = new HashMap<>();
     }
 
     /**

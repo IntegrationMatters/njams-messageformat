@@ -16,17 +16,17 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.logmessage;
 
-import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
-import com.faizsiegeln.njams.messageformat.v4.common.SubProcess;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.faizsiegeln.njams.messageformat.v4.common.SubProcess;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Activities used by the new server. They aggregate Tracks, Events and Traces
@@ -35,7 +35,8 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * @author pnientiedt
  */
 @ApiModel(description = "A nJAMS Activity instance.")
-public class Activity implements Serializable, Comparable<Activity>, com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.IActivity {
+public class Activity implements Serializable, Comparable<Activity>,
+        com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.IActivity {
 
     private static final long serialVersionUID = 4678602259385954997L;
 
@@ -58,7 +59,6 @@ public class Activity implements Serializable, Comparable<Activity>, com.faizsie
     @ApiModelProperty(value = "A unique increasing sequence number.", required = false)
     private Long sequence;
 
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     @ApiModelProperty(value = "Start timestamp of the activity's event", required = false)
     private LocalDateTime execution;
 
@@ -96,13 +96,13 @@ public class Activity implements Serializable, Comparable<Activity>, com.faizsie
 
     @ApiModelProperty(value = "Required if activity calls a subprocess.", required = false)
     private SubProcess subProcess;
-    
+
     @ApiModelProperty(value = "A list of all predecessor transitions which leads to this activity.", required = false)
     private final List<Predecessor> predecessors;
 
     public Activity() {
-        this.attributes = new HashMap<>();
-        this.predecessors = new ArrayList<>();
+        attributes = new HashMap<>();
+        predecessors = new ArrayList<>();
     }
 
     @Override
@@ -300,7 +300,8 @@ public class Activity implements Serializable, Comparable<Activity>, com.faizsie
     public int compareTo(Activity a) {
         if (sequence == a.getSequence()) {
             return 0;
-        } else if (sequence == null) {
+        }
+        if (sequence == null) {
             return -1;
         } else if (a.getSequence() == null) {
             return 1;

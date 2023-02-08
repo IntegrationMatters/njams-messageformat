@@ -16,12 +16,6 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.logmessage;
 
-import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
-import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
-import com.faizsiegeln.njams.messageformat.v4.common.MessageVersion;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -29,18 +23,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
-import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
+import com.faizsiegeln.njams.messageformat.v4.common.MessageVersion;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @author pnientiedt
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
 @ApiModel(description = "A nJAMS Logmessage.")
-public class LogMessage extends CommonMessage implements Serializable, com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.ILogMessage {
+public class LogMessage extends CommonMessage
+        implements Serializable, com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.ILogMessage {
 
     private static final long serialVersionUID = -6311723150758897052L;
 
@@ -53,7 +48,6 @@ public class LogMessage extends CommonMessage implements Serializable, com.faizs
     private Integer messageNo;
 
     @ApiModelProperty(value = "The timestamp of the client at the time it will send the message.", required = true)
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime sentAt = LocalDateTime.now(ZoneOffset.UTC);
 
     @ApiModelProperty(value = "A unique ID for the process instance.", required = true)
@@ -82,19 +76,15 @@ public class LogMessage extends CommonMessage implements Serializable, com.faizs
     private String objectName;
 
     @ApiModelProperty(value = "The start timestamp of the process instance.", required = true)
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime jobStart;
 
     @ApiModelProperty(value = "The end timestamp of the process instance.", required = false)
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime jobEnd;
 
     @ApiModelProperty(value = "The start timestamp of the business process instance.", required = true)
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime businessStart;
 
     @ApiModelProperty(value = "The end timestamp of the business process instance.", required = true)
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime businessEnd;
 
     @ApiModelProperty(value = "The state of the process instance: 0=RUNNING, 1=SUCCESS, 2=WARNING, 3=ERROR",
@@ -120,10 +110,10 @@ public class LogMessage extends CommonMessage implements Serializable, com.faizs
     private Boolean truncated = Boolean.FALSE;
 
     public LogMessage() {
-        this.plugins = new ArrayList<>();
-        this.activities = new ArrayList<>();
-        this.attributes = new HashMap<>();
-        this.messageNo = 1;
+        plugins = new ArrayList<>();
+        activities = new ArrayList<>();
+        attributes = new HashMap<>();
+        messageNo = 1;
     }
 
     /**
@@ -173,7 +163,7 @@ public class LogMessage extends CommonMessage implements Serializable, com.faizs
     }
 
     public void setMessageNo(Integer messageNr) {
-        this.messageNo = messageNr;
+        messageNo = messageNr;
     }
 
     @Override
@@ -265,7 +255,7 @@ public class LogMessage extends CommonMessage implements Serializable, com.faizs
 
     @Override
     public void setServiceName(String businessService) {
-        this.serviceName = businessService;
+        serviceName = businessService;
     }
 
     @Override
@@ -275,7 +265,7 @@ public class LogMessage extends CommonMessage implements Serializable, com.faizs
 
     @Override
     public void setObjectName(String businessObject) {
-        this.objectName = businessObject;
+        objectName = businessObject;
     }
 
     @Override
@@ -355,7 +345,8 @@ public class LogMessage extends CommonMessage implements Serializable, com.faizs
     }
 
     @Override
-    public void addPluginDataItem(com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.IPluginDataItem pluginDataItem) {
+    public void addPluginDataItem(
+            com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.IPluginDataItem pluginDataItem) {
         plugins.add((PluginDataItem) pluginDataItem);
     }
 

@@ -16,27 +16,25 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
-import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
-import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
-import com.faizsiegeln.njams.messageformat.v4.common.TreeElement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
+import com.faizsiegeln.njams.messageformat.v4.common.TreeElement;
 
 /**
  * @author pnientiedt
  */
 public class ProjectMessage extends CommonMessage {
-    
+
     public static final String DEFAULT_EVENT = "deployment";
 
     private final List<TreeElement> treeElements;
     private List<String> features = new ArrayList<>();
     private String event = DEFAULT_EVENT;
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime startTime;
     private LogMode logMode = LogMode.COMPLETE;
     private String machine;
@@ -46,10 +44,10 @@ public class ProjectMessage extends CommonMessage {
     private final List<ProcessModel> processes;
 
     public ProjectMessage() {
-        this.processes = new ArrayList<>();
-        this.images = new HashMap<>();
-        this.globalVariables = new HashMap<>();
-        this.treeElements = new ArrayList<>();
+        processes = new ArrayList<>();
+        images = new HashMap<>();
+        globalVariables = new HashMap<>();
+        treeElements = new ArrayList<>();
     }
 
     public List<TreeElement> getTreeElements() {

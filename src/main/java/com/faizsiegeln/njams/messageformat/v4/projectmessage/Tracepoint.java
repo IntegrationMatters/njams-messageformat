@@ -16,18 +16,14 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
-import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
 import java.time.LocalDateTime;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 /**
  * A Tracepoint can be configured for an {@link Activity}.
  */
 public class Tracepoint {
 
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime starttime;
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime endtime;
     private Integer iterations;
     private Boolean deepTrace;
@@ -105,7 +101,7 @@ public class Tracepoint {
      *            config as Boolean
      */
     public void setDeeptrace(Boolean deeptrace) {
-        this.deepTrace = deeptrace;
+        deepTrace = deeptrace;
     }
 
 }

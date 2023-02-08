@@ -16,12 +16,11 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.logmessage;
 
-import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Data send by client plugins to client server, has to be handled by every pluginId for its own.
@@ -30,11 +29,11 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  */
 @ApiModel(
         description = "Data send by client plugins to client server, has to be handled by every pluginId for its own.")
-public class PluginDataItem implements Serializable, com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.IPluginDataItem {
+public class PluginDataItem
+        implements Serializable, com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.IPluginDataItem {
 
     private static final long serialVersionUID = 6714752324092476472L;
 
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     @ApiModelProperty(value = "Timestamp when the plugin sent the data.", required = true)
     private LocalDateTime timestamp;
 

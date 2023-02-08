@@ -16,9 +16,6 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-@XmlJavaTypeAdapter(RuleTypeAdapter.class)
 public enum RuleType {
     EVENT("eventType"),
     REGEXP("regexp"),

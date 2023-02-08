@@ -20,10 +20,6 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-
-import com.faizsiegeln.njams.messageformat.v4.common.LocalDateTimeAdapter;
-
 /**
  *
  * @author pnientiedt
@@ -32,7 +28,6 @@ public class Response {
 
     private int resultCode;
     private String resultMessage;
-    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime dateTime;
     /** Keys of parameters are accessed or expected be to accessed ignoring case sensitivity. */
     private Map<String, String> parameters = new HashMap<>();

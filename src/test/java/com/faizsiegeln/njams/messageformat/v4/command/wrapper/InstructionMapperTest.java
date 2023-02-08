@@ -23,22 +23,22 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
 
-import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
-import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
+import static org.junit.Assert.assertEquals;
+
+import java.time.LocalDateTime;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jakarta.validation.constraints.Null;
-import java.time.LocalDateTime;
-
-import static org.junit.Assert.*;
+import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogLevel;
+import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
 public class InstructionMapperTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(InstructionMapperTest.class);
 
-//LogLevel serializing
+    //LogLevel serializing
 
     @Test
     public void serializeLogLevelNull() {
@@ -76,7 +76,7 @@ public class InstructionMapperTest {
         }
     }
 
-//LogMode serializing
+    //LogMode serializing
 
     @Test
     public void serializeLogModeNull() {
@@ -109,7 +109,7 @@ public class InstructionMapperTest {
         }
     }
 
-//LocalDateTime serializing
+    //LocalDateTime serializing
 
     @Test
     public void serializeLocalDateTimeNull() {
@@ -121,8 +121,8 @@ public class InstructionMapperTest {
         serializeLocalDateTime(LocalDateTime.of(2019, 9, 10, 7, 32, 48, 559000000), "2019-09-10T07:32:48.559", null);
     }
 
-    private void serializeLocalDateTime(LocalDateTime localDateTimeToCheck, String localDateTimeSerizalized, Class<?
-            extends Exception> exceptionThatIsThrown) {
+    private void serializeLocalDateTime(LocalDateTime localDateTimeToCheck, String localDateTimeSerizalized,
+            Class<? extends Exception> exceptionThatIsThrown) {
         LOG.debug(localDateTimeSerizalized);
         try {
             String serializedLocalDateTime = InstructionMapper.InstructionSerializer
@@ -133,7 +133,7 @@ public class InstructionMapperTest {
         }
     }
 
-//Boolean serializing
+    //Boolean serializing
 
     @Test
     public void serializeBooleanTrue() {
@@ -151,7 +151,7 @@ public class InstructionMapperTest {
         assertEquals(booleanSerialized, serializedBoolean);
     }
 
-//Integer serializing
+    //Integer serializing
 
     @Test
     public void serializeInteger() {
@@ -164,7 +164,7 @@ public class InstructionMapperTest {
         assertEquals(integerSerialized, serializeInteger);
     }
 
-//LogLevel parsing
+    //LogLevel parsing
 
     @Test
     public void parseNullLogLevel() {
@@ -222,7 +222,7 @@ public class InstructionMapperTest {
         }
     }
 
-//LogMode parsing
+    //LogMode parsing
 
     @Test
     public void parseNullLogMode() {
@@ -275,7 +275,7 @@ public class InstructionMapperTest {
         }
     }
 
-//LocalDateTime parsing
+    //LocalDateTime parsing
 
     @Test
     public void parseNullLocalDateTime() {
@@ -312,8 +312,8 @@ public class InstructionMapperTest {
         parseLocalDateTimeString("invalid", null, InstructionParsingException.class);
     }
 
-    private void parseLocalDateTimeString(String localDateTimeAsString, LocalDateTime expected, Class<?
-            extends Exception> exceptionThatIsThrown) {
+    private void parseLocalDateTimeString(String localDateTimeAsString, LocalDateTime expected,
+            Class<? extends Exception> exceptionThatIsThrown) {
         LOG.debug(localDateTimeAsString);
         try {
             LocalDateTime parseLocalDateTime = InstructionMapper.InstructionParser
@@ -324,7 +324,7 @@ public class InstructionMapperTest {
         }
     }
 
-//Boolean parsing
+    //Boolean parsing
 
     @Test
     public void parseNullBoolean() {
@@ -377,7 +377,7 @@ public class InstructionMapperTest {
         }
     }
 
-//Integer parsing
+    //Integer parsing
 
     @Test
     public void parseNullInteger() {
