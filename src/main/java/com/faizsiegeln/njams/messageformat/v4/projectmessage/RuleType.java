@@ -26,7 +26,7 @@ public enum RuleType {
 
     private final String value;
 
-    private RuleType(final String value) {
+    RuleType(final String value) {
         this.value = value;
     }
 

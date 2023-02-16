@@ -1,16 +1,12 @@
 package com.faizsiegeln.njams.messageformat.v4.converter;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.AttributeType;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.RuleType;
+
+import java.time.LocalDateTime;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * This is the actual {@link Converter} implementation defined for V4 message format.
@@ -23,7 +19,7 @@ import com.faizsiegeln.njams.messageformat.v4.projectmessage.RuleType;
 public class DefaultConverter<T> implements Converter<T> {
     @FunctionalInterface
     private interface Mapper<T, R> {
-        public R apply(T t) throws Exception;
+        R apply(T t) throws Exception;
     }
 
     private final Class<T> type;

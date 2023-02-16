@@ -18,30 +18,35 @@ package com.faizsiegeln.njams.messageformat.v4.common;
 
 import com.faizsiegeln.njams.messageformat.v4.logmessage.LogMessage;
 import com.faizsiegeln.njams.messageformat.v4.projectmessage.ProjectMessage;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * Base Message for nJAMS containing common fields of {@link LogMessage} and {@link ProjectMessage}
  */
-@ApiModel(description = "Base Message for nJAMS containing common fields.")
 public abstract class CommonMessage {
 
-    @ApiModelProperty(value = "The version of the client", required = true)
+    /**
+     * The version of the client; required
+     */
     private String clientVersion;
 
-    @ApiModelProperty(value = "The version of the SDK used by the client.", required = false)
+    /**
+     * The version of the SDK used by the client
+     */
     private String sdkVersion;
 
-    @ApiModelProperty(value = "The version of the runtime environment in which the client is deployed.",
-            required = false,
-            example = "Mule Server Runtime 4.2.2 EE")
+    /**
+     * The version of the runtime environment in which the client is deployed; example = Mule Server Runtime 4.2.2 EE
+     */
     private String runtimeVersion;
 
-    @ApiModelProperty(value = "Technology identifier, used to find technology icons.", required = true)
+    /**
+     * Technology identifier, used to find technology icons: required
+     */
     private String category;
 
-    @ApiModelProperty(value = "Full path of the process (starting and ending with a greater-as sign)", required = true)
+    /**
+     * Full path of the process (starting and ending with a greater-as sign); required
+     */
     private String path;
 
     /**

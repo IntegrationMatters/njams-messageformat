@@ -16,8 +16,6 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.common;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 /**
@@ -27,20 +25,28 @@ import java.io.Serializable;
  * <p>
  * If the subprocess is spawned, the logId is mandatory.
  */
-@ApiModel(
-        description = "A call to a subprocess. If the subprocess is inline, name and path are mandatory. If the subprocess is spawned, the logId is mandatory")
 public class SubProcess implements Serializable {
 
     private static final long serialVersionUID = 6365591352276117846L;
-    @ApiModelProperty(value = "Name of the subprocess if it is an inline subprocess.", required = false)
+    /**
+     * Name of the subprocess if it is an inline subprocess
+     */
     private String name;
+
+    /**
+     * Path of the subprocess if it is an inline subprocess. This attribute is deprecated. Please use new property subProcessPath.
+     */
     @Deprecated
-    @ApiModelProperty(value = "Path of the subprocess if it is an inline subprocess. This attribute is " +
-            "deprecated. Please use new property subProcessPath.", required = false)
     private String path;
-    @ApiModelProperty(value = "Path of the subprocess if it is an inline subprocess.", required = false)
+
+    /**
+     * Path of the subprocess if it is an inline subprocess
+     */
     private String subProcessPath;
-    @ApiModelProperty(value = "LogID of the subprocess if the subprocess is a spawned subprocess.", required = false)
+
+    /**
+     * LogID of the subprocess if the subprocess is a spawned subprocess
+     */
     private String logId;
 
     /**

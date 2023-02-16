@@ -16,14 +16,14 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.projectmessage;
 
+import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
+import com.faizsiegeln.njams.messageformat.v4.common.TreeElement;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
-import com.faizsiegeln.njams.messageformat.v4.common.TreeElement;
 
 /**
  * @author pnientiedt

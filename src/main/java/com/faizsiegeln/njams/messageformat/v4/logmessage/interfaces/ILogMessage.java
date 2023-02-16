@@ -17,6 +17,7 @@
 package com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces;
 
 import com.faizsiegeln.njams.messageformat.v4.common.MessageVersion;
+
 import java.time.LocalDateTime;
 
 /**
@@ -25,84 +26,84 @@ import java.time.LocalDateTime;
  */
 public interface ILogMessage {
 
-    public String getClientVersion();
+    String getClientVersion();
 
-    public void setClientVersion(String clientVersion);
+    void setClientVersion(String clientVersion);
 
-    public String getSdkVersion();
+    String getSdkVersion();
 
-    public String getCategory();
+    String getCategory();
 
-    public String getPath();
+    String getPath();
 
-    public LocalDateTime getBusinessEnd();
+    LocalDateTime getBusinessEnd();
 
-    public void setBusinessEnd(LocalDateTime businessEnd);
+    void setBusinessEnd(LocalDateTime businessEnd);
 
-    public LocalDateTime getBusinessStart();
+    LocalDateTime getBusinessStart();
 
-    public void setBusinessStart(LocalDateTime businessStart);
+    void setBusinessStart(LocalDateTime businessStart);
 
-    public MessageVersion getMessageVersion();
+    MessageVersion getMessageVersion();
 
-    public Integer getMessageNo();
+    Integer getMessageNo();
 
-    public String getLogId();
+    String getLogId();
 
-    public String getCorrelationLogId();
+    String getCorrelationLogId();
 
-    public void setCorrelationLogId(String correlationLogId);
+    void setCorrelationLogId(String correlationLogId);
 
-    public String getParentLogId();
+    String getParentLogId();
 
-    public void setParentLogId(String parentLogId);
+    void setParentLogId(String parentLogId);
 
-    public String getExternalLogId();
+    String getExternalLogId();
 
-    public void setExternalLogId(String externalLogId);
+    void setExternalLogId(String externalLogId);
 
-    public String getJobId();
+    String getJobId();
 
-    public String getProcessName();
+    String getProcessName();
 
-    public String getMachineName();
+    String getMachineName();
 
-    public void setMachineName(String machineName);
+    void setMachineName(String machineName);
 
-    public LocalDateTime getSentAt();
+    LocalDateTime getSentAt();
 
-    public String getServiceName();
+    String getServiceName();
 
-    public void setServiceName(String businessService);
+    void setServiceName(String businessService);
 
-    public String getObjectName();
+    String getObjectName();
 
-    public void setObjectName(String businessObject);
+    void setObjectName(String businessObject);
 
-    public LocalDateTime getJobStart();
+    LocalDateTime getJobStart();
 
-    public LocalDateTime getJobEnd();
+    LocalDateTime getJobEnd();
 
-    public Integer getStatus();
+    Integer getStatus();
 
-    public void setStatus(Integer status);
+    void setStatus(Integer status);
 
-    public Integer getMaxSeverity();
+    Integer getMaxSeverity();
 
-    public void setMaxSeverity(Integer maxSeverity);
+    void setMaxSeverity(Integer maxSeverity);
     
-    public void addAtribute(String key, String value);
+    void addAtribute(String key, String value);
     
-    public void addActivity(IActivity activity);
+    void addActivity(IActivity activity);
 
-    public Boolean getTrace();
+    Boolean getTrace();
 
-    public void setTrace(Boolean trace);
+    void setTrace(Boolean trace);
 
-    public void addPluginDataItem(IPluginDataItem pluginDataItem);
+    void addPluginDataItem(IPluginDataItem pluginDataItem);
 
-    public Boolean getTruncated();
+    Boolean getTruncated();
 
-    public void setTruncated(Boolean truncated);
+    void setTruncated(Boolean truncated);
 
 }

@@ -27,7 +27,7 @@ import com.faizsiegeln.njams.messageformat.v4.projectmessage.LogMode;
 
 import java.util.Objects;
 
-import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
+import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.LOG_MODE_KEY;
 
 public class GetLogModeResponse extends AbstractResponse {
 

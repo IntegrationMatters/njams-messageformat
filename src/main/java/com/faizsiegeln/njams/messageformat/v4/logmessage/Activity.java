@@ -16,6 +16,8 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.logmessage;
 
+import com.faizsiegeln.njams.messageformat.v4.common.SubProcess;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,81 +25,120 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.faizsiegeln.njams.messageformat.v4.common.SubProcess;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 /**
  * Activities used by the new server. They aggregate Tracks, Events and Traces
  * known from the old server.
  *
- * @author pnientiedt
+ * @author bwand
  */
-@ApiModel(description = "A nJAMS Activity instance.")
 public class Activity implements Serializable, Comparable<Activity>,
         com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.IActivity {
 
     private static final long serialVersionUID = 4678602259385954997L;
 
-    @ApiModelProperty(value = "ID of the activity in the process", required = true)
+    /**
+     * ID of the activity in the process
+     */
     private String modelId;
 
-    @ApiModelProperty(value = "Unique ID of the activity instance", required = true)
+    /**
+     * Unique ID of the activity instance
+     */
     private String instanceId;
 
-    @ApiModelProperty(value = "Number of the iteration if activity is inside a group.", required = false)
+    /**
+     * Number of the iteration if activity is inside a group
+     */
     private Long iteration = 1L;
 
-    @ApiModelProperty(value = "Number of iteration count if actvity represents a group.", required = false)
+    /**
+     * Number of iteration count if activity represents a group
+     */
     private Long maxIterations;
 
-    @ApiModelProperty(value = "If activity has a parent like a group, the ID of that parent instance.",
-            required = false)
+    /**
+     * If activity has a parent like a group, the ID of that parent instance.
+     */
     private String parentInstanceId;
 
-    @ApiModelProperty(value = "A unique increasing sequence number.", required = false)
+    /**
+     * A unique increasing sequence number.
+     */
     private Long sequence;
 
-    @ApiModelProperty(value = "Start timestamp of the activity's event", required = false)
+    /**
+     *  Start timestamp of the activity's event
+     */
     private LocalDateTime execution;
 
-    @ApiModelProperty(value = "Duration of the activity instance in milliseconds.", required = false)
+    /**
+     * Duration of the activity instance in milliseconds.
+     */
     private long duration;
 
-    @ApiModelProperty(value = "Time of CPU usage for this activity instance", required = false)
+    /**
+     * Time of CPU usage for this activity instance
+     */
     private long cpuTime;
 
-    @ApiModelProperty(value = "The state of the activity instance.", required = false)
+    /**
+     * The state of the activity instance
+     */
     private ActivityStatus activityStatus;
 
-    @ApiModelProperty(value = "Input data into this activity instance", required = false)
+    /**
+     * Input data into this activity instance
+     */
     private String input;
 
-    @ApiModelProperty(value = "Output data from this activity instance", required = false)
+    /**
+     * Output data from this activity instance
+     */
     private String output;
 
-    @ApiModelProperty(value = "Status of the event 0=INFO, 1=SUCCESS, 2=WARNING, 3=ERROR", required = false)
+    /**
+     * Status of the event 0=INFO, 1=SUCCESS, 2=WARNING, 3=ERROR
+     */
     private Integer eventStatus;
-    @ApiModelProperty(value = "Message of event.", required = false)
+
+    /**
+     * Message of event
+     */
     private String eventMessage;
-    @ApiModelProperty(value = "Code of the event.", required = false)
+
+    /**
+     * Code of the event.
+     */
     private String eventCode;
-    @ApiModelProperty(value = "Event payload.", required = false)
+
+    /**
+     * Event payload.
+     */
     private String eventPayload;
-    @ApiModelProperty(value = "A possible stack trace happened on an event.", required = false)
+
+    /**
+     * A possible stack trace happened on an event.
+     */
     private String stackTrace;
 
-    @ApiModelProperty(value = "A map of attributes with name and value.", required = false)
+    /**
+     * A map of attributes with name and value.
+     */
     private Map<String, String> attributes;
 
-    @ApiModelProperty(value = "Payload of the activity that starts the process instance.", required = false)
+    /**
+     * Payload of the activity that starts the process instance
+     */
     private String startData;
 
-    @ApiModelProperty(value = "Required if activity calls a subprocess.", required = false)
+    /**
+     * Required if activity calls a subprocess
+     */
     private SubProcess subProcess;
 
-    @ApiModelProperty(value = "A list of all predecessor transitions which leads to this activity.", required = false)
+    /**
+     * A list of all predecessor transitions which leads to this activity
+     */
     private final List<Predecessor> predecessors;
 
     public Activity() {

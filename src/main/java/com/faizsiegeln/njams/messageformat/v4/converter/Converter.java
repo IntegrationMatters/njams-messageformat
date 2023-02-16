@@ -9,10 +9,10 @@ package com.faizsiegeln.njams.messageformat.v4.converter;
  */
 public interface Converter<T> {
 
-    public String serialize(T obj) throws Exception;
+    String serialize(T obj) throws Exception;
 
-    public T deserialize(String json) throws Exception;
+    T deserialize(String json) throws Exception;
 
-    public Class<T> getType();
+    Class<T> getType();
 
 }

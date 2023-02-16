@@ -46,7 +46,7 @@ public enum MessageVersion {
         }
     }
 
-    private MessageVersion(Integer value) {
+    MessageVersion(Integer value) {
         this.value = value;
     }
 

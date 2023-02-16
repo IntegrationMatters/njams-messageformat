@@ -16,23 +16,24 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.logmessage;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 /**
  *
  * @author pnientiedt
  */
-@ApiModel(description = "A nJAMS Predecessor instance.")
 public class Predecessor implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "ID of the transition in the process model", required = true)
+    /**
+     * ID of the transition in the process model; required
+     */
     private String modelId;
 
-    @ApiModelProperty(value = "ID of the activity instance from where the transition starts.", required = true)
+    /**
+     * ID of the activity instance from where the transition starts; required
+     */
     private String fromInstanceId;
 
     public Predecessor() {

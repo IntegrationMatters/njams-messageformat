@@ -23,8 +23,6 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
 
-import java.io.IOException;
-
 /**
  * Exception that is thrown in messageformat module
  *

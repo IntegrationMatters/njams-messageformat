@@ -1,7 +1,6 @@
 package com.faizsiegeln.njams.messageformat.v4.command.wrapper.example;
 
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.ResponseListener;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.ReplayRequest;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.response.*;
@@ -10,9 +9,9 @@ import java.time.LocalDateTime;
 
 public class Server implements MessageListener, ResponseListener {
 
-    private MessageQueue toClient;
+    private final MessageQueue toClient;
 
-    private MessageQueue toServer;
+    private final MessageQueue toServer;
 
     public Server(MessageQueue toClient, MessageQueue toServer){
         this.toClient = toClient;

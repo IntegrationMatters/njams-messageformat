@@ -16,6 +16,9 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.logmessage;
 
+import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
+import com.faizsiegeln.njams.messageformat.v4.common.MessageVersion;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -24,89 +27,129 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.faizsiegeln.njams.messageformat.v4.common.CommonMessage;
-import com.faizsiegeln.njams.messageformat.v4.common.MessageVersion;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 /**
- * @author pnientiedt
+ * A nJAMS Logmessage.
+ *
+ * @author bwand
  */
-@ApiModel(description = "A nJAMS Logmessage.")
 public class LogMessage extends CommonMessage
         implements Serializable, com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces.ILogMessage {
 
     private static final long serialVersionUID = -6311723150758897052L;
 
-    @ApiModelProperty(value = "The version of the nJAMS message. Defaults to V4.", required = false)
+    /**
+     * The version of the nJAMS message. Defaults to V4.
+     */
     private MessageVersion messageVersion = MessageVersion.V4;
 
-    @ApiModelProperty(
-            value = "If a process instance comes splitted in several messages, a message number has to be provided.",
-            required = true)
+    /**
+     * If a process instance comes splitted in several messages, a message number has to be provided; required
+     */
     private Integer messageNo;
 
-    @ApiModelProperty(value = "The timestamp of the client at the time it will send the message.", required = true)
+    /**
+     * The timestamp of the client at the time it will send the message; required
+     */
     private LocalDateTime sentAt = LocalDateTime.now(ZoneOffset.UTC);
 
-    @ApiModelProperty(value = "A unique ID for the process instance.", required = true)
+    /**
+     * A unique ID for the process instance; rquired
+     */
     private String logId;
 
-    @ApiModelProperty(value = "An ID to correlate several process instances together in nJAMS.", required = false)
+    /**
+     * An ID to correlate several process instances together in nJAMS
+     */
     private String correlationLogId;
 
-    @ApiModelProperty(value = "An ID of a parent process instance.", required = false)
+    /**
+     * An ID of a parent process instance
+     */
     private String parentLogId;
 
-    @ApiModelProperty(value = "Customer process instance ID", required = false)
+    /**
+     * External customer process instance ID
+     */
     private String externalLogId;
 
-    @ApiModelProperty(value = "ID of the client job/process instance.", required = false)
+    /**
+     * ID of the client job/process instance
+     */
     private String jobId;
 
-    @ApiModelProperty(value = "Name of the process", required = true)
+    /**
+     * Name of the process
+     */
     private String processName;
-    @ApiModelProperty(value = "Name of the server machine where client runs oin.", required = false)
+
+    /**
+     * Name of the server machine where client runs on
+     */
     private String machineName;
 
-    @ApiModelProperty(value = "Business service name", required = false)
+    /**
+     * Business service name
+     */
     private String serviceName;
-    @ApiModelProperty(value = "Business object name.", required = false)
+
+    /**
+     * Business object name.
+     */
     private String objectName;
 
-    @ApiModelProperty(value = "The start timestamp of the process instance.", required = true)
+    /**
+     * The start timestamp of the process instance; required
+     */
     private LocalDateTime jobStart;
 
-    @ApiModelProperty(value = "The end timestamp of the process instance.", required = false)
+    /**
+     * The end timestamp of the process instance
+     */
     private LocalDateTime jobEnd;
 
-    @ApiModelProperty(value = "The start timestamp of the business process instance.", required = true)
+    /**
+     * The start timestamp of the business process instance
+     */
     private LocalDateTime businessStart;
 
-    @ApiModelProperty(value = "The end timestamp of the business process instance.", required = true)
+    /**
+     * The end timestamp of the business process instance
+     */
     private LocalDateTime businessEnd;
 
-    @ApiModelProperty(value = "The state of the process instance: 0=RUNNING, 1=SUCCESS, 2=WARNING, 3=ERROR",
-            required = true, allowableValues = "0,1,2,3")
+    /**
+     * The state of the process instance: 0=RUNNING, 1=SUCCESS, 2=WARNING, 3=ERROR
+     */
     private Integer status;
 
-    @ApiModelProperty(value = "Highest status the process instance ever had.", required = false)
+    /**
+     * Highest status the process instance ever had
+     */
     private Integer maxSeverity;
 
-    @ApiModelProperty(value = "Set true if any activity contains trace data.", required = false)
+    /**
+     * Set true if any activity contains trace data
+     */
     private Boolean trace = Boolean.FALSE;
 
-    @ApiModelProperty(value = "A map of attributes with name and value.", required = false)
+    /**
+     * A map of attributes with name and value
+     */
     private final Map<String, String> attributes;
 
-    @ApiModelProperty(value = "A list of all activities in this instance.", required = false)
+    /**
+     * A list of all activities in this instance
+     */
     private final List<Activity> activities;
 
-    @ApiModelProperty(value = "A list of additional data send by plugins.", required = false)
+    /**
+     * A list of additional data send by plugins
+     */
     private final List<PluginDataItem> plugins;
 
-    @ApiModelProperty(value = "Set true the client has stopped processing activities/transistions.", required = false)
+    /**
+     * Set true the client has stopped processing activities/transistions
+     */
     private Boolean truncated = Boolean.FALSE;
 
     public LogMessage() {
