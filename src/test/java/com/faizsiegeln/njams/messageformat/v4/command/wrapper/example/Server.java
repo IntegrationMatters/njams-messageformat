@@ -30,13 +30,12 @@ public class Server implements MessageListener, ResponseListener {
     private ReplayRequest createReplayRequest() {
         //--> Gather data from Server
         final String process = "testProcess";
-        final String startActivity = "testActivity";
         final String payload = "testPayload";
         final boolean isDeepTrace = true;
         final boolean isTest = true;
 
         //init ReplayRequest with data
-        return new ReplayRequest(process, startActivity, payload, isDeepTrace, isTest);
+        return new ReplayRequest(process, payload, isDeepTrace, isTest);
     }
 
     @Override
