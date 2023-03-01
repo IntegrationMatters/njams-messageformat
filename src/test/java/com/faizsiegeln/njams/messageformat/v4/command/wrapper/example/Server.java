@@ -1,7 +1,6 @@
 package com.faizsiegeln.njams.messageformat.v4.command.wrapper.example;
 
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
-import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormatException;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.ResponseListener;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.ReplayRequest;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.response.*;
@@ -10,9 +9,9 @@ import java.time.LocalDateTime;
 
 public class Server implements MessageListener, ResponseListener {
 
-    private MessageQueue toClient;
+    private final MessageQueue toClient;
 
-    private MessageQueue toServer;
+    private final MessageQueue toServer;
 
     public Server(MessageQueue toClient, MessageQueue toServer){
         this.toClient = toClient;
@@ -31,13 +30,12 @@ public class Server implements MessageListener, ResponseListener {
     private ReplayRequest createReplayRequest() {
         //--> Gather data from Server
         final String process = "testProcess";
-        final String startActivity = "testActivity";
         final String payload = "testPayload";
         final boolean isDeepTrace = true;
         final boolean isTest = true;
 
         //init ReplayRequest with data
-        return new ReplayRequest(process, startActivity, payload, isDeepTrace, isTest);
+        return new ReplayRequest(process, payload, isDeepTrace, isTest);
     }
 
     @Override

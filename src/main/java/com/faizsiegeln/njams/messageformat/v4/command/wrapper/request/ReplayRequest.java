@@ -31,15 +31,13 @@ public class ReplayRequest extends AbstractRequest{
     public static final Command COMMAND_FOR_THIS_CLASS = Command.REPLAY;
 
     private static final String PROCESS = "Process";
-    private static final String START_ACTIVITY = "StartActivity";
     private static final String PAYLOAD = "Payload";
     private static final String DEEPTRACE = "Deeptrace";
     private static final String TEST = "Test";
 
-    public ReplayRequest(String processPath, String startActivity, String payload, boolean deepTrace,
+    public ReplayRequest(String processPath, String payload, boolean deepTrace,
                          boolean test) {
         Objects.requireNonNull(processPath, "processPath must not be null");
-        Objects.requireNonNull(startActivity, "startActivity must not be null");
         Objects.requireNonNull(payload, "payload must not be null");
 
         Request requestToSet = new Request();
@@ -48,7 +46,6 @@ public class ReplayRequest extends AbstractRequest{
         instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(PROCESS, processPath);
-        instructionToAdapt.setRequestParameter(START_ACTIVITY, startActivity);
         instructionToAdapt.setRequestParameter(PAYLOAD, payload);
         instructionToAdapt.setRequestParameter(DEEPTRACE,
                 InstructionMapper.InstructionSerializer.serializeBoolean(deepTrace));
@@ -63,10 +60,6 @@ public class ReplayRequest extends AbstractRequest{
 
     public String getProcess() {
         return instructionToAdapt.getRequestParameterByName(PROCESS);
-    }
-
-    public String getStartActivity() {
-        return instructionToAdapt.getRequestParameterByName(START_ACTIVITY);
     }
 
     public String getPayload() {

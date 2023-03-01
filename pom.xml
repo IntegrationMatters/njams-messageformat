@@ -103,44 +103,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.github.kongchen</groupId>
-                <artifactId>swagger-maven-plugin</artifactId>
-                <version>3.1.5</version>
-                <configuration>
-                    <apiSources>
-                        <apiSource>
-                            <locations>
-                                <location>com.faizsiegeln.swagger</location>
-                                <location>com.faizsiegeln.njams.messageformat.v4.common</location>
-                                <location>com.faizsiegeln.njams.messageformat.v4.logmessage</location>
-                            </locations>
-                            <info>
-                                <title>nJAMS Message Format API Documentation</title>
-                                <version>${project.version}</version>
-                                <!-- use markdown here because I'm using markdown for output,
-                               if you need to use html or other markup language, you need to use your target language,
-                                and note escape your description for xml -->
-                                <description>
-                                    This is the Swagger API Documentation for nJAMS Messageformat. This format
-                                    is used for thec communication between the nJAMS Clients and the nJAMS Server.
-                                    ATTENTION: The sample POST requests are just added for this documentation. It is
-                                    not possible to call nJAMS Server via REST Requestbut only by JMS communication.
-                                </description>
-                            </info>
-                            <swaggerDirectory>${project.build.directory}/swagger-ui</swaggerDirectory>
-                        </apiSource>
-                    </apiSources>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.4.2</version>
                 <dependencies>
@@ -167,12 +129,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.5.10</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
@@ -187,7 +143,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.7</version>
+            <version>1.7.36</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

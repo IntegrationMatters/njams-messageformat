@@ -25,16 +25,16 @@ import java.time.LocalDateTime;
  */
 public interface IPluginDataItem {
 
-    public LocalDateTime getTimestamp();
+    LocalDateTime getTimestamp();
 
-    public void setTimestamp(LocalDateTime timestamp);
+    void setTimestamp(LocalDateTime timestamp);
 
-    public String getPluginId();
+    String getPluginId();
 
-    public void setPluginId(String pluginId);
+    void setPluginId(String pluginId);
 
-    public String getPluginData();
+    String getPluginData();
 
-    public void setPluginData(String pluginData);
+    void setPluginData(String pluginData);
 
 }

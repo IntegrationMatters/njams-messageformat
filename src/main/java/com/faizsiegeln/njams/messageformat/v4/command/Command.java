@@ -43,7 +43,7 @@ public enum Command {
 
     private final String commandString;
 
-    private Command(String cmd) {
+    Command(String cmd) {
         commandString = cmd;
     }
 

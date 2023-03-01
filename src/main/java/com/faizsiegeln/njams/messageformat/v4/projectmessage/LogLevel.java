@@ -30,7 +30,7 @@ public enum LogLevel {
 
     private final int value;
 
-    private LogLevel(int cmd) {
+    LogLevel(int cmd) {
         value = cmd;
     }
 

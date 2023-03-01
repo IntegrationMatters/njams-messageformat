@@ -17,6 +17,7 @@
 package com.faizsiegeln.njams.messageformat.v4.logmessage.interfaces;
 
 import com.faizsiegeln.njams.messageformat.v4.logmessage.ActivityStatus;
+
 import java.time.LocalDateTime;
 
 /**
@@ -26,59 +27,59 @@ import java.time.LocalDateTime;
  */
 public interface IActivity {
 
-    public String getModelId();
+    String getModelId();
 
-    public String getInstanceId();
+    String getInstanceId();
 
-    public Long getIteration();
+    Long getIteration();
 
-    public void setIteration(Long iteration);
+    void setIteration(Long iteration);
 
-    public Long getMaxIterations();
+    Long getMaxIterations();
 
-    public void setMaxIterations(Long maxIterations);
+    void setMaxIterations(Long maxIterations);
 
-    public String getParentInstanceId();
+    String getParentInstanceId();
 
-    public void setParentInstanceId(String parentInstanceId);
+    void setParentInstanceId(String parentInstanceId);
 
-    public Long getSequence();
+    Long getSequence();
 
-    public LocalDateTime getExecution();
+    LocalDateTime getExecution();
 
-    public void setExecution(LocalDateTime execution);
+    void setExecution(LocalDateTime execution);
 
-    public long getDuration();
+    long getDuration();
 
-    public void setDuration(long duration);
+    void setDuration(long duration);
 
-    public long getCpuTime();
+    long getCpuTime();
 
-    public void setCpuTime(long cpuTime);
+    void setCpuTime(long cpuTime);
 
-    public ActivityStatus getActivityStatus();
+    ActivityStatus getActivityStatus();
 
-    public void setActivityStatus(ActivityStatus activityStatus);
+    void setActivityStatus(ActivityStatus activityStatus);
 
-    public Integer getEventStatus();
+    Integer getEventStatus();
 
-    public void setEventStatus(Integer eventStatus);
+    void setEventStatus(Integer eventStatus);
 
-    public String getEventMessage();
+    String getEventMessage();
 
-    public void setEventMessage(String eventMessage);
+    void setEventMessage(String eventMessage);
 
-    public String getEventCode();
+    String getEventCode();
 
-    public void setEventCode(String eventCode);
+    void setEventCode(String eventCode);
 
-    public String getEventPayload();
+    String getEventPayload();
 
-    public void setEventPayload(String eventPayload);
+    void setEventPayload(String eventPayload);
 
-    public String getStackTrace();
+    String getStackTrace();
 
-    public void setStackTrace(String stackTrace);
+    void setStackTrace(String stackTrace);
     
-    public void addAttribute(String key, String value);
+    void addAttribute(String key, String value);
 }

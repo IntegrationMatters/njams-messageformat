@@ -23,7 +23,7 @@ public enum AttributeType {
 
     private final String value;
 
-    private AttributeType(final String value) {
+    AttributeType(final String value) {
         this.value = value;
     }
 
