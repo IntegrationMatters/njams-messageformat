@@ -37,7 +37,8 @@ public enum Command {
     RECORD("Record"),
     TEST_EXPRESSION("TestExpression"),
     PING("Ping"),
-    GET_REQUEST_HANDLER("GetRequestHandler");
+    GET_REQUEST_HANDLER("GetRequestHandler"),
+    GET_RECORDING("GetRecording");
 
     private static final Logger LOG = LoggerFactory.getLogger(Command.class);
 
