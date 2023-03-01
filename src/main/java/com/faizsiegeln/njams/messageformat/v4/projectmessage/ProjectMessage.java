@@ -39,6 +39,7 @@ public class ProjectMessage extends CommonMessage {
     private LogMode logMode = LogMode.COMPLETE;
     private String machine;
     private String clientId;
+    private Boolean recording;
     private final Map<String, String> globalVariables;
     private final Map<String, String> images;
     private final List<ProcessModel> processes;
@@ -131,4 +132,13 @@ public class ProjectMessage extends CommonMessage {
     public void setClientId(String clientId) {
         this.clientId = clientId;
     }
+
+    public Boolean getRecording() {
+        return recording;
+    }
+
+    public void setRecording(Boolean recording) {
+        this.recording = recording;
+    }
+
 }

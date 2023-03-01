@@ -35,6 +35,7 @@ public class ProcessModel {
     private String svgStatus;
     private LogLevel logLevel = LogLevel.INFO;
     private boolean exclude = false;
+    private Boolean recording = null;
     private final Map<String, String> globalVariables;
     private final List<Activity> activities;
     private final List<Transition> transitions;
@@ -130,6 +131,14 @@ public class ProcessModel {
      */
     public void setExclude(boolean exclude) {
         this.exclude = exclude;
+    }
+
+    public Boolean getRecording() {
+        return recording;
+    }
+
+    public void setRecording(Boolean recording) {
+        this.recording = recording;
     }
 
 }
