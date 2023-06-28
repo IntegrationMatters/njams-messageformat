@@ -23,7 +23,8 @@ node ('master') {
       // **       in the global configuration.           
       mvnHome = tool 'Maven 3.8.5'
       echo 'Getting source code...'
-      checkout scm
+      scmInfo = checkout scm
+      echo "scm: ${scmInfo}"
    }
    stage('Build') {
         echo "Build njams-messageformat"
