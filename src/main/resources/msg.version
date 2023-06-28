@@ -1,0 +1,4 @@
+msg.version=${project.version} (${revisionNumberPlugin.revision})
+msg.scmBranch=${scmBranch}
+msg.scmCommit=${scmCommit}
+msg.buildYear=${current.year}
