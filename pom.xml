@@ -38,44 +38,6 @@
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
     </properties>
 
-       <profiles>
-        <profile>
-            <id>svn-check</id>
-            <activation>
-                <os>
-                    <family>unix</family>
-                </os>
-            </activation>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
-                        <artifactId>svn-revision-number-maven-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>revision</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <entries>
-                                <entry>
-                                    <path>${project.basedir}</path>
-                                    <prefix>revisionNumberPlugin</prefix>
-                                    <depth>infinity</depth>
-                                    <reportUnversioned>false</reportUnversioned>
-                                    <reportIgnored>false</reportIgnored>
-                                    <reportOutOfDate>false</reportOutOfDate>
-                                </entry>
-                            </entries>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-       </profiles>
-        
     <build>
         <resources>
             <resource>
@@ -112,18 +74,6 @@
                     <configuration>
                         <encoding>UTF-8</encoding>
                     </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
-                    <artifactId>svn-revision-number-maven-plugin</artifactId>
-                    <version>${svn-revision-number-maven-plugin.version}</version>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.tmatesoft.svnkit</groupId>
-                            <artifactId>svnkit</artifactId>
-                            <version>1.8.3-1</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

@@ -27,7 +27,7 @@ node ('master') {
    }
    stage('Build') {
         echo "Build njams-messageformat"
-        sh "'${mvnHome}/bin/mvn' clean deploy -U -Pjenkins-cli,svn-check"
+        sh "'${mvnHome}/bin/mvn' clean deploy -U -Pjenkins-cli,svn-check -DrevisionNumber=${env.BUILD_NUMBER} -DscmBranch=${scmInfo.GIT_BRANCH} -DscmCommit=${scmInfo.GIT_COMMIT}"
         archiveArtifacts 'target/njams-messageformat*.*'
    }
    
