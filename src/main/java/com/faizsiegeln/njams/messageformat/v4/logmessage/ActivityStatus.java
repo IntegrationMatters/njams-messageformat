@@ -16,10 +16,45 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.logmessage;
 
+import java.util.Arrays;
+
 /**
  *
  * @author pnientiedt
  */
 public enum ActivityStatus {
-    RUNNING, SUCCESS, WARNING, ERROR
+    RUNNING(0), SUCCESS(1), WARNING(2), ERROR(3);
+
+    private final int numeric;
+
+    private ActivityStatus(int num) {
+        numeric = num;
+    }
+
+    /**
+     * Return the numeric status value for this instance,
+     * @return The numeric status value for this instance
+     */
+    public int numericStatus() {
+        return numeric;
+    }
+
+    /**
+     * Returns the instance with the given numeric value or <code>null</code> if not exists.
+     * @param numeric
+     * @return Returns the instance with the given numeric value or <code>null</code> if not exists.
+     */
+    public static ActivityStatus byNumericStatus(final int numeric) {
+        return Arrays.stream(values()).filter(s -> numeric == s.numeric).findAny().orElse(null);
+    }
+
+    /**
+     * Returns the instance with the given name or <code>null</code> if not exists.
+     * Ignores case.
+     * @param name
+     * @return Returns the instance with the given name or <code>null</code> if not exists.
+     */
+    public static ActivityStatus byName(final String name) {
+        return Arrays.stream(values()).filter(s -> s.name().equalsIgnoreCase(name)).findAny().orElse(null);
+    }
 }
