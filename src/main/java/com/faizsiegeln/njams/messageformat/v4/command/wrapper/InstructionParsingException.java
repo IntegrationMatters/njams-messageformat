@@ -6,7 +6,8 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
  * @author bwand
  * @version 4.1.0
  */
-public class InstructionParsingException extends RuntimeException{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class InstructionParsingException extends RuntimeException {
     /**
      * Use this if you do not have a Root Cause. Provide clear and informative Message with all needed Context
      * Information.

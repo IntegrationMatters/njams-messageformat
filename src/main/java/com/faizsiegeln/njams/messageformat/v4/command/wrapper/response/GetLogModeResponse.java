@@ -29,6 +29,7 @@ import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.LOG_MODE_KEY;
 
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class GetLogModeResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_LOG_MODE;
@@ -38,7 +39,7 @@ public class GetLogModeResponse extends AbstractResponse {
 
         Objects.requireNonNull(logMode, "logMode must not be null");
         this.instructionToAdapt.setResponseParameter(LOG_MODE_KEY,
-                InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
+            InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
     public GetLogModeResponse(Instruction instructionToReadFrom) {
@@ -48,6 +49,6 @@ public class GetLogModeResponse extends AbstractResponse {
 
     public LogMode getLogMode() {
         return InstructionMapper.InstructionParser
-                .parseLogMode(instructionToAdapt.getResponseParameterByName(LOG_MODE_KEY));
+            .parseLogMode(instructionToAdapt.getResponseParameterByName(LOG_MODE_KEY));
     }
 }

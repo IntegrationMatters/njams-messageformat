@@ -23,11 +23,12 @@ import com.faizsiegeln.njams.messageformat.v4.command.Command;
 import com.faizsiegeln.njams.messageformat.v4.command.Instruction;
 import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.RecordRequest;
 
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class RecordResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.RECORD;
 
-    public RecordResponse(RecordRequest request, int resultCode, String resultMessage){
+    public RecordResponse(RecordRequest request, int resultCode, String resultMessage) {
         super(request.getInstruction(), resultCode, resultMessage);
     }
 

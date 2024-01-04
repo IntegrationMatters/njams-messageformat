@@ -30,7 +30,8 @@ import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class SetLogLevelRequest extends AbstractRequest{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class SetLogLevelRequest extends AbstractRequest {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_LOG_LEVEL;
 
@@ -45,9 +46,12 @@ public class SetLogLevelRequest extends AbstractRequest{
         instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
         instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
-        instructionToAdapt.setRequestParameter(LOG_LEVEL_KEY, InstructionMapper.InstructionSerializer.serializeLogLevel(logLevel));
-        instructionToAdapt.setRequestParameter(EXCLUDE_KEY, InstructionMapper.InstructionSerializer.serializeBoolean(exclude));
-        instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
+        instructionToAdapt.setRequestParameter(LOG_LEVEL_KEY,
+            InstructionMapper.InstructionSerializer.serializeLogLevel(logLevel));
+        instructionToAdapt.setRequestParameter(EXCLUDE_KEY,
+            InstructionMapper.InstructionSerializer.serializeBoolean(exclude));
+        instructionToAdapt.setRequestParameter(LOG_MODE_KEY,
+            InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
     public SetLogLevelRequest(Instruction instructionToAdapt) {
@@ -60,15 +64,18 @@ public class SetLogLevelRequest extends AbstractRequest{
     }
 
     public LogLevel getLogLevel() {
-        return InstructionMapper.InstructionParser.parseLogLevel(instructionToAdapt.getRequestParameterByName(LOG_LEVEL_KEY));
+        return InstructionMapper.InstructionParser
+            .parseLogLevel(instructionToAdapt.getRequestParameterByName(LOG_LEVEL_KEY));
     }
 
     public boolean isExcluded() {
-        return InstructionMapper.InstructionParser.parseBoolean(instructionToAdapt.getRequestParameterByName(EXCLUDE_KEY));
+        return InstructionMapper.InstructionParser
+            .parseBoolean(instructionToAdapt.getRequestParameterByName(EXCLUDE_KEY));
     }
 
     public LogMode getLogMode() {
-        return InstructionMapper.InstructionParser.parseLogMode(instructionToAdapt.getRequestParameterByName(LOG_MODE_KEY));
+        return InstructionMapper.InstructionParser
+            .parseLogMode(instructionToAdapt.getRequestParameterByName(LOG_MODE_KEY));
     }
 
     public Instruction getInstruction() {

@@ -27,6 +27,7 @@ import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.EXTRACT_KEY;
 
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class GetExtractResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_EXTRACT;

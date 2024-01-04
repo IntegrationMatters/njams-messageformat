@@ -26,7 +26,8 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
 
 import java.util.Objects;
 
-public class ReplayRequest extends AbstractRequest{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class ReplayRequest extends AbstractRequest {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.REPLAY;
 
@@ -36,7 +37,7 @@ public class ReplayRequest extends AbstractRequest{
     private static final String TEST = "Test";
 
     public ReplayRequest(String processPath, String payload, boolean deepTrace,
-                         boolean test) {
+        boolean test) {
         Objects.requireNonNull(processPath, "processPath must not be null");
         Objects.requireNonNull(payload, "payload must not be null");
 
@@ -48,9 +49,9 @@ public class ReplayRequest extends AbstractRequest{
         instructionToAdapt.setRequestParameter(PROCESS, processPath);
         instructionToAdapt.setRequestParameter(PAYLOAD, payload);
         instructionToAdapt.setRequestParameter(DEEPTRACE,
-                InstructionMapper.InstructionSerializer.serializeBoolean(deepTrace));
+            InstructionMapper.InstructionSerializer.serializeBoolean(deepTrace));
         instructionToAdapt
-                .setRequestParameter(TEST, InstructionMapper.InstructionSerializer.serializeBoolean(test));
+            .setRequestParameter(TEST, InstructionMapper.InstructionSerializer.serializeBoolean(test));
     }
 
     public ReplayRequest(Instruction instructionToAdapt) {
@@ -68,7 +69,7 @@ public class ReplayRequest extends AbstractRequest{
 
     public boolean isDeepTrace() {
         return InstructionMapper.InstructionParser
-                .parseBoolean(instructionToAdapt.getRequestParameterByName(DEEPTRACE));
+            .parseBoolean(instructionToAdapt.getRequestParameterByName(DEEPTRACE));
     }
 
     public boolean isTest() {

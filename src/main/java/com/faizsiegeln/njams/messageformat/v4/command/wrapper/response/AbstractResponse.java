@@ -26,6 +26,7 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.NjamsMessageFormat
 
 import java.util.Objects;
 
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class AbstractResponse {
 
     protected Instruction instructionToAdapt;
@@ -72,15 +73,15 @@ public class AbstractResponse {
         return instructionToAdapt.getResponse().getResultMessage();
     }
 
-    public Instruction getInstruction(){
+    public Instruction getInstruction() {
         return instructionToAdapt;
     }
 
     protected void validateCommand(Command command) {
         if (!instructionToAdapt.getCommand().equals(command.commandString())) {
             throw new NjamsMessageFormatException(
-                    "Request command " + instructionToAdapt.getCommand() + " is not suitable for Response command "
-                            + command.commandString());
+                "Request command " + instructionToAdapt.getCommand() + " is not suitable for Response command "
+                    + command.commandString());
         }
     }
 }

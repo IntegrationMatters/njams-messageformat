@@ -37,6 +37,7 @@ import java.util.Objects;
  * @author krautenberg
  * @version 4.0.2
  */
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class InstructionMapper {
 
     private InstructionMapper() {
@@ -46,6 +47,7 @@ public class InstructionMapper {
     /**
      * Serializer nested class
      */
+    @Deprecated(since = "5.0.0", forRemoval = true)
     public static class InstructionSerializer {
 
         private InstructionSerializer() {
@@ -111,6 +113,7 @@ public class InstructionMapper {
     /**
      * Parser nested class
      */
+    @Deprecated(since = "5.0.0", forRemoval = true)
     public static class InstructionParser {
         /**
          * Default prefix for parsing Exceptions.
@@ -143,18 +146,19 @@ public class InstructionMapper {
             return parseEnumParameter(logModeToParse, LogMode.class);
         }
 
-        private static <T extends Enum<T>> T parseEnumParameter(final String enumParameterToParse, final Class<T> enumeration)
-                throws InstructionParsingException {
+        private static <T extends Enum<T>> T parseEnumParameter(final String enumParameterToParse,
+            final Class<T> enumeration)
+            throws InstructionParsingException {
             Objects.requireNonNull(enumParameterToParse, "enumParameterToParse must not be null");
 
             T foundEnumParameter = null;
             if (enumeration != null && enumeration.getEnumConstants() != null) {
                 foundEnumParameter = Arrays.stream(enumeration.getEnumConstants())
-                        .filter(c -> c.name().equalsIgnoreCase(enumParameterToParse)).findAny().orElse(null);
+                    .filter(c -> c.name().equalsIgnoreCase(enumParameterToParse)).findAny().orElse(null);
             }
             if (foundEnumParameter == null) {
                 throw new InstructionParsingException(
-                        UNABLE_TO_PARSE_OBJECT + "\"" + enumParameterToParse + "\"" + " to " +
+                    UNABLE_TO_PARSE_OBJECT + "\"" + enumParameterToParse + "\"" + " to " +
                         enumeration.getSimpleName());
             }
             return foundEnumParameter;
@@ -173,12 +177,12 @@ public class InstructionMapper {
             try {
                 if (localDateTimeToParse.charAt(localDateTimeToParse.length() - 1) == 'Z') {
                     return LocalDateTime.parse(localDateTimeToParse.substring(0, localDateTimeToParse.length() - 1),
-                            DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                        DateTimeFormatter.ISO_LOCAL_DATE_TIME);
                 }
                 return LocalDateTime.parse(localDateTimeToParse, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             } catch (RuntimeException parsingException) {
                 throw new InstructionParsingException(UNABLE_TO_PARSE_OBJECT + localDateTimeToParse,
-                        parsingException);
+                    parsingException);
             }
         }
 
@@ -214,7 +218,7 @@ public class InstructionMapper {
                 return Integer.parseInt(integerToParse);
             } catch (NumberFormatException invalidIntegerException) {
                 throw new InstructionParsingException(UNABLE_TO_PARSE_OBJECT + integerToParse,
-                        invalidIntegerException);
+                    invalidIntegerException);
             }
         }
     }

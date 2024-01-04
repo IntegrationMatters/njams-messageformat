@@ -29,7 +29,8 @@ import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.LOG_MODE_KEY;
 
-public class SetLogModeRequest extends AbstractRequest{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class SetLogModeRequest extends AbstractRequest {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_LOG_MODE;
 
@@ -41,7 +42,8 @@ public class SetLogModeRequest extends AbstractRequest{
 
         instructionToAdapt = new Instruction();
         instructionToAdapt.setRequest(requestToSet);
-        instructionToAdapt.setRequestParameter(LOG_MODE_KEY, InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
+        instructionToAdapt.setRequestParameter(LOG_MODE_KEY,
+            InstructionMapper.InstructionSerializer.serializeLogMode(logMode));
     }
 
     public SetLogModeRequest(Instruction instructionToAdapt) {
@@ -50,7 +52,8 @@ public class SetLogModeRequest extends AbstractRequest{
     }
 
     public LogMode getLogMode() {
-        return InstructionMapper.InstructionParser.parseLogMode(instructionToAdapt.getRequestParameterByName(LOG_MODE_KEY));
+        return InstructionMapper.InstructionParser
+            .parseLogMode(instructionToAdapt.getRequestParameterByName(LOG_MODE_KEY));
     }
 
     public Instruction getInstruction() {

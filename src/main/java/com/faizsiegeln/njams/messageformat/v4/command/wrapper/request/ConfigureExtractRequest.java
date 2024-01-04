@@ -27,7 +27,8 @@ import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class ConfigureExtractRequest extends AbstractRequest{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class ConfigureExtractRequest extends AbstractRequest {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.CONFIGURE_EXTRACT;
 

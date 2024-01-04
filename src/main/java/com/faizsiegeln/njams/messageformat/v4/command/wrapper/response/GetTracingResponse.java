@@ -31,25 +31,26 @@ import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class GetTracingResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.GET_TRACING;
 
     public GetTracingResponse(GetTracingRequest request, int resultCode, String resultMessage,
-                              LocalDateTime startTime, LocalDateTime endTime, int iterations, boolean isDeepTrace) {
+        LocalDateTime startTime, LocalDateTime endTime, int iterations, boolean isDeepTrace) {
         this(request.getInstruction(), resultCode, resultMessage);
 
         Objects.requireNonNull(startTime, "startTime must not be null");
         Objects.requireNonNull(endTime, "endTime must not be null");
 
         this.instructionToAdapt.setResponseParameter(START_TIME_KEY,
-                InstructionMapper.InstructionSerializer.serializeLocalDateTime(startTime));
+            InstructionMapper.InstructionSerializer.serializeLocalDateTime(startTime));
         this.instructionToAdapt.setResponseParameter(END_TIME_KEY,
-                InstructionMapper.InstructionSerializer.serializeLocalDateTime(endTime));
+            InstructionMapper.InstructionSerializer.serializeLocalDateTime(endTime));
         this.instructionToAdapt.setResponseParameter(ITERATIONS_KEY,
-                InstructionMapper.InstructionSerializer.serializeInteger(iterations));
+            InstructionMapper.InstructionSerializer.serializeInteger(iterations));
         this.instructionToAdapt.setResponseParameter(DEEP_TRACE_KEY,
-                InstructionMapper.InstructionSerializer.serializeBoolean(isDeepTrace));
+            InstructionMapper.InstructionSerializer.serializeBoolean(isDeepTrace));
     }
 
     public GetTracingResponse(Instruction instructionToWriteTo, int resultCode, String resultMessage) {
@@ -63,16 +64,16 @@ public class GetTracingResponse extends AbstractResponse {
 
     public LogLevel getLogLevel() {
         return InstructionMapper.InstructionParser
-                .parseLogLevel(instructionToAdapt.getResponseParameterByName(LOG_LEVEL_KEY));
+            .parseLogLevel(instructionToAdapt.getResponseParameterByName(LOG_LEVEL_KEY));
     }
 
     public boolean isExcluded() {
         return InstructionMapper.InstructionParser
-                .parseBoolean(instructionToAdapt.getResponseParameterByName(EXCLUDE_KEY));
+            .parseBoolean(instructionToAdapt.getResponseParameterByName(EXCLUDE_KEY));
     }
 
     public LogMode getLogMode() {
         return InstructionMapper.InstructionParser
-                .parseLogMode(instructionToAdapt.getResponseParameterByName(LOG_MODE_KEY));
+            .parseLogMode(instructionToAdapt.getResponseParameterByName(LOG_MODE_KEY));
     }
 }

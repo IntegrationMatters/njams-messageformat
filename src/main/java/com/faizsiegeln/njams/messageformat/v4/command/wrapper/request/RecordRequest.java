@@ -26,7 +26,8 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionMapper;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class RecordRequest extends AbstractRequest{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class RecordRequest extends AbstractRequest {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.RECORD;
 
@@ -40,7 +41,7 @@ public class RecordRequest extends AbstractRequest{
      */
     public RecordRequest(String processPath, boolean clientWideRecording, boolean processRecording) {
         this(processPath, InstructionMapper.InstructionSerializer.serializeBoolean(clientWideRecording),
-                processRecording);
+            processRecording);
     }
 
     /**
@@ -72,7 +73,7 @@ public class RecordRequest extends AbstractRequest{
         instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPathToSet);
         instructionToAdapt.setRequestParameter(CLIENT_WIDE_RECORDING_KEY, clientWideRecordingAsString);
         instructionToAdapt.setRequestParameter(PROCESS_RECORDING_KEY,
-                InstructionMapper.InstructionSerializer.serializeBoolean(processRecording));
+            InstructionMapper.InstructionSerializer.serializeBoolean(processRecording));
     }
 
     /**
@@ -91,12 +92,12 @@ public class RecordRequest extends AbstractRequest{
 
     public boolean isClientWideRecording() {
         return InstructionMapper.InstructionParser
-                .parseBoolean(instructionToAdapt.getRequestParameterByName(CLIENT_WIDE_RECORDING_KEY));
+            .parseBoolean(instructionToAdapt.getRequestParameterByName(CLIENT_WIDE_RECORDING_KEY));
     }
 
     public boolean isProcessRecording() {
         return InstructionMapper.InstructionParser
-                .parseBoolean(instructionToAdapt.getResponseParameterByName(PROCESS_RECORDING_KEY));
+            .parseBoolean(instructionToAdapt.getResponseParameterByName(PROCESS_RECORDING_KEY));
     }
 
     public Instruction getInstruction() {

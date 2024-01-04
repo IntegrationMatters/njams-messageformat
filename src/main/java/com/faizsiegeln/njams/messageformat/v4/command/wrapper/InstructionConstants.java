@@ -19,6 +19,7 @@
  */
 package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
 
+@Deprecated(since = "5.0.0", forRemoval = true)
 public interface InstructionConstants {
 
     //Client tier

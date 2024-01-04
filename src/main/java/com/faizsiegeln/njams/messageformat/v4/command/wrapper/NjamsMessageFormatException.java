@@ -29,6 +29,7 @@ package com.faizsiegeln.njams.messageformat.v4.command.wrapper;
  * @author krautenberg
  * @version 4.0.2
  */
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class NjamsMessageFormatException extends RuntimeException {
 
     /**

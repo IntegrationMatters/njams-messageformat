@@ -29,7 +29,8 @@ import java.util.Objects;
 
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.*;
 
-public class SetTracingRequest extends AbstractRequest{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class SetTracingRequest extends AbstractRequest {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.SET_TRACING;
 
@@ -45,7 +46,7 @@ public class SetTracingRequest extends AbstractRequest{
         instructionToAdapt.setRequestParameter(PROCESS_PATH_KEY, processPath);
         instructionToAdapt.setRequestParameter(ACTIVITY_ID_KEY, activityId);
         instructionToAdapt.setRequestParameter(ENABLE_TRACING_KEY,
-                InstructionMapper.InstructionSerializer.serializeBoolean(enableTracing));
+            InstructionMapper.InstructionSerializer.serializeBoolean(enableTracing));
     }
 
     public SetTracingRequest(Instruction instructionToAdapt) {
@@ -63,47 +64,47 @@ public class SetTracingRequest extends AbstractRequest{
 
     public boolean isTracingEnabled() {
         return InstructionMapper.InstructionParser
-                .parseBoolean(instructionToAdapt.getRequestParameterByName(ENABLE_TRACING_KEY));
+            .parseBoolean(instructionToAdapt.getRequestParameterByName(ENABLE_TRACING_KEY));
     }
 
     public void setStartTime(LocalDateTime startTimeToSet) {
         instructionToAdapt.setRequestParameter(START_TIME_KEY,
-                InstructionMapper.InstructionSerializer.serializeLocalDateTime(startTimeToSet));
+            InstructionMapper.InstructionSerializer.serializeLocalDateTime(startTimeToSet));
     }
 
     public LocalDateTime getStartTime() {
         return InstructionMapper.InstructionParser
-                .parseLocalDateTime(instructionToAdapt.getRequestParameterByName(START_TIME_KEY));
+            .parseLocalDateTime(instructionToAdapt.getRequestParameterByName(START_TIME_KEY));
     }
 
     public void setEndTime(LocalDateTime endTimeToSet) {
         instructionToAdapt.setRequestParameter(END_TIME_KEY,
-                InstructionMapper.InstructionSerializer.serializeLocalDateTime(endTimeToSet));
+            InstructionMapper.InstructionSerializer.serializeLocalDateTime(endTimeToSet));
     }
 
     public LocalDateTime getEndTime() {
         return InstructionMapper.InstructionParser
-                .parseLocalDateTime(instructionToAdapt.getRequestParameterByName(END_TIME_KEY));
+            .parseLocalDateTime(instructionToAdapt.getRequestParameterByName(END_TIME_KEY));
     }
 
     public void setIterations(int iterationsToSet) {
         instructionToAdapt.setRequestParameter(ITERATIONS_KEY,
-                InstructionMapper.InstructionSerializer.serializeInteger(iterationsToSet));
+            InstructionMapper.InstructionSerializer.serializeInteger(iterationsToSet));
     }
 
     public int getIterations() {
         return InstructionMapper.InstructionParser
-                .parseInteger(instructionToAdapt.getRequestParameterByName(ITERATIONS_KEY));
+            .parseInteger(instructionToAdapt.getRequestParameterByName(ITERATIONS_KEY));
     }
 
     public void setDeepTrace(boolean isDeepTrace) {
         instructionToAdapt.setRequestParameter(DEEP_TRACE_KEY,
-                InstructionMapper.InstructionSerializer.serializeBoolean(isDeepTrace));
+            InstructionMapper.InstructionSerializer.serializeBoolean(isDeepTrace));
     }
 
     public boolean isDeepTrace() {
         return InstructionMapper.InstructionParser
-                .parseBoolean(instructionToAdapt.getRequestParameterByName(DEEP_TRACE_KEY));
+            .parseBoolean(instructionToAdapt.getRequestParameterByName(DEEP_TRACE_KEY));
     }
 
     public Instruction getInstruction() {

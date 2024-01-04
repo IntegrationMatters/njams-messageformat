@@ -28,7 +28,8 @@ import java.util.Objects;
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.ACTIVITY_ID_KEY;
 import static com.faizsiegeln.njams.messageformat.v4.command.wrapper.InstructionConstants.PROCESS_PATH_KEY;
 
-public class DeleteExtractRequest extends AbstractRequest{
+@Deprecated(since = "5.0.0", forRemoval = true)
+public class DeleteExtractRequest extends AbstractRequest {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.DELETE_EXTRACT;
 

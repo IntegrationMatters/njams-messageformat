@@ -26,6 +26,7 @@ import com.faizsiegeln.njams.messageformat.v4.command.wrapper.request.ReplayRequ
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Deprecated(since = "5.0.0", forRemoval = true)
 public class ReplayResponse extends AbstractResponse {
 
     public static final Command COMMAND_FOR_THIS_CLASS = Command.REPLAY;
@@ -34,7 +35,7 @@ public class ReplayResponse extends AbstractResponse {
     private static final String EXCEPTION = "Exception";
 
     public ReplayResponse(ReplayRequest request, int resultCode, String resultMessage, String mainLogId,
-                          String exception, LocalDateTime dateTime) {
+        String exception, LocalDateTime dateTime) {
         super(request.getInstruction(), resultCode, resultMessage);
 
         Objects.requireNonNull(mainLogId, "mainLogId must not be null");
