@@ -1,0 +1,26 @@
+name: workflow.yml
+on:
+  push:
+    branches:
+      - github_dev
+
+
+jobs:
+  build-njams-messageformat:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+        overwrite-settings: 'false'
+
+    - name: Build njams-messageformat with maven
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: mvn clean deploy -U --file pom.xml
