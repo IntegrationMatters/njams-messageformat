@@ -1,4 +1,4 @@
-name: workflow.yml
+name: Deploy nJAMS messageformat
 on:
   push:
     branches:
@@ -23,4 +23,4 @@ jobs:
     - name: Build njams-messageformat with maven
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: mvn clean deploy -U --file pom.xml
+      run: mvn clean deploy -U --file pom.xml -DrevisionNumber=${{ github.run_number }} -DscmBranch=${{ github.ref_name }} -DscmCommit=${{ github.sha }}
