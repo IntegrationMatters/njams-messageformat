@@ -163,14 +163,14 @@
 
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <name>Internal Releases on Nexus</name>
-            <url>http://vslnexus01:8081/repository/releases/</url>
+            <id>github</id>
+            <name>GitHub IntegrationMatters Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/IntegrationMatters/njams-messageformat</url>
         </repository>
         <snapshotRepository>
-            <id>snapshots</id>
-            <name>Nightly builds on Nexus</name>
-            <url>http://vslnexus01:8081/repository/snapshots/</url>
+            <id>github</id>
+            <name>GitHub IntegrationMatters Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/IntegrationMatters/njams-messageformat</url>
         </snapshotRepository>
     </distributionManagement>
 

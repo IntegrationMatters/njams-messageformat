@@ -1,0 +1,47 @@
+name: Deploy nJAMS messageformat
+on:
+  push:
+    branches:
+      - github_dev
+
+
+jobs:
+
+  create-java-doc-for-njams-messageformat:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+          overwrite-settings: 'false'
+
+      - name: Build JavaDoc
+        run: mvn generate-sources javadoc:javadoc
+
+
+  build-njams-messageformat:
+
+    runs-on: ubuntu-latest
+
+    needs: create-java-doc-for-njams-messageformat
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+        overwrite-settings: 'false'
+
+    - name: Build njams-messageformat with maven
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: mvn clean deploy -U --file pom.xml -DrevisionNumber=${{ github.run_number }} -DscmBranch=${{ github.ref_name }} -DscmCommit=${{ github.sha }}
