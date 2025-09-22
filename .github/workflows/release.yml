@@ -34,8 +34,10 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 17
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+          overwrite-settings: 'false'
 
       - name: Run Maven Release
         env:
