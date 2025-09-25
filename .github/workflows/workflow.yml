@@ -1,4 +1,5 @@
 name: Deploy nJAMS messageformat
+# Documentation in Confluence https://salesfive.atlassian.net/wiki/spaces/SER/pages/4041113658/GitHub+Actions+f+rs+sdk+und+messageformat
 on:
   push:
     branches:
