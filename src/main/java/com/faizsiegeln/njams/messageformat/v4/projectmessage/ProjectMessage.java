@@ -87,8 +87,9 @@ public class ProjectMessage extends CommonMessage {
     /**
      * Returns the regular expression that defines how global-variable references are detected and replaced in the
      * client's configurations. The pattern uses named groups: {@code full} and {@code name} are required, {@code
-     * default} is optional. When {@code null} or empty, the server applies its own default behavior. The message
-     * format only transports this pattern; it does not interpret it.
+     * default} (a fallback value) and {@code optional} (any non-blank match marks the reference as optional) are
+     * optional. When {@code null} or empty, the server applies its own default behavior. The message format only
+     * transports this pattern; it does not interpret it.
      *
      * @return the global-variable matching pattern, or {@code null} if none was set
      */
