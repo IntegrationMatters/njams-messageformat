@@ -41,6 +41,7 @@ public class ProjectMessage extends CommonMessage {
     private String clientId;
     private Boolean recording;
     private final Map<String, String> globalVariables;
+    private String globalVariablesPattern;
     private final Map<String, String> images;
     private final List<ProcessModel> processes;
 
@@ -81,6 +82,28 @@ public class ProjectMessage extends CommonMessage {
 
     public Map<String, String> getGlobalVariables() {
         return globalVariables;
+    }
+
+    /**
+     * Returns the regular expression that defines how global-variable references are detected and replaced in the
+     * client's configurations. The pattern uses named groups: {@code full} and {@code name} are required, {@code
+     * default} is optional. When {@code null} or empty, the server applies its own default behavior. The message
+     * format only transports this pattern; it does not interpret it.
+     *
+     * @return the global-variable matching pattern, or {@code null} if none was set
+     */
+    public String getGlobalVariablesPattern() {
+        return globalVariablesPattern;
+    }
+
+    /**
+     * Sets the regular expression that defines how global-variable references are detected and replaced in the
+     * client's configurations. See {@link #getGlobalVariablesPattern()} for the expected group structure.
+     *
+     * @param globalVariablesPattern the global-variable matching pattern
+     */
+    public void setGlobalVariablesPattern(String globalVariablesPattern) {
+        this.globalVariablesPattern = globalVariablesPattern;
     }
 
     public Map<String, String> getImages() {
