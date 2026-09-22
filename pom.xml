@@ -29,11 +29,11 @@
         <surefire.java.io.tmpdir>${project.build.directory}/tmp</surefire.java.io.tmpdir>
 
         <!-- Maven plugin versions -->
-        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
-        <maven-resources-plugin.version>2.7</maven-resources-plugin.version>
-        <maven-source-plugin.version>2.3</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+        <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
+        <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.4.0</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.12.0</maven-javadoc-plugin.version>
         <svn-revision-number-maven-plugin.version>1.13</svn-revision-number-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
     </properties>
@@ -78,7 +78,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.2.1</version>
+                    <version>${maven-source-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -117,14 +117,10 @@
             </plugin>
             <plugin>
                 <artifactId>maven-release-plugin</artifactId>
-                <version>2.4.2</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.maven.scm</groupId>
-                        <artifactId>maven-scm-provider-gitexe</artifactId>
-                        <version>1.8.1</version>
-                    </dependency>
-                </dependencies>
+                <version>3.3.1</version>
+                <configuration>
+                    <goals>deploy javadoc:jar</goals>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -138,19 +134,19 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.7</version>
+            <version>1.7.36</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.13.1</version>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.10.19</version>
+            <artifactId>mockito-core</artifactId>
+            <version>5.23.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -165,12 +161,12 @@
         <repository>
             <id>releases</id>
             <name>Internal Releases on Nexus</name>
-            <url>http://vslnexus01:8081/repository/releases/</url>
+            <url>https://nexus.service.salesfive.io/repository/releases/</url>
         </repository>
         <snapshotRepository>
             <id>snapshots</id>
             <name>Nightly builds on Nexus</name>
-            <url>http://vslnexus01:8081/repository/snapshots/</url>
+            <url>https://nexus.service.salesfive.io/repository/snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 
