@@ -11,7 +11,7 @@ properties([
 
 node ('master') {
    def mvnHome
-   env.JAVA_HOME = tool 'openJDK-11.0.2'
+   env.JAVA_HOME = tool 'openJDK-11.0.20'
 
    stage ('Clean') {
       deleteDir()
@@ -38,7 +38,7 @@ node ('master') {
         publishHTML([allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: false,
-                        reportDir: 'target/site/apidocs/',
+                        reportDir: 'target/reports/apidocs/',
                         reportFiles: 'index.html',
                         reportName: 'Javadoc',
                         reportTitles: ''])
