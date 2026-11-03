@@ -26,6 +26,8 @@ A change is a wire-format change if it alters anything a consumer's object mappe
 - renaming or moving a class or package
 - changing a default value assigned at field declaration (e.g. `LogMode.COMPLETE`, `MessageVersion.V4`, `Boolean.FALSE`)
 
+The deprecated `command/wrapper/**` layer sits under `command/` but is deliberately **not** governed by this gate: its classes are a typed facade over `Instruction`'s string parameter map, not message types a mapper binds to. It is Java-API-only — see the table below, `api-stability.md` and `deprecated-command-wrapper.md`. This overlap is intended; do not "fix" it by widening the gate.
+
 Adding a *new* field is the least dangerous change but is still a wire change: an older counterpart will not know it, and some mappers fail on unknown properties. It goes through this gate like any other.
 
 **Changes must always be aligned with the nJAMS Server implementation.** When a change requires a corresponding adaptation in nJAMS Server, create a Jira ticket in the **`SER`** project to track that work (proposing it first — see `jira-workflow.md`). The same applies to the SDK side (**`SDK`**) when the SDK must be adapted to consume the change.
