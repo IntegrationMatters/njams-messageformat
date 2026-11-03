@@ -28,7 +28,9 @@ node ('master') {
    }
    stage('Build') {
         echo "Build njams-messageformat"
-        sh "'${mvnHome}/bin/mvn' clean deploy -U -Pjenkins-cli,svn-check -DrevisionNumber=${env.BUILD_NUMBER} -DscmBranch=${scmInfo.GIT_BRANCH} -DscmCommit=${scmInfo.GIT_COMMIT}"
+        // Branch and commit are resolved by git-commit-id-maven-plugin itself — on Jenkins it reads
+        // the GIT_LOCAL_BRANCH / GIT_BRANCH the agent already exports — so neither is passed in.
+        sh "'${mvnHome}/bin/mvn' clean deploy -U -Pjenkins-cli,svn-check"
         archiveArtifacts 'target/njams-messageformat*.*'
    }
    

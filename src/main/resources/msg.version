@@ -1,4 +1,5 @@
-msg.version=${project.version} (${revisionNumber})
-msg.scmBranch=${scmBranch}
-msg.scmCommit=${scmCommit}
-msg.buildYear=${current.year}
+msg.version=${project.version} (${build.id})
+msg.scmBranch=${git.branch}
+msg.scmCommit=${git.commit.id}
+msg.buildYear=${build.year}
+msg.buildTimestamp=${build.time}

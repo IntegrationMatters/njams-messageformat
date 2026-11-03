@@ -42,14 +42,15 @@ jobs:
       - name: Run Maven Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Branch and commit are resolved by git-commit-id-maven-plugin itself — on GitHub Actions it
+        # reads GITHUB_REF / GITHUB_HEAD_REF — so neither has to be passed in.
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           mvn -B release:prepare release:perform --file pom.xml \
             -DreleaseVersion=${{ github.event.inputs.version }} \
             -DdevelopmentVersion=${{ github.event.inputs.new-development-version }}-SNAPSHOT \
-            -DpushChanges=true \
-            -DrevisionNumber=${{ github.run_number }} -DscmBranch=${{ github.ref_name }} -DscmCommit=${{ github.sha }}
+            -DpushChanges=true
 
       - name: Create GitHub Release with JARs
         uses: softprops/action-gh-release@v1
