@@ -13,6 +13,12 @@ node ('master') {
    def mvnHome
    env.JAVA_HOME = tool 'openJDK-11.0.20'
 
+   // git-commit-id-maven-plugin resolves git.branch from a symbolic ref. A multibranch checkout
+   // leaves a detached HEAD, where there is none and the plugin falls back to the full commit SHA.
+   // Its CI rescue path reads GIT_LOCAL_BRANCH, which the pipeline does not export by itself, so
+   // it is set here from the branch the job already knows.
+   env.GIT_LOCAL_BRANCH = "${env.BRANCH_NAME}"
+
    stage ('Clean') {
       deleteDir()
    }
@@ -28,8 +34,8 @@ node ('master') {
    }
    stage('Build') {
         echo "Build njams-messageformat"
-        // Branch and commit are resolved by git-commit-id-maven-plugin itself — on Jenkins it reads
-        // the GIT_LOCAL_BRANCH / GIT_BRANCH the agent already exports — so neither is passed in.
+        // Branch and commit are resolved by git-commit-id-maven-plugin from the checkout and the
+        // GIT_LOCAL_BRANCH set above, so neither is passed in.
         sh "'${mvnHome}/bin/mvn' clean deploy -U -Pjenkins-cli,svn-check"
         archiveArtifacts 'target/njams-messageformat*.*'
    }
