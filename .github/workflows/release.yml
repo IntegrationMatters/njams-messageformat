@@ -84,7 +84,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/site/apidocs
+          publish_dir: ./target/reports/apidocs
           publish_branch: gh-pages
           destination_dir: ${{ github.event.inputs.version }}
           user_name: github-actions[bot]
