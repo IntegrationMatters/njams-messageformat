@@ -8,7 +8,7 @@ Tests use JUnit 4 (4.13.2) and Mockito (5.23.0), with `slf4j-log4j12` and `src/t
 
 Run them with `mvn test`; a single class with `mvn test -Dtest=InstructionMapperTest`, a single method with `mvn test -Dtest=InstructionMapperTest#methodName`. Reports are written to `target/surefire-reports/`.
 
-Code quality and documentation rules (`code-quality.md`, `api-stability.md`) do not apply to test code.
+Code quality and documentation rules (`code-quality.md`, `api-stability.md`) do not apply to test code. The copyright header (`copyright-header.md`) does.
 
 ## What is worth testing here
 

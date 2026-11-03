@@ -98,7 +98,8 @@ Topic-specific rules that apply either always or only when working with certain 
 | `wire-contract.md` | always | The change-confirmation gate, `SER`/`SDK` alignment, wire format vs. Java API |
 | `jira-workflow.md` | always | Ticket lifecycle, labels, fix version, descriptions, closing comments |
 | `commit-conventions.md` | always | Smart Commit message format, branching policy, pushing |
-| `code-quality.md` | `src/main/java/**/*.java` | Copyright header, dependency policy, Java level, general principles |
+| `copyright-header.md` | `src/**/*.java` | Copyright header for new source files, production and test |
+| `code-quality.md` | `src/main/java/**/*.java` | Dependency policy, Java level, general principles |
 | `api-stability.md` | `src/main/java/**/*.java` | Public API immutability, visibility, Javadoc requirements and verification |
 | `testing-conventions.md` | `src/**` | Test stack, what is worth testing in a data model, isolation, bug-fix rules |
 | `deprecated-command-wrapper.md` | `src/*/java/.../v4/command/wrapper/**` | Standing deprecation policy for the typed instruction wrappers |
