@@ -24,7 +24,9 @@ If a ticket's actual scope turns out larger than expected, **do not propose spli
 
 ## Status and assignment
 
-**When starting work on a Jira ticket, transition it to `In Progress`** (unless it is already in a started or done state). In the MSG workflow that transition is named **`Start Progress`** (id 21) — passing the target status name `In Progress` fails, because the transition and the status it leads to have different names. From `New / Open` the available transitions are `Start Progress`, `Feedback`, `Reject` and `Reopen` and **assign it to the current Atlassian plugin user** (call `atlassianUserInfo` to get the `account_id`, then set that as the assignee). If the ticket is already assigned to a different user, ask before changing the assignee. Do this after the ticket key is confirmed and before making any code changes.
+**When starting work on a Jira ticket, transition it to `In Progress`** (unless it is already in a started or done state) **and assign it to the current Atlassian plugin user** (call `atlassianUserInfo` to get the `account_id`, then set that as the assignee). If the ticket is already assigned to a different user, ask before changing the assignee. Do this after the ticket key is confirmed and before making any code changes.
+
+In the MSG workflow that transition is named **`Start Progress`** (id 21), not `In Progress` — a transition and the status it leads to have different names here, so passing the status name fails. From `New / Open` the available transitions are `Start Progress`, `Feedback`, `Reject` and `Reopen`; from `In Progress`, resolving uses `Resolve Issue` (id 31).
 
 **When resolving a Jira ticket, set the resolution to `Done` and the assignee to unassigned.** An empty resolution is treated by Jira as *unresolved* even in a done status, which blocks releasing its fix version — pass the resolution on the resolve transition, then read the ticket back with `view: "full"` to confirm it, since the transition reports success either way and a narrower read omits `resolution` entirely.
 
