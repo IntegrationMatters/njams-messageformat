@@ -18,7 +18,7 @@ This library is consumed by nJAMS Server and by every nJAMS SDK version in the f
 /**
  * @deprecated Use {@link #newMethod()} instead.
  */
-@Deprecated
+@Deprecated(since = "5.0.2", forRemoval = false)
 public void oldMethod() {
     newMethod(); // delegate to the new implementation where possible
 }
