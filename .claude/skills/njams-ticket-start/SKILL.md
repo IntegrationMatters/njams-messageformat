@@ -19,7 +19,7 @@ The `breaking-change` label is deliberately *not* part of this bookkeeping in th
 
 **Read the ticket, and follow its linked issues.** Check formal issue links and also scan summary, description and comments for inline references — including `SER-NNN` and `SDK-NNN`. In this project the reason a field exists usually lives in a Server or SDK ticket, not in `MSG`.
 
-**Transition the ticket to `In Progress`**, unless it is already in a started or done state.
+**Transition the ticket to `In Progress`**, unless it is already in a started or done state. The transition is named **`Start Progress`** (id 21), *not* `In Progress` — passing the target status name fails. See `jira-workflow.md`.
 
 **Assign the ticket to the current Atlassian user.** Call `atlassianUserInfo` to get the `account_id` and set it as assignee. If the ticket is already assigned to someone else, stop and ask before reassigning.
 
@@ -27,7 +27,7 @@ The `breaking-change` label is deliberately *not* part of this bookkeeping in th
 
 **Do not guess at the `breaking-change` label.** Only set it now if the ticket description already makes the answer unambiguous — e.g. it explicitly says "remove deprecated class X". A ticket that just describes a desired capability does not yet know its own answer; leave the label untouched and defer to `njams-ticket-finish`. Remember the label covers Java-API breaks only — wire-format changes go through the confirmation gate instead.
 
-**If the ticket is being created on the spot**, set its `fix version` to the current `pom.xml` version with `-SNAPSHOT` stripped — checking the remote branch's pom if the local checkout may be behind — then run the rest of this kickoff immediately after.
+**If the ticket is being created on the spot**, set its `fix version` to the current `pom.xml` version with `-SNAPSHOT` stripped — checking the remote branch's pom if the local checkout may be behind — then run the rest of this kickoff immediately after. Setting it is not one call: `createJiraIssue` silently drops `fixVersions`, so set it afterwards with `editJiraIssue` by version **id**, and confirm it with `getJiraIssue` using `view: "full"`. `jira-workflow.md` has the detail and the reason each shortcut fails silently.
 
 **Draft and confirm a solution approach before writing any document or code.** After the bookkeeping above, analyze the ticket and sketch a proposed solution directly in conversation — never as a written plan or code file — and present it for confirmation. The draft must state whether the wire format is affected and which consumers need a counterpart change.
 
@@ -92,7 +92,7 @@ If a key like `MSG-27` is already in the conversation, use it. If not, ask — o
 Fetch the ticket and its formal links, then re-read summary/description/comments for inline `MSG-NNN`, `SER-NNN` and `SDK-NNN` mentions and fetch those too. A one-line ticket here can hide a constraint agreed with the Server team months earlier.
 
 **3. Transition and assign.**
-Skip if already `In Progress` or further — do not bounce it backwards. Get your own `account_id` via `atlassianUserInfo` first.
+Skip if already `In Progress` or further — do not bounce it backwards. The transition to use is `Start Progress` (id 21). Get your own `account_id` via `atlassianUserInfo` first.
 
 **4. Determine wire-format impact.**
 Read the types the ticket would touch. Decide whether the change is visible to a consumer's object mapper, and whether Server or SDK need a counterpart change. Carry that conclusion into the draft — do not leave it implicit.

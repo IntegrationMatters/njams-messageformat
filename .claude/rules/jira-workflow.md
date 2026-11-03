@@ -18,7 +18,9 @@ If a ticket's actual scope turns out larger than expected, **do not propose spli
 
 ## Labels
 
-**Manage the `breaking-change` label for Java-API breaks.** Add it if the work changes or removes an existing public/protected member's signature, return type, parameter type, or observable behavior. Remove it if present and the work turned out purely additive. Adding new methods, classes, or overloads is not breaking. Check at the start of the ticket and again before declaring it done.
+**Manage the `breaking-change` label for Java-API breaks.** Add it if the work changes or removes an existing public/protected member's signature, return type, parameter type, or observable behavior. Remove it if present and the work turned out purely additive. Adding new methods, classes, or overloads is not breaking.
+
+**Decide the label once, when the work is done — not at kickoff.** At kickoff there is usually no diff yet, and a guessed label looks decided when it isn't. Leave it untouched unless the ticket description already settles the question (e.g. it says "remove deprecated class X"), and set or remove it against the real diff as the ticket is resolved. `njams-ticket-start` and `njams-ticket-finish` implement this split.
 
 **Do not use the `breaking-change` label for wire-format changes.** Those are governed by the confirmation gate and `SER`/`SDK` alignment in `wire-contract.md`, not by a label. A ticket can legitimately carry both when it changes the wire format *and* breaks Java API.
 

@@ -100,8 +100,8 @@ Topic-specific rules that apply either always or only when working with certain 
 | `commit-conventions.md` | always | Smart Commit message format, branching policy, pushing |
 | `code-quality.md` | `src/main/java/**/*.java` | Copyright header, dependency policy, Java level, general principles |
 | `api-stability.md` | `src/main/java/**/*.java` | Public API immutability, visibility, Javadoc requirements and verification |
-| `testing-conventions.md` | `src/test/**` | Test stack, what is worth testing in a data model, isolation, bug-fix rules |
-| `deprecated-command-wrapper.md` | `.../v4/command/wrapper/**` | Standing deprecation policy for the typed instruction wrappers |
+| `testing-conventions.md` | `src/**` | Test stack, what is worth testing in a data model, isolation, bug-fix rules |
+| `deprecated-command-wrapper.md` | `src/*/java/.../v4/command/wrapper/**` | Standing deprecation policy for the typed instruction wrappers |
 
 ## Skills (`.claude/skills/`)
 

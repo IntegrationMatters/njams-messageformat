@@ -1,5 +1,5 @@
 ---
-globs: "src/main/java/com/faizsiegeln/njams/messageformat/v4/command/wrapper/**"
+globs: "src/*/java/com/faizsiegeln/njams/messageformat/v4/command/wrapper/**"
 ---
 
 # Command Wrapper Layer — Deprecated
