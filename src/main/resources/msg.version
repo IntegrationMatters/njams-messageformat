@@ -1,5 +1,6 @@
 msg.version=${project.version} (${build.id})
 msg.scmBranch=${git.branch}
 msg.scmCommit=${git.commit.id}
-msg.buildYear=${build.year}
 msg.buildTimestamp=${build.time}
+# not logged due to _ prefix
+_msg.buildYear=${build.year}
