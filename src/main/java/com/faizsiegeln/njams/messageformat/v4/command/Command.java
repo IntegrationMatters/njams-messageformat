@@ -26,6 +26,8 @@ package com.faizsiegeln.njams.messageformat.v4.command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Optional;
+
 /**
  * Defines the commands handled by this instruction listener implementation.
  */
@@ -69,13 +71,11 @@ public enum Command {
      *
      * @param instruction the instruction
      * @return <code>null</code> if no such command is defined, or the given
-     * instruction was <code>null</code>.
+     * instruction was <code>null</code> or had no request or command.
      */
     public static Command getFromInstruction(Instruction instruction) {
-        if (instruction == null) {
-            return null;
-        }
-        return getFromCommandString(instruction.getRequest().getCommand());
+        return Optional.ofNullable(instruction).map(Instruction::getRequest).map(Request::getCommand)
+            .map(Command::getFromCommandString).orElse(null);
     }
 
     /**
