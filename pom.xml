@@ -250,4 +250,19 @@
         </snapshotRepository>
     </distributionManagement>
 
+    <profiles>
+        <profile>
+            <!-- Publishes snapshots to the nJAMS Reposilite repository instead of the internal Nexus.
+                 Activated by the GitHub Actions build; credentials come from the runner's settings.xml. -->
+            <id>njams-repository</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>njams-repository-snapshots</id>
+                    <name>nJAMS Repository</name>
+                    <url>https://maven.njams.com/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
 </project>

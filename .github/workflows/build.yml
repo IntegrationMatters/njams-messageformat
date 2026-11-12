@@ -1,0 +1,48 @@
+name: Build nJAMS messageformat
+
+on:
+  push:
+    branches:
+      - master
+      - '[0-9]*.[0-9]*.[xX]'
+  pull_request:
+    branches:
+      - master
+      - '[0-9]*.[0-9]*.[xX]'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+          # settings.xml entry for the snapshot repository of the njams-repository profile
+          server-id: njams-repository-snapshots
+          server-username: NJAMS_REPOSITORY_USER
+          server-password: NJAMS_REPOSITORY_TOKEN
+
+      - name: Build and test
+        run: mvn -B clean verify
+
+      - name: Verify JavaDoc
+        run: mvn -B generate-sources javadoc:javadoc
+
+      # Pull requests never deploy, so a PR from a fork never sees the repository token.
+      - name: Deploy snapshot
+        if: github.event_name != 'pull_request'
+        env:
+          NJAMS_REPOSITORY_USER: ci
+          NJAMS_REPOSITORY_TOKEN: ${{ secrets.REPOSILITE_CI_TOKEN }}
+        run: mvn -B deploy -DskipTests -Pnjams-repository
