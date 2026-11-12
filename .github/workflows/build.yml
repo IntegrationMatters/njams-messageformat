@@ -20,18 +20,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v6
         with:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-          # settings.xml entry for the snapshot repository of the njams-repository profile
+          # settings.xml entry for the snapshot repository of the njams-repository profile. The *-env-var
+          # inputs take variable names, not values; Maven resolves them in the step that sets them.
           server-id: njams-repository-snapshots
-          server-username: NJAMS_REPOSITORY_USER
-          server-password: NJAMS_REPOSITORY_TOKEN
+          server-username-env-var: NJAMS_REPOSITORY_USER
+          server-password-env-var: NJAMS_REPOSITORY_TOKEN
 
       - name: Build and test
         run: mvn -B clean verify
