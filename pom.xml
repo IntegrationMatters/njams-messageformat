@@ -5,7 +5,7 @@
     <groupId>com.salesfive.njams</groupId>
     <artifactId>njams-messageformat</artifactId>
     <packaging>jar</packaging>
-    <version>6.0.0-RC1</version>
+    <version>6.0.0-SNAPSHOT</version>
     <name>njams-messageformat</name>
     <organization>
         <name>Salesfive Integration Services GmbH</name>
@@ -21,7 +21,7 @@
     <scm>
         <connection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</connection>
         <developerConnection>scm:git:https://github.com/IntegrationMatters/njams-messageformat</developerConnection>
-        <tag>njams-messageformat-6.0.0-RC1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
