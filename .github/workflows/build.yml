@@ -40,10 +40,17 @@ jobs:
       - name: Verify JavaDoc
         run: mvn -B generate-sources javadoc:javadoc
 
-      # Pull requests never deploy, so a PR from a fork never sees the repository token.
+      # Pull requests never deploy, so a PR from a fork never sees the repository token. Only snapshots are
+      # deployed here: release versions (e.g. the release plugin's release commit) are published by release.yml.
       - name: Deploy snapshot
         if: github.event_name != 'pull_request'
         env:
           NJAMS_REPOSITORY_USER: ci
           NJAMS_REPOSITORY_TOKEN: ${{ secrets.REPOSILITE_CI_TOKEN }}
-        run: mvn -B deploy -DskipTests -Pnjams-repository
+        run: |
+          version=$(mvn -B -q help:evaluate -Dexpression=project.version -DforceStdout)
+          if [[ "$version" != *-SNAPSHOT ]]; then
+            echo "::notice::Version $version is not a snapshot; deployment skipped."
+            exit 0
+          fi
+          mvn -B deploy -DskipTests -Pnjams-repository
