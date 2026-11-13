@@ -23,7 +23,7 @@ Add the repository and the dependency to your project's `pom.xml`:
 
 <dependencies>
     <dependency>
-        <groupId>com.faizsiegeln</groupId>
+        <groupId>com.salesfive.njams</groupId>
         <artifactId>njams-messageformat</artifactId>
         <version>6.0.0</version>
     </dependency>
@@ -31,7 +31,7 @@ Add the repository and the dependency to your project's `pom.xml`:
 ```
 
 Available versions are listed in the
-[repository metadata](https://maven.njams.com/public/com/faizsiegeln/njams-messageformat/maven-metadata.xml).
+[repository metadata](https://maven.njams.com/public/com/salesfive/njams/njams-messageformat/maven-metadata.xml).
 
 ## License
 

@@ -5,7 +5,7 @@ path-specific rules live under `.claude/rules/` — see the index at the bottom 
 
 ## Project
 
-`com.faizsiegeln:njams-messageformat` — a single-module Maven library (jar, Java 11) that defines the **wire format for communication between the nJAMS server and nJAMS clients/SDK**. It contains only the data model plus a small command layer.
+`com.salesfive.njams:njams-messageformat` — a single-module Maven library (jar, Java 11) that defines the **wire format for communication between the nJAMS server and nJAMS clients/SDK**. It contains only the data model plus a small command layer.
 
 **The project's scope is strictly limited to defining that format.** It holds no runtime logic, no transport code, and no behavior beyond data carriage. Functionality that belongs in the SDK or the Server does not belong here — if a change would put behavior into this project, say so and ask before proceeding. `.claude/rules/wire-contract.md` is the rule that governs everything else.
 
@@ -43,7 +43,7 @@ This file is **build information, not part of the message format.** It carries n
 
 ## Architecture
 
-Everything lives under `com.faizsiegeln.njams.messageformat.v4` (the `v4` segment is the message-format major version, not a package-layout artifact; `MessageVersion.V4` is stamped into every `LogMessage`).
+Everything lives under `com.faizsiegeln.njams.messageformat.v4` — the Java packages kept the old name when the Maven group id moved to `com.salesfive.njams` in 6.0.0 (MSG-33); renaming them would be a wire-format change (the `v4` segment is the message-format major version, not a package-layout artifact; `MessageVersion.V4` is stamped into every `LogMessage`).
 
 Four message families, each a package:
 
