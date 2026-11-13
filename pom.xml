@@ -239,35 +239,15 @@
 
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <name>Internal Releases on Nexus</name>
-            <url>https://nexus.service.salesfive.io/repository/releases/</url>
+            <id>njams-repository-public</id>
+            <name>nJAMS Repository</name>
+            <url>https://maven.njams.com/public</url>
         </repository>
         <snapshotRepository>
-            <id>snapshots</id>
-            <name>Nightly builds on Nexus</name>
-            <url>https://nexus.service.salesfive.io/repository/snapshots/</url>
+            <id>njams-repository-snapshots</id>
+            <name>nJAMS Repository</name>
+            <url>https://maven.njams.com/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-
-    <profiles>
-        <profile>
-            <!-- Publishes releases and snapshots to the nJAMS Reposilite repository instead of the internal
-                 Nexus. Activated by the GitHub Actions workflows; credentials come from the runner's settings.xml. -->
-            <id>njams-repository</id>
-            <distributionManagement>
-                <repository>
-                    <id>njams-repository-public</id>
-                    <name>nJAMS Repository</name>
-                    <url>https://maven.njams.com/public</url>
-                </repository>
-                <snapshotRepository>
-                    <id>njams-repository-snapshots</id>
-                    <name>nJAMS Repository</name>
-                    <url>https://maven.njams.com/snapshots</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-    </profiles>
 
 </project>

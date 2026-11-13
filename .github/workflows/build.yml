@@ -28,7 +28,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-          # settings.xml entry for the snapshot repository of the njams-repository profile. The *-env-var
+          # settings.xml entry for the pom's snapshot repository. The *-env-var
           # inputs take variable names, not values; Maven resolves them in the step that sets them.
           server-id: njams-repository-snapshots
           server-username-env-var: NJAMS_REPOSITORY_USER
@@ -53,4 +53,4 @@ jobs:
             echo "::notice::Version $version is not a snapshot; deployment skipped."
             exit 0
           fi
-          mvn -B deploy -DskipTests -Pnjams-repository
+          mvn -B deploy -DskipTests

@@ -45,7 +45,7 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
-          # settings.xml entry for the release repository of the njams-repository profile. The *-env-var
+          # settings.xml entry for the pom's release repository. The *-env-var
           # inputs take variable names, not values; Maven resolves them in the step that sets them.
           server-id: njams-repository-public
           server-username-env-var: NJAMS_REPOSITORY_USER
@@ -67,7 +67,7 @@ jobs:
           if [[ -n "$DEVELOPMENT_VERSION" ]]; then
             versions+=("-DdevelopmentVersion=${DEVELOPMENT_VERSION%-SNAPSHOT}-SNAPSHOT")
           fi
-          mvn -B release:prepare release:perform -Pnjams-repository -Darguments=-Pnjams-repository "${versions[@]}"
+          mvn -B release:prepare release:perform "${versions[@]}"
 
       - name: Determine released version
         id: version

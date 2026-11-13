@@ -1,10 +1,37 @@
-# nJAMS MessageFormat 
+# nJAMS Message-Format
 
-This project defines the messgeformat used for the communication between the nJAMS server and the nJAMS client.
+This project defines the message-format used for the communication between the nJAMS server and nJAMS clients.
 
 ## Docs
 
-* [JavaDoc](https://integrationmatters.github.io/njams-messageformat/) - The JavaDocs of the latest Release.
+* [JavaDoc](https://integrationmatters.github.io/njams-messageformat/) - The JavaDocs of the latest release.
+
+## Using the Maven artifact
+
+Starting with version 6.0.0, releases of the message-format are published to the public nJAMS Maven repository.
+
+Add the repository and the dependency to your project's `pom.xml`:
+
+```xml
+<repositories>
+    <repository>
+        <id>njams-repository-public</id>
+        <name>nJAMS Repository</name>
+        <url>https://maven.njams.com/public</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>com.faizsiegeln</groupId>
+        <artifactId>njams-messageformat</artifactId>
+        <version>6.0.0</version>
+    </dependency>
+</dependencies>
+```
+
+Available versions are listed in the
+[repository metadata](https://maven.njams.com/public/com/faizsiegeln/njams-messageformat/maven-metadata.xml).
 
 ## License
 
