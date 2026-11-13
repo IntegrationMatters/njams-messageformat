@@ -1,4 +1,4 @@
-# nJAMS MessageFormat
+# nJAMS MessageFormat 
 
 This project defines the messgeformat used for the communication between the nJAMS server and the nJAMS client.
 
