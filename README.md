@@ -1,5 +1,11 @@
 # nJAMS Message-Format
 
+> [!WARNING]
+> **Breaking change: new Maven coordinates starting with version 6.0.0.**
+> The group id changed from `com.faizsiegeln` to `com.salesfive.njams`; the artifact id `njams-messageformat` is unchanged.
+> Versions up to 5.x remain available under the old coordinates only. To use 6.0.0 or later, update your dependency's `groupId`.
+> The Java packages are unchanged.
+
 This project defines the message-format used for the communication between the nJAMS server and nJAMS clients.
 
 ## Docs
